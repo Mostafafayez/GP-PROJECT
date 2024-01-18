@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BabyGrowthController;
+use App\Http\Controllers\Api\BodyChangeController;
+use App\Http\Controllers\Api\FoodController;
 use App\Http\Controllers\Api\ListController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,3 +34,16 @@ Route::get('/get_babyGrowth_6', [BabyGrowthController::class, 'get_babyGrowth_6'
 Route::get('/get_babyGrowth_7', [BabyGrowthController::class, 'get_babyGrowth_7']);
 Route::get('/get_babyGrowth_8', [BabyGrowthController::class, 'get_babyGrowth_8']);
 Route::get('/get_babyGrowth_9', [BabyGrowthController::class, 'get_babyGrowth_9']);
+Route::get('/get_bodyChange_1', [BodyChangeController::class, 'get_bodyChange_1']);
+Route::get('/get_bodyChange_2', [BodyChangeController::class, 'get_bodyChange_2']);
+Route::get('/get_bodyChange_3', [BodyChangeController::class, 'get_bodyChange_3']);
+Route::get('/get_bodyChange_4', [BodyChangeController::class, 'get_bodyChange_4']);
+Route::get('/get_bodyChange_5', [BodyChangeController::class, 'get_bodyChange_5']);
+Route::get('/get_bodyChange_6', [BodyChangeController::class, 'get_bodyChange_6']);
+Route::get('/get_bodyChange_7', [BodyChangeController::class, 'get_bodyChange_7']);
+Route::get('/get_bodyChange_8', [BodyChangeController::class, 'get_bodyChange_8']);
+Route::get('/get_bodyChange_9', [BodyChangeController::class, 'get_bodyChange_9']);
+Route::get('/get_Food_1', [FoodController::class, 'get_Food_1']);
+Route::get('/get_Food_3', [FoodController::class, 'get_Food_3']);
+Route::get('/get_Food_6', [FoodController::class, 'get_Food_6']);
+
