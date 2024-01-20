@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\To_do_list;
+use Carbon\Carbon;
 
 class ListController extends Controller
 {
@@ -59,6 +60,55 @@ class ListController extends Controller
             return response()->json(['message' => 'TO DO LIST NOT FOUND'], 404);
         }
     }
+
+
+    public function calculateWeeksDifference($inputDate)
+    {
+
+        $startDate = Carbon::parse($inputDate);
+
+        $currentDate = Carbon::now();
+
+        $weeksDifference = $startDate->diffInWeeks($currentDate);
+
+        return $weeksDifference;
+    }
+
+    public function calculateDaysDifference($inputDate)
+    {
+
+        $startDate = Carbon::parse($inputDate);
+
+        $currentDate = Carbon::now();
+
+        $daysDifference = $startDate->diffInDays($currentDate);
+
+        return $daysDifference;
+    }
+
+
+    public function calculateWeeksAndDaysPregrency($inputDate)
+    {
+        $startDate = Carbon::parse($inputDate);
+
+        $currentDate = Carbon::now();
+
+        $weeksDifference = $startDate->diffInWeeks($currentDate);
+        $remainingDays = $startDate->diffInDays($currentDate) % 7;
+
+        if ($remainingDays === 7) {
+            $weeksDifference++;
+            $remainingDays = 0;
+        }
+        return [
+            'weeks' => $weeksDifference,
+            'days' => $remainingDays,
+        ];
+    }
 }
+
+
+
+
 
 

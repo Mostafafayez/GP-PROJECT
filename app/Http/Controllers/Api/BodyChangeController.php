@@ -9,7 +9,6 @@ class BodyChangeController extends Controller
 {
     public function get_bodyChange_1()
     {
-        // Add two conditions to filter records
         $bodyChange_1 = Des_Categories::where('category_id', '=', '1')
             ->where('Month', '=', '1')
             ->get();
@@ -17,7 +16,6 @@ class BodyChangeController extends Controller
     }
     public function get_bodyChange_2()
     {
-        // Add two conditions to filter records
         $bodyChange_2 = Des_Categories::where('category_id', '=', '1')
             ->where('Month', '=', '2')
             ->get();
@@ -25,7 +23,6 @@ class BodyChangeController extends Controller
     }
     public function get_bodyChange_3()
     {
-        // Add two conditions to filter records
         $bodyChange_3 = Des_Categories::where('category_id', '=', '1')
             ->where('Month', '=', '3')
             ->get();
