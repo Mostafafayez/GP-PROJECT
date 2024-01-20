@@ -25,6 +25,7 @@ Route ::post('/addList',  [ListController ::class,'addList']);
 Route ::delete('/deleteList',  [ListController ::class,'deleteList']);
 Route ::get('/babyGrowth_1',[BabyGrowthController::class,'get_babyGrowth_1']);
 Route::get('/getListById/{user_id}', [ListController::class, 'getListById']);
+Route::put('/updatellist/{user_id}/{id}', [ListController::class, 'updateList']);
 Route::get('/get_babyGrowth_1', [BabyGrowthController::class, 'get_babyGrowth_1']);
 Route::get('/get_babyGrowth_2', [BabyGrowthController::class, 'get_babyGrowth_2']);
 Route::get('/get_babyGrowth_3', [BabyGrowthController::class, 'get_babyGrowth_3']);

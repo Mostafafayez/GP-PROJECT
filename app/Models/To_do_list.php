@@ -9,4 +9,10 @@ class To_do_list extends Model
 {
     use HasFactory;
     protected $table = 'lists';
+
+    protected $fillable = [
+        'user_id',
+    'description'
+       
+    ];
 }
