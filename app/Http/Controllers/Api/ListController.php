@@ -40,17 +40,7 @@ class ListController extends Controller
 
     }
 
-    // public function getListById($user_id)
-    // {
-    //     // Find the record by ID
-    //     $list = To_do_list::find($user_id);
 
-    //     // Check if the record is found
-    //     if ($list) {
-    //         return response()->json($list, 200);
-    //     } else {
-    //         return response()->json(['message' => 'TO DO LIST NOT FOUND'], 404);
-    //     }
     public function getListById($user_id)
     {
         $lists = To_do_list::where('user_id', $user_id)->get();
@@ -65,36 +55,9 @@ class ListController extends Controller
 
 
 
-    // public function updateList(Request $request, $user_id, $id)
-    // {
   
-       
-
-    //     // Your update query here
-    //     $list = To_do_list::where('id', $id)
-    //         ->where('user_id', $user_id)
-    //         ->first();
-
-    //     if ($list) {
-            
-    //         $list->update([
-    //             'description' => $request->description,
-    //             $list->save()
-    //         ]);
-
-    //         return ["Result" => "Data has been updated"];
-    //     } else {
-    //         return ["Result" => "TO DO LIST NOT FOUND"];
-    //     }
-    // }
     public function updateList(Request $request, $user_id, $id)
 {
-    // Validate that the 'description' field is present and not empty
-    $request->validate([
-        'description' => 'required',
-    ]);
-
-    // Your update query here
     $list = To_do_list::where('id', $id)
         ->where('user_id', $user_id)
         ->first();
