@@ -25,7 +25,13 @@ Route ::post('/addList',  [ListController ::class,'addList']);
 Route ::delete('/deleteList',  [ListController ::class,'deleteList']);
 Route ::get('/babyGrowth_1',[BabyGrowthController::class,'get_babyGrowth_1']);
 Route::get('/getListById/{user_id}', [ListController::class, 'getListById']);
+<<<<<<< HEAD
 Route::put('/updatellist/{user_id}/{id}', [ListController::class, 'updateList']);
+=======
+Route::get('/calculateWeeksDifference/{date}', [ListController::class, 'calculateWeeksDifference']);
+Route::get('/calculateDaysDifference/{date}', [ListController::class, 'calculateDaysDifference']);
+Route::get('/calculateWeeksAndDaysPregrency/{date}', [ListController::class, 'calculateWeeksAndDaysPregrency']);
+>>>>>>> 14274ddab1f208d5e48d7d0481fe4d29f50f4cf2
 Route::get('/get_babyGrowth_1', [BabyGrowthController::class, 'get_babyGrowth_1']);
 Route::get('/get_babyGrowth_2', [BabyGrowthController::class, 'get_babyGrowth_2']);
 Route::get('/get_babyGrowth_3', [BabyGrowthController::class, 'get_babyGrowth_3']);
@@ -47,4 +53,3 @@ Route::get('/get_bodyChange_9', [BodyChangeController::class, 'get_bodyChange_9'
 Route::get('/get_Food_1', [FoodController::class, 'get_Food_1']);
 Route::get('/get_Food_3', [FoodController::class, 'get_Food_3']);
 Route::get('/get_Food_6', [FoodController::class, 'get_Food_6']);
-
