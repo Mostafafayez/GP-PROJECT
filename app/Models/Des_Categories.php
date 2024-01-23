@@ -9,4 +9,10 @@ class Des_Categories extends Model
 {
     use HasFactory;
     protected $table = 'des_categories';
+    protected $fillable = [
+        'id',
+        'description',
+        'category_id'
+    ];
+
 }
