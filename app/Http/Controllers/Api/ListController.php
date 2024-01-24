@@ -74,7 +74,7 @@ class ListController extends Controller
     } else {
         return ["Result" => "TO DO LIST NOT FOUND"];
     }
-
+}
 
     public function calculateWeeksDifference($inputDate)
     {
@@ -121,7 +121,7 @@ class ListController extends Controller
     }
 }
 
-}
+
 
 
 

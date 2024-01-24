@@ -18,6 +18,7 @@ class BabyGrowthController extends Controller
             ->get();
         return response()->json($babyGrowth_1, 200);
     }
+    
     public function get_babyGrowth_2()
     {
         // Add two conditions to filter records
@@ -28,20 +29,28 @@ class BabyGrowthController extends Controller
     }
     public function get_babyGrowth_3()
     {
-        // Add two conditions to filter records
-        $babyGrowth_3 = Des_Categories::where('category_id', '=', '2')
-            ->where('Month', '=', '3')
-            ->get();
-        return response()->json($babyGrowth_3, 200);
+        
+            // Select specific columns and add conditions to filter records
+            $babyGrowth_3 = Des_Categories::where('category_id', '=', '2')
+                ->where('Month', '=', '3')
+                ->get();
+    
+            return response()->json($babyGrowth_3, 200);
     }
+    
+    
     public function get_babyGrowth_4()
     {
-        // Add two conditions to filter records
-        $babyGrowth_4 = Des_Categories::where('category_id', '=', '2')
-            ->where('Month', '=', '4')
-            ->get();
-        return response()->json($babyGrowth_4, 200);
+        
+            // Select specific columns and add conditions to filter records
+            $babyGrowth_4 = Des_Categories::where('category_id', '=', '2')
+                ->where('Month', '=', '3')
+                ->get();
+    
+            return response()->json($babyGrowth_4, 200);
     }
+            
+    
     public function get_babyGrowth_5()
     {
         // Add two conditions to filter records

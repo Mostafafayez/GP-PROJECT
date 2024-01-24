@@ -9,4 +9,5 @@ class Des_Categories extends Model
 {
     use HasFactory;
     protected $table = 'des_categories';
+      public $timestamps = false;
 }
