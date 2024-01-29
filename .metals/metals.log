@@ -1,0 +1,9 @@
+2024.01.24 04:51:46 INFO  Started: Metals version 1.2.0 in folders 'F:\Graduation-Project' for client Visual Studio Code 1.85.2.
+2024.01.24 04:51:47 WARN  Build server is not auto-connectable.
+2024.01.24 04:51:47 WARN  no build tool detected in workspace 'F:\Graduation-Project'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+Jan 24, 2024 6:15:57 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+Jan 24, 2024 6:16:08 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+Jan 24, 2024 6:17:07 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
