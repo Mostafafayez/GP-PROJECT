@@ -114,5 +114,30 @@ public function get_all_DESC()
     return $result;
 }
 
+public function getAllBabyGrowth()
+    {
+        $bodyChange = Des_Categories::where('category_id', '=', '2')
+            ->get();
+        return response()->json($bodyChange, 200);
+    }
+
+    public function getAllBodyChanges()
+    {
+        $bodyChange = Des_Categories::where('category_id', '=', '1')
+            ->get();
+        return response()->json($bodyChange, 200);
+    }
+
+    public function delete($id)
+    {
+        $delet = Des_Categories::find($id);
+
+        if ($delet) {
+            $delet->delete();
+            return response()->json(['message' => 'Data deleted successfully']); // Deletion successful
+        } else {
+            return response()->json(['message' => 'Data didn’t deleted successfully']); // Record not found
+        }
+    }
 
 }
