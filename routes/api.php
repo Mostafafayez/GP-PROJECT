@@ -61,3 +61,4 @@ Route::get('/get_Food_6', [FoodController::class, 'get_Food_6']);
  Route::get('/getAllBabyGrowth', [AdminBabyGrowthController::class, 'getAllBabyGrowth']);
  Route::get('/getAllBodyChanges', [AdminBabyGrowthController::class, 'getAllBodyChanges']);
  Route ::delete('/delet/{id}',[AdminBabyGrowthController::class,'delete']);
+ //test////////////////////////////
