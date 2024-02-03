@@ -55,7 +55,8 @@ Route::get('/get_Food_3', [FoodController::class, 'get_Food_3']);
 Route::get('/get_Food_6', [FoodController::class, 'get_Food_6']);
  //admin//
  Route ::post('/add_description',  [AdminBabyGrowthController ::class,'add_DESC']);
- Route::post('/update_DESC/{id}', [AdminBabyGrowthController ::class,'update_DESC']);
+ Route::post('/update_DESC/{id}', [AdminBabyGrowthController ::class,'update_all']);
+ Route::post('/update_one/{id}', [AdminBabyGrowthController ::class,'update_one']);
  Route::get('/get_des', [AdminBabyGrowthController ::class,'get_all_DESC']);
  Route::get('/getAllBabyGrowth', [AdminBabyGrowthController::class, 'getAllBabyGrowth']);
  Route::get('/getAllBodyChanges', [AdminBabyGrowthController::class, 'getAllBodyChanges']);
