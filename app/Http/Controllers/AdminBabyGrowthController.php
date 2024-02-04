@@ -163,6 +163,7 @@ public function get_all_DESC()
 
 public function getAllBabyGrowth()
     {
+
         $bodyChange = Des_Categories::where('category_id', '=', '2')
             ->get();
         return response()->json($bodyChange, 200);

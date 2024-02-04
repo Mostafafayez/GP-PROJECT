@@ -11,11 +11,15 @@ class Des_Categories extends Model
     protected $table = 'des_categories';
 
       public $timestamps = false;
-
+protected $appends=['FullSrc'];
     protected $fillable = [
         'id',
         'description',
         'category_id'
     ];
+     public function getFullSrcAttribute()  {
+      return asset('storage/'.$this->image);
+      
+    }
 }
 
