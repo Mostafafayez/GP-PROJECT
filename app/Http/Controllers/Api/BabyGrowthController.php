@@ -74,7 +74,7 @@ class BabyGrowthController extends Controller
     {
         $babyGrowth_8 = Des_Categories::where('category_id', '=', '2')
             ->where('Month', '=', '8')
-            ->firstt();
+            ->first();
         return response()->json($babyGrowth_8, 200);
     }
     public function get_babyGrowth_9()
