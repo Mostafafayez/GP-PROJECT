@@ -7,3 +7,22 @@ Jan 24, 2024 6:16:08 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notif
 INFO: Unsupported notification method: $/setTrace
 Jan 24, 2024 6:17:07 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
 INFO: Unsupported notification method: $/setTrace
+2024.02.05 17:01:25 INFO  Started: Metals version 1.2.0 in folders 'F:\Graduation-Project' for client Visual Studio Code 1.86.0.
+2024.02.05 17:01:29 WARN  Build server is not auto-connectable.
+2024.02.05 17:01:29 WARN  no build tool detected in workspace 'F:\Graduation-Project'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+Feb 05, 2024 5:02:04 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2024.02.05 17:02:12 INFO  Shutting down server
+2024.02.05 17:02:12 INFO  shutting down Metals
+2024.02.05 17:02:12 INFO  Exiting server
+2024.02.05 17:03:46 INFO  Started: Metals version 1.2.0 in folders 'F:\Graduation-Project' for client Visual Studio Code 1.86.0.
+2024.02.05 17:03:47 WARN  Build server is not auto-connectable.
+2024.02.05 17:03:47 WARN  no build tool detected in workspace 'F:\Graduation-Project'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2024.02.05 17:03:51 INFO  Shutting down server
+2024.02.05 17:03:51 INFO  shutting down Metals
+2024.02.05 17:03:51 INFO  Exiting server
+2024.02.05 17:04:27 INFO  Started: Metals version 1.2.0 in folders 'F:\Graduation-Project' for client Visual Studio Code 1.86.0.
+2024.02.05 17:04:28 WARN  Build server is not auto-connectable.
+2024.02.05 17:04:28 WARN  no build tool detected in workspace 'F:\Graduation-Project'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+Feb 05, 2024 5:04:37 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
