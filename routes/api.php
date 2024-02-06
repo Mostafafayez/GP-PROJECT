@@ -21,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route ::post('/register', [AuthController ::class,'register']);
+Route ::post('/registerAdmin', [AuthController ::class,'registerAdmin']);
+Route ::post('/loginAdmin',  [AuthController ::class,'login']);
 Route ::post('/login',  [AuthController ::class,'login']);
 Route ::post('/addList',  [ListController ::class,'addList']);
 Route ::delete('/deleteList',  [ListController ::class,'deleteList']);
