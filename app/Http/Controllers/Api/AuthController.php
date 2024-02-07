@@ -39,18 +39,26 @@ class AuthController extends Controller
 }
 
     
-    public function login(Request $req)
-    {
-        try {
-            $user = User::where('email', $req->email)->firstOrFail();
-            if (!Hash::check($req->password, $user->password)) {
-                return response()->json(['error' => 'Email or Password is incorrect'], 401);
-            }
-            return response()->json($user);
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'Something went wrong'], 500);
-        }
+public function login(Request $req)
+{
+    // Check if required fields are empty
+    if (empty($req->input('email')) || empty($req->input('password'))) {
+        return response()->json(['error' => 'Please provide email and password'], 400);
     }
+
+    try {
+        $user = User::where('email', $req->input('email'))->firstOrFail();
+        
+        if (!Hash::check($req->input('password'), $user->password)) {
+            return response()->json(['error' => 'Email or Password is incorrect'], 401);
+        }
+        
+        return response()->json($user);
+    } catch (\Exception $e) {
+        return response()->json(['error' => 'Something went wrong'], 500);
+    }
+}
+
     
     public function loginAdmin (Request $req){
 
