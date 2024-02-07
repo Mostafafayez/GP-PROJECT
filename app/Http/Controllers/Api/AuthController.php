@@ -13,25 +13,36 @@ class AuthController extends Controller
     public function register(Request $req)
     {
         $user = new User;
-        $user->name=$req->input('name');
-        $user->email=$req->input('email');
-        $user->password=$req->input('password');
-        $user->phone=$req->input('phone');
-        $user->save();
-        return $user;
-    }
-    public function login (Request $req){
-
-        $user = User :: where('email',$req->email)->first();
-        if(!$user || !Hash ::check($req->password,$user->password))
-        {
-            return response([
-                'error' => ["Email or Password is not mached"]
-            ]);
+        $user->name = $req->input('name');
+        $user->email = $req->input('email');
+        $user->password = $req->input('password');
+        $user->phone = $req->input('phone');
+    
+        try {
+            $user->save();
+            return response()->json(['message' => 'User added successfully']);
+        } catch (\Exception $e) {
+            if ($e->getCode() == 23000) { // 23000 is the SQLSTATE error code for duplicate entry
+                return response()->json(['error' => 'Email already exists'], 400);
+            } else {
+                return response()->json(['error' => 'Something went wrong'], 500);
+            }
         }
-        return $user;
     }
-
+    
+    public function login(Request $req)
+    {
+        try {
+            $user = User::where('email', $req->email)->firstOrFail();
+            if (!Hash::check($req->password, $user->password)) {
+                return response()->json(['error' => 'Email or Password is incorrect'], 401);
+            }
+            return response()->json($user);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Something went wrong'], 500);
+        }
+    }
+    
     public function loginAdmin (Request $req){
 
         $admin = Admin :: where('email',$req->email)->first();
