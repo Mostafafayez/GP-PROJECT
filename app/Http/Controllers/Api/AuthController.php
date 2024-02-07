@@ -11,24 +11,33 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
     public function register(Request $req)
-    {
-        $user = new User;
-        $user->name = $req->input('name');
-        $user->email = $req->input('email');
-        $user->password = $req->input('password');
-        $user->phone = $req->input('phone');
-    
-        try {
-            $user->save();
-            return response()->json(['message' => 'User added successfully']);
-        } catch (\Exception $e) {
-            if ($e->getCode() == 23000) { // 23000 is the SQLSTATE error code for duplicate entry
-                return response()->json(['error' => 'Email already exists'], 400);
-            } else {
-                return response()->json(['error' => 'Something went wrong'], 500);
-            }
+{
+    // Check if required fields are empty
+    if (empty($req->input('name')) || empty($req->input('email')) || empty($req->input('password')) || empty($req->input('phone'))) {
+        return response()->json(['error' => 'Please provide all required fields'], 400);
+    }
+
+    // Create a new user instance
+    $user = new User;
+    $user->name = $req->input('name');
+    $user->email = $req->input('email');
+    $user->password = $req->input('password');
+    $user->phone = $req->input('phone');
+
+    try {
+        // Save the user
+        $user->save();
+        return response()->json(['message' => 'User added successfully']);
+    } catch (\Exception $e) {
+        // Handle exceptions
+        if ($e->getCode() == 23000) {
+            return response()->json(['error' => 'Email already exists'], 400);
+        } else {
+            return response()->json(['error' => 'Something went wrong'], 500);
         }
     }
+}
+
     
     public function login(Request $req)
     {
