@@ -53,11 +53,12 @@ public function login(Request $req)
             return response()->json(['error' => 'Email or Password is incorrect'], 401);
         }
         
-        return response()->json($user);
+        return response()->json(['message' => 'Login successful', 'user' => $user]);
     } catch (\Exception $e) {
-        return response()->json(['error' => 'Something went wrong'], 500);
+        return response()->json(['error' => 'Email or Password is incorrect'], 401);
     }
 }
+
 
     
     public function loginAdmin (Request $req){
