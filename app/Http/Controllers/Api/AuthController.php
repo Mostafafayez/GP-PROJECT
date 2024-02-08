@@ -61,27 +61,52 @@ public function login(Request $req)
 
 
     
-    public function loginAdmin (Request $req){
-
-        $admin = Admin :: where('email',$req->email)->first();
-        if(!$admin || !Hash ::check($req->password,$admin->password))
-        {
-            return response([
-                'error' => ["Email or Password is not mached"]
-            ]);
-        }
-        return $admin;
+public function loginAdmin(Request $req)
+{
+    // Check if required fields are empty
+    if (empty($req->input('email')) || empty($req->input('password'))) {
+        return response()->json(['error' => 'Please provide email and password'], 400);
     }
+
+    try {
+        $Admin = Admin::where('email', $req->input('email'))->firstOrFail();
+        
+        if (!Hash::check($req->input('password'), $Admin->password)) {
+            return response()->json(['error' => 'Email or Password is incorrect'], 401);
+        }
+        
+        return response()->json(['message' => 'Login successful', 'user' => $Admin]);
+    } catch (\Exception $e) {
+        return response()->json(['error' => 'Email or Password is incorrect'], 401);
+    }
+}
 
     public function registerAdmin(Request $req)
     {
+        // Check if required fields are empty
+        if (empty($req->input('name')) || empty($req->input('email')) || empty($req->input('password')) || empty($req->input('phone'))) {
+            return response()->json(['error' => 'Please provide all required fields'], 400);
+        }
+    
         $admin = new Admin;
-        $admin->name=$req->input('name');
-        $admin->email=$req->input('email');
-        $admin->password=$req->input('password');
-        $admin->phone=$req->input('phone');
-        $admin->save();
-        return $admin;
+        $admin->name = $req->input('name');
+        $admin->email = $req->input('email');
+        $admin->password = $req->input('password');
+        $admin->phone = $req->input('phone');
+    
+        try {
+            // Save the user
+            $admin->save();
+            return response()->json(['message' => 'User added successfully']);
+        } catch (\Exception $e) {
+            // Handle exceptions
+            if ($e->getCode() == 23000) {
+                return response()->json(['error' => 'Email already exists'], 400);
+            } else {
+                return response()->json(['error' => 'Something went wrong'], 500);
+            }
+        }
     }
+    
 
 }

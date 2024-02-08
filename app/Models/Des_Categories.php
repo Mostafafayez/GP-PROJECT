@@ -14,6 +14,7 @@ class Des_Categories extends Model
 protected $appends=['FullSrc'];
     protected $fillable = [
         'id',
+        'title',
         'description',
         'category_id'
     ];

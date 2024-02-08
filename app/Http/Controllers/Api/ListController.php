@@ -11,13 +11,19 @@ use Carbon\Carbon;
 
 class ListController extends Controller
 {
+  
+
     public function addList(Request $req)
     {
-
         $list = new To_do_list;
-        $list->description = $req->description;
+        $list->title = $req->title;
+        $list->content = $req->content;
         $list->user_id = $req->user_id;
+        $list->due_date =$req->due_date;
+     
+    
         $result = $list->save();
+        
         if ($result) {
             return ["Result" => "Data has been saved"];
         } else {
@@ -37,26 +43,35 @@ class ListController extends Controller
     }
 
 
+    
+    
     public function updateList(Request $request, $id)
     {
-        // Validate the request data
-        $request->validate([
-            'description' => 'required|string',
-        ]);
-
         $list = To_do_list::find($id);
-
+    
         // Check if the list exists
         if (!$list) {
             return response()->json(['message' => 'List not found'], 404);
         }
-
-        $list->update([
-            'description' => $request->input('description'),
-        ]);
-
+    
+        // Validate the request data for each field separately
+        $validatedData = [];
+        if ($request->filled('title')) {
+            $validatedData['title'] = $request->input('title');
+        }
+        if ($request->filled('content')) {
+            $validatedData['content'] = $request->input('content');
+        }
+        if ($request->filled('due_date')) {
+            $validatedData['due_date'] = $request->input('due_date');
+        }
+    
+        // Update only the provided fields
+        $list->update($validatedData);
+    
         return response()->json(['message' => 'List updated successfully']);
     }
+    
 
 
     public function getListById($user_id)

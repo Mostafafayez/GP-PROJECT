@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\BabyGrowthController;
 use App\Http\Controllers\Api\BodyChangeController;
 use App\Http\Controllers\Api\FoodController;
 use App\Http\Controllers\Api\ListController;
+use App\Http\Controllers\VitaminsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,18 +23,18 @@ use Illuminate\Support\Facades\Route;
 
 Route ::post('/register', [AuthController ::class,'register']);
 Route ::post('/registerAdmin', [AuthController ::class,'registerAdmin']);
-Route ::post('/loginAdmin',  [AuthController ::class,'login']);
+Route ::post('/loginAdmin',  [AuthController ::class,'loginAdmin']);
 Route ::post('/login',  [AuthController ::class,'login']);
-Route ::post('/addList',  [ListController ::class,'addList']);
-Route ::delete('/deleteList',  [ListController ::class,'deleteList']);
-Route ::get('/babyGrowth_1',[BabyGrowthController::class,'get_babyGrowth_1']);
-Route::get('/getListById/{user_id}', [ListController::class, 'getListById']);
 
-Route::put('/updatellist/{user_id}/{id}', [ListController::class, 'updateList']);
+Route ::post('/addList',  [ListController ::class,'addList']);
+Route ::delete('/deleteList/{id}',  [ListController ::class,'deleteList']);
+Route::get('/getListById/{user_id}', [ListController::class, 'getListById']);
+Route::put('/updatellist/{id}', [ListController::class, 'updateList']);
 
 Route::get('/calculateWeeksDifference/{date}', [ListController::class, 'calculateWeeksDifference']);
 Route::get('/calculateDaysDifference/{date}', [ListController::class, 'calculateDaysDifference']);
 Route::get('/calculateWeeksAndDaysPregrency/{date}', [ListController::class, 'calculateWeeksAndDaysPregrency']);
+
 Route::get('/get_babyGrowth_1', [BabyGrowthController::class, 'get_babyGrowth_1']);
 Route::get('/get_babyGrowth_2', [BabyGrowthController::class, 'get_babyGrowth_2']);
 Route::get('/get_babyGrowth_3', [BabyGrowthController::class, 'get_babyGrowth_3']);
@@ -63,4 +64,9 @@ Route::get('/get_Food_6', [FoodController::class, 'get_Food_6']);
  Route::get('/getAllBabyGrowth', [AdminBabyGrowthController::class, 'getAllBabyGrowth']);
  Route::get('/getAllBodyChanges', [AdminBabyGrowthController::class, 'getAllBodyChanges']);
  Route ::delete('/delet/{id}',[AdminBabyGrowthController::class,'delete']);
+
+ Route::get('/get_omega_3', [VitaminsController ::class,'get_omega_3']);
+ Route::get('/get_zinc', [VitaminsController ::class,'get_zinc']);
+ Route::get('/get_iron', [VitaminsController ::class,'get_iron']);
+ Route::get('/get_get_vitamin_c', [VitaminsController ::class,'get_vitamin_c']);
  //https://gradhub.hwnix.com/api/update_one/{id}/////////////////////////////register
