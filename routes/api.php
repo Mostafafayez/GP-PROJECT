@@ -65,8 +65,8 @@ Route::get('/get_Food_6', [FoodController::class, 'get_Food_6']);
  Route::get('/getAllBodyChanges', [AdminBabyGrowthController::class, 'getAllBodyChanges']);
  Route ::delete('/delet/{id}',[AdminBabyGrowthController::class,'delete']);
 
- Route::get('/get_omega_3', [VitaminsController ::class,'get_omega_3']);
- Route::get('/get_zinc', [VitaminsController ::class,'get_zinc']);
- Route::get('/get_iron', [VitaminsController ::class,'get_iron']);
- Route::get('/get_get_vitamin_c', [VitaminsController ::class,'get_vitamin_c']);
+ Route::get('/get_vitamin_1', [VitaminsController ::class,'get_omega_3']);
+ Route::get('/get_vitamin_2', [VitaminsController ::class,'get_zinc']);
+ Route::get('/get_vitamin_3', [VitaminsController ::class,'get_iron']);
+ Route::get('/get_vitamin_4', [VitaminsController ::class,'get_vitamin_c']);
  //https://gradhub.hwnix.com/api/update_one/{id}/////////////////////////////register
