@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\BabyGrowthController;
 use App\Http\Controllers\Api\BodyChangeController;
 use App\Http\Controllers\Api\FoodController;
 use App\Http\Controllers\Api\ListController;
+use App\Http\Controllers\ExercisesController;
 use App\Http\Controllers\VitaminsController;
 use Illuminate\Support\Facades\Route;
 
@@ -69,4 +70,8 @@ Route::get('/get_Food_6', [FoodController::class, 'get_Food_6']);
  Route::get('/get_vitamin_2', [VitaminsController ::class,'get_zinc']);
  Route::get('/get_vitamin_3', [VitaminsController ::class,'get_iron']);
  Route::get('/get_vitamin_4', [VitaminsController ::class,'get_vitamin_c']);
+
+ 
+ Route::get('/get_vedio',[ExercisesController :: class,'get_Exercises'] );
+ Route::post('/add_vedio',[ExercisesController :: class,'add_Exercise'] );
  //https://gradhub.hwnix.com/api/update_one/{id}/////////////////////////////register
