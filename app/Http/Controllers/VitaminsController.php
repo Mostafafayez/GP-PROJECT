@@ -42,4 +42,10 @@ class VitaminsController extends Controller
     
         return response()->json($iron, 200);
     }
+    public function get_vitamins()
+    {
+        $vitamins= Des_Categories::where('category_id', '=', '4') 
+         ->get();
+        return response()->json($vitamins, 200);
+    }
 }

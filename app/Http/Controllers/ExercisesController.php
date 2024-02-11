@@ -7,6 +7,28 @@ use Vimeo\Vimeo;
 use Vimeo\Exceptions\VimeoUploadException;
 class ExercisesController extends Controller
 {
+
+    public function get_yoga()
+    {
+        $exerciseDetail = Exercise_details::where('title', 'yoga')->first();
+    
+        if (!$exerciseDetail) {
+            return response()->json(['message' => 'No exercise details found with the title "yoga"'], 404);
+        }
+    
+        // Return the exercise detail with the title "yoga" as JSON response
+        return response()->json($exerciseDetail, 200);
+    }
+    
+
+
+
+
+
+
+
+
+
     public function get_Exercises()
     {
         $exerciseDetails = Exercise_details::all();
@@ -15,10 +37,10 @@ class ExercisesController extends Controller
             return response()->json(['message' => 'No exercise details found'], 404);
         }
     
-    
          return response()->json($exerciseDetails, 200);
         
     }
+
     
     public function add_Exercise(Request $req)
     {
@@ -46,6 +68,24 @@ class ExercisesController extends Controller
             return ["Result" => "Error: " . $e->getMessage()];
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
 
     // public function add_Exercise(Request $req)
