@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\FoodController;
 use App\Http\Controllers\Api\ListController;
 use App\Http\Controllers\ExercisesController;
 use App\Http\Controllers\VitaminsController;
+use App\Http\Controllers\courses;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -72,9 +73,13 @@ Route::get('/get_Food_6', [FoodController::class, 'get_Food_6']);
  Route::get('/get_vitamin_4', [VitaminsController ::class,'get_vitamin_c']);
  Route::get('/get_vitamins', [VitaminsController ::class,'get_vitamins']);
  
- Route::get('/get_vedio',[ExercisesController :: class,'get_Exercises'] );
- Route::get('/get_Exercise_1',[ExercisesController :: class,'get_yoga'] );
- Route::post('/add_vedio',[ExercisesController :: class,'add_Exercise'] );
+ Route::get('/get_exercises',[ExercisesController :: class,'get_Exercises'] );
+ Route::get('/get_exercise_1',[ExercisesController :: class,'get_yoga'] );
+ Route::post('/add_exercise',[ExercisesController :: class,'add_Exercise'] );
 
+
+
+ Route::get('/get_courses',[courses :: class,'get_courses'] );
+ Route::post('/add_course',[courses :: class,'add_courses'] );
 
  //https://gradhub.hwnix.com/api/update_one/{id}/////////////////////////////register

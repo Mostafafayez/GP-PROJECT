@@ -31,7 +31,8 @@ class ExercisesController extends Controller
 
     public function get_Exercises()
     {
-        $exerciseDetails = Exercise_details::all();
+        $exerciseDetails = Exercise_details::where('category_id','=','5')
+        ->get();
 
         if ($exerciseDetails->isEmpty()) {
             return response()->json(['message' => 'No exercise details found'], 404);
@@ -47,26 +48,25 @@ class ExercisesController extends Controller
         $exercise = new exercise_details;
         $exercise->title = $req->input('title');
         $exercise->description = $req->input('description');
-        info($req);
+        // Automatically set category_id to 5
+        $exercise->category_id = 5;
+    
         try {
-        
             if ($req->has('video_url')) {
-             
                 $exercise->video = $req->input('video_url');
             } else {
-               
                 return ["Result" => "Error: Video URL not provided"];
             }
     
-           
             $exercise->save();
-            
-           
-            return ["Result" => "Video uploaded successfully"];
+    
+            return ["Result" => " uploaded successfully"];
         } catch (\Exception $e) {
             // Handle errors
             return ["Result" => "Error: " . $e->getMessage()];
         }
+    }
+    
     }
 
 
@@ -118,6 +118,6 @@ class ExercisesController extends Controller
     //         return ["Result" => "Error: " . $e->getMessage()];
     //     }
     // }
+    // }
 
 
-}

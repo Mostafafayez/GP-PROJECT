@@ -14,7 +14,12 @@ class exercise_details extends Model
   
     public $timestamps = false;
 
-  
+    protected $fillable = ['other_columns', 'category_id'];
+
+    public function category()
+    {
+        return $this->belongsTo(Categories::class, 'category_id');
+    }
     
 
       
