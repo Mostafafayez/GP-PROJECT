@@ -36,20 +36,54 @@ class courses extends Controller
             return ["Result" => "Error: " . $e->getMessage()];
         }
 }
-public function get_courses()
+public function get_courses($language)
+
 {
+    if ($language=='ar'){
     $exerciseDetails = Exercise_details::where('category_id','=','6')
     ->get();
-
-    if ($exerciseDetails->isEmpty()) {
+    
+   if ($exerciseDetails->isEmpty()) {
         return response()->json(['message' => 'No courses details found'], 404);
+   }
+
+
+
+   return response()->json($exerciseDetails, 200);
+
+    }
+    else {
+        return response()->json(['message' => 'Invalid language specified'], 400);
+    }}
+
+
+
+    public function get_courses()
+    {
+        try {
+            // Fetch exercise details with category_id = 6
+            $exerciseDetails = Exercise_details::where('category_id', '=', 6)->get();
+    
+            // Check if any exercise details were found
+            if ($exerciseDetails->isEmpty()) {
+                return response()->json(['message' => 'No course details found'], 404);
+            }
+    
+            // Return exercise details as JSON response
+            return response()->json($exerciseDetails, 200);
+        } catch (\Exception $e) {
+            // Handle any exceptions
+            return response()->json(['message' => 'Error: ' . $e->getMessage()], 500);
+        }
+    }
+    
     }
 
-     return response()->json($exerciseDetails, 200);
+
     
-}
+    
 
 
 
 
-}
+

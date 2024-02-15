@@ -9,6 +9,9 @@ use App\Http\Controllers\Api\ListController;
 use App\Http\Controllers\ExercisesController;
 use App\Http\Controllers\VitaminsController;
 use App\Http\Controllers\courses;
+use App\Http\Controllers\tipsANDactivities;
+use App\Http\Controllers\ChildGrowth;
+use App\Http\Controllers\issues;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +35,7 @@ Route ::post('/addList',  [ListController ::class,'addList']);
 Route ::delete('/deleteList/{id}',  [ListController ::class,'deleteList']);
 Route::get('/getListById/{user_id}', [ListController::class, 'getListById']);
 Route::put('/updatellist/{id}', [ListController::class, 'updateList']);
+
 
 Route::get('/calculateWeeksDifference/{date}', [ListController::class, 'calculateWeeksDifference']);
 Route::get('/calculateDaysDifference/{date}', [ListController::class, 'calculateDaysDifference']);
@@ -65,7 +69,7 @@ Route::get('/get_Food_6', [FoodController::class, 'get_Food_6']);
  Route::get('/get_des', [AdminBabyGrowthController ::class,'get_all_DESC']);
  Route::get('/getAllBabyGrowth', [AdminBabyGrowthController::class, 'getAllBabyGrowth']);
  Route::get('/getAllBodyChanges', [AdminBabyGrowthController::class, 'getAllBodyChanges']);
- Route ::delete('/delet/{id}',[AdminBabyGrowthController::class,'delete']);
+ Route ::delete('/delete/{id}',[AdminBabyGrowthController::class,'delete']);
 
  Route::get('/get_vitamin_1', [VitaminsController ::class,'get_omega_3']);
  Route::get('/get_vitamin_2', [VitaminsController ::class,'get_zinc']);
@@ -79,7 +83,24 @@ Route::get('/get_Food_6', [FoodController::class, 'get_Food_6']);
 
 
 
+ Route::get('/get_courses/{language}',[courses :: class,'get_courses'] );
+ 
  Route::get('/get_courses',[courses :: class,'get_courses'] );
+
  Route::post('/add_course',[courses :: class,'add_courses'] );
+
+
+ Route::get('/get_tips',[tipsANDactivities :: class,'get_tips'] );
+
+//  Route::get('/get_ChildGrowth',[ChildGrowth :: class,'get_ChildGrowth'] );
+Route::get('/get_ChildGrowth',[ChildGrowth :: class , 'get_ChildGrowth']);
+
+
+
+Route::get('/get_issues',[issues :: class , 'get_issues']);
+Route::post('/add_issue',[issues :: class , 'add_issue']);
+
+Route::put('/update_issue',[issues :: class , 'update_ISSUE']);
+Route::delete('/delete_issue',[issues :: class , 'delete_ISSUE']);
 
  //https://gradhub.hwnix.com/api/update_one/{id}/////////////////////////////register
