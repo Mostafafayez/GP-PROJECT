@@ -12,7 +12,7 @@ class issues extends Controller
      ->get();
  
      if ($issues->isEmpty()) {
-         return response()->json(['message' => 'No exercise details found'], 404);
+         return response()->json(['message' => 'No issue details found'], 404);
      }
  
       return response()->json($issues, 200);
