@@ -59,35 +59,37 @@ class issues extends Controller
 
 
  public function update_ISSUE(Request $req, $id)
-{
-    try {
-      
-        $issue = issue_des::findOrFail($id);
-
-     
-      
-        if ($req->has('title')) {
-            $issue->title = $req->input('title');
-        }
-        if ($req->has('description')) {
-            $issue->description = $req->input('description');
-        }
-
+ {
+     try {
+         // Find the issue_des record by ID
+         $issue = issue_des::findOrFail($id);
+ 
+         // Update title if provided in the request
+         if ($req->has('title')) {
+             $issue->title = $req->input('title');
+         }
+ 
+         // Update description if provided in the request
+         if ($req->has('description')) {
+             $issue->description = $req->input('description');
+         }
+ 
+         // Save the updated record
   
-        if (!$req->has('issue_id') && !$req->has('title') && !$req->has('description')) {
-            $issue->fill($req->all());
+ 
+         if ($fieldsUpdated) {
+            $issue->save();
+            return ["Result" => "Updated successfully"];
+        } else {
+            // No fields were updated, return an error message
+            return ["Result" => "Error: No fields provided for update"];
         }
-
-   
-        $issue->save();
-
-       
-        return ["Result" => "Updated successfully"];
-    } catch (\Exception $e) {
-        
-        return ["Result" => "Error: " . $e->getMessage()];
-    }
-}
+     } catch (\Exception $e) {
+         // Handle errors
+         return ["Result" => "Error: " . $e->getMessage()];
+     }
+ }
+ 
 
 
 

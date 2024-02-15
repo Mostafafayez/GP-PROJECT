@@ -100,7 +100,7 @@ Route::get('/get_ChildGrowth',[ChildGrowth :: class , 'get_ChildGrowth']);
 Route::get('/get_issues',[issues :: class , 'get_issues']);
 Route::post('/add_issue',[issues :: class , 'add_issue']);
 
-Route::put('/update_issue',[issues :: class , 'update_ISSUE']);
+Route::put('/update_issue/{id}',[issues :: class , 'update_ISSUE']);
 Route::delete('/delete_issue',[issues :: class , 'delete_ISSUE']);
 
  //https://gradhub.hwnix.com/api/update_one/{id}/////////////////////////////register
