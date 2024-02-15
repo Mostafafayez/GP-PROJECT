@@ -74,16 +74,16 @@ class issues extends Controller
              $issue->description = $req->input('description');
          }
  
-         // Save the updated record
-  
+         // Check if any fields were updated
+         $fieldsUpdated = $issue->isDirty();
  
          if ($fieldsUpdated) {
-            $issue->save();
-            return ["Result" => "Updated successfully"];
-        } else {
-            // No fields were updated, return an error message
-            return ["Result" => "Error: No fields provided for update"];
-        }
+             $issue->save();
+             return ["Result" => "Updated successfully"];
+         } else {
+             // No fields were updated, return an error message
+             return ["Result" => "Error: No fields provided for update"];
+         }
      } catch (\Exception $e) {
          // Handle errors
          return ["Result" => "Error: " . $e->getMessage()];
