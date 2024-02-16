@@ -69,7 +69,7 @@ Route::get('/get_Food_6', [FoodController::class, 'get_Food_6']);
  Route::get('/get_des', [AdminBabyGrowthController ::class,'get_all_DESC']);
  Route::get('/getAllBabyGrowth', [AdminBabyGrowthController::class, 'getAllBabyGrowth']);
  Route::get('/getAllBodyChanges', [AdminBabyGrowthController::class, 'getAllBodyChanges']);
- Route ::delete('/delete/{id}',[AdminBabyGrowthController::class,'delete']);
+ Route ::delete('/delete_des_category/{id}',[AdminBabyGrowthController::class,'delete']);
 
  Route::get('/get_vitamin_1', [VitaminsController ::class,'get_omega_3']);
  Route::get('/get_vitamin_2', [VitaminsController ::class,'get_zinc']);
@@ -90,8 +90,8 @@ Route::get('/get_Food_6', [FoodController::class, 'get_Food_6']);
  Route::post('/add_course',[courses :: class,'add_courses'] );
 
 
+ Route::get('/get_tips/{id}',[tipsANDactivities :: class,'get_tip'] );
  Route::get('/get_tips',[tipsANDactivities :: class,'get_tips'] );
-
 //  Route::get('/get_ChildGrowth',[ChildGrowth :: class,'get_ChildGrowth'] );
 Route::get('/get_ChildGrowth',[ChildGrowth :: class , 'get_ChildGrowth']);
 

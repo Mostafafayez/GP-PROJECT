@@ -178,7 +178,7 @@ public function getAllBabyGrowth()
 
     public function delete($id)
     {
-        $delet = Des_Categories::find($id);
+        $delet = Des_Categories::findOrFail($id);
 
         if ($delet) {
             $delet->delete();
