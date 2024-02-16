@@ -8,19 +8,37 @@ use Vimeo\Exceptions\VimeoUploadException;
 class ExercisesController extends Controller
 {
 
-    public function get_yoga()
+    public function get_exercise($num)
     {
-        $exerciseDetail = Exercise_details::where('title', 'yoga')->first();
+        try {
+            // Initialize exerciseDetails variable
+            $exerciseDetails = null;
     
-        if (!$exerciseDetail) {
-            return response()->json(['message' => 'No exercise details found with the title "yoga"'], 404);
+            // Determine which course title to retrieve based on $num
+            if ($num == 1) {
+                $exerciseDetails = Exercise_details::where('category_id', 5)->where('title', 'exercise1')->first();
+            } elseif ($num == 2) {
+                $exerciseDetails = Exercise_details::where('category_id', 5)->where('title', 'exercise2')->first();
+            } elseif ($num == 3) {
+                $exerciseDetails = Exercise_details::where('category_id', 5)->where('title', 'exercise3')->first();
+            }
+              elseif ($num == 4) {
+            $exerciseDetails = Exercise_details::where('category_id', 5)->where('title', 'exercise4')->first();
+            }
+    
+            // Check if any exercise details were found
+            if ($exerciseDetails === null) {
+                return response()->json(['message' => 'No course details found'], 404);
+            }
+            
+            // Return exercise details as JSON response
+            return response()->json($exerciseDetails, 200);
+        } catch (\Exception $e) {
+            // Handle any exceptions
+            return response()->json(['message' => 'Error: ' . $e->getMessage()], 500);
         }
-    
-        // Return the exercise detail with the title "yoga" as JSON response
-        return response()->json($exerciseDetail, 200);
     }
     
-
 
 
 
