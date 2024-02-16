@@ -97,7 +97,7 @@ Route::get('/get_ChildGrowth',[ChildGrowth :: class , 'get_ChildGrowth']);
 
 
 
-Route::get('/get_issues',[issues :: class , 'get_issues']);
+Route::get('/get_issue/{id}',[issues :: class , 'get_issue']);
 Route::post('/add_issue',[issues :: class , 'add_issue']);
 
 Route::put('/update_issue/{id}',[issues :: class , 'update_ISSUE']);

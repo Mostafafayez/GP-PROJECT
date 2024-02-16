@@ -110,6 +110,52 @@ public function delete_ISSUE($id)
     }
 }
 
+public function get_issue1() 
+{
+ $issues = issue_des::where('issue_id','=','1') ::where('title','=','issue1')
+ ->get();
+
+ if ($issues->isEmpty()) {
+     return response()->json(['message' => 'No issue details found'], 404);
+ }
+
+  return response()->json($issues, 200);
+
+}
+
+
+public function get_issue($num)
+{
+    try {
+        // Initialize exerciseDetails variable
+        $issue = null;
+
+        // Check if $num is within the valid range (1 to 10)
+        if ($num < 1 || $num > 10) {
+            return response()->json(['message' => 'Invalid issue number.'], 400);
+        }
+
+        // Iterate through numbers from 1 to 10
+        for ($i = 1; $i <= 10; $i++) {
+            if ($num == $i) {
+                $issue = issue_des::where('issue_id', $i)->get();
+                break; // Exit loop if issue found
+            }
+        }
+
+        // Check if any issue details were found
+        if ($issue === null) {
+            return response()->json(['message' => 'No issue details found'], 404);
+        }
+
+        // Return issue details as JSON response
+        return response()->json($issue, 200);
+    } catch (\Exception $e) {
+        // Handle any exceptions
+        return response()->json(['message' => 'Error: ' . $e->getMessage()], 500);
+    }
+}
+
 
 }
 
