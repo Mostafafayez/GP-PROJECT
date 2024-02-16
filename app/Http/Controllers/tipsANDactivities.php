@@ -19,4 +19,15 @@ class tipsANDactivities extends Controller
      return response()->json($tips, 200);
  
 }
+
+
+
+
+
+
+
+
+
+
+
 }

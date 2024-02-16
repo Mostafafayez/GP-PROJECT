@@ -102,6 +102,6 @@ Route::get('/get_issues',[issues :: class , 'get_issues']);
 Route::post('/add_issue',[issues :: class , 'add_issue']);
 
 Route::put('/update_issue/{id}',[issues :: class , 'update_ISSUE']);
-Route::delete('/delete_issue',[issues :: class , 'delete_ISSUE']);
+Route::delete('/delete_issue/{id}',[issues :: class , 'delete_ISSUE']);
 
  //https://gradhub.hwnix.com/api/update_one/{id}/////////////////////////////register
