@@ -83,7 +83,7 @@ Route::get('/get_Food_6', [FoodController::class, 'get_Food_6']);
 
 
 
- Route::get('/get_courses/{language}',[courses :: class,'get_courses'] );
+ Route::get('/get_courses/{language}',[courses :: class,'get_course'] );
  
  Route::get('/get_courses',[courses :: class,'get_courses'] );
 

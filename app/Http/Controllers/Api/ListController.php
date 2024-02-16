@@ -33,13 +33,19 @@ class ListController extends Controller
 
     public function deleteList($id)
     {
-        $list = To_do_list::find($id);
-        $result = $list->delete();
-        if ($result) {
-            return ["result" => "record has been delete"];
-        } else {
-            return ["Result" => "Operation Failed"];
-        }
+    
+        try {
+
+        $list  = To_do_list::findOrFail($id);
+
+
+      $list ->delete();
+
+        return ["Result" => "Deleted successfully"];
+    } catch (\Exception $e) {
+   
+        return ["Result" => "Error: " . $e->getMessage()];
+    }
     }
 
 
@@ -62,15 +68,19 @@ class ListController extends Controller
         if ($request->filled('content')) {
             $validatedData['content'] = $request->input('content');
         }
-        if ($request->filled('due_date')) {
-            $validatedData['due_date'] = $request->input('due_date');
+    
+        // Check if any other field is included in the request
+        if (count(array_diff_key($request->all(), $validatedData)) > 0) {
+            return response()->json(['message' => 'Only title and content fields are allowed for update'], 400);
         }
     
         // Update only the provided fields
-        $list->update($validatedData);
+        $list->fill($validatedData);
+        $list->save();
     
-        return response()->json(['message' => 'List updated successfully']);
+        return ["Result" => "Updated successfully"];
     }
+    
     
 
 

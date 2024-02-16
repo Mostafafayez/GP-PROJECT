@@ -36,7 +36,7 @@ class courses extends Controller
             return ["Result" => "Error: " . $e->getMessage()];
         }
 }
-public function get_courses($language)
+public function get_course($language)
 
 {
     if ($language=='ar'){
