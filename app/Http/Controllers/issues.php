@@ -8,8 +8,8 @@ class issues extends Controller
 {
     public function get_issues() 
     {
-     $issues = issue_des::where('issue_id','=','1')
-     ->get();
+     $issues = issue_des::all();
+  
  
      if ($issues->isEmpty()) {
          return response()->json(['message' => 'No issue details found'], 404);
@@ -110,18 +110,7 @@ public function delete_ISSUE($id)
     }
 }
 
-public function get_issue1() 
-{
- $issues = issue_des::where('issue_id','=','1') ::where('title','=','issue1')
- ->get();
 
- if ($issues->isEmpty()) {
-     return response()->json(['message' => 'No issue details found'], 404);
- }
-
-  return response()->json($issues, 200);
-
-}
 
 
 public function get_issue($num)
