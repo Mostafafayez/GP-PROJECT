@@ -78,7 +78,7 @@ Route::get('/get_Food_6', [FoodController::class, 'get_Food_6']);
  Route::get('/get_vitamins', [VitaminsController ::class,'get_vitamins']);
  
  Route::get('/get_exercises',[ExercisesController :: class,'get_Exercises'] );
- Route::get('/get_exercise_1',[ExercisesController :: class,'get_yoga'] );
+ Route::get('/get_exercise/1',[ExercisesController :: class,'get_exercise'] );
  Route::post('/add_exercise',[ExercisesController :: class,'add_Exercise'] );
 
 
