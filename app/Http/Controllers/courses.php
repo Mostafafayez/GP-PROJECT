@@ -36,7 +36,7 @@ class courses extends Controller
             return ["Result" => "Error: " . $e->getMessage()];
         }
 }
-public function get_course($language)
+public function get_cours($language)
 
 {
     if ($language=='ar'){
@@ -77,17 +77,31 @@ public function get_course($language)
         }
     }
 
-    public function get_course1()
+
+
+    public function get_course($num)
     {
         try {
-            // Fetch exercise details with category_id = 6
-            $exerciseDetails = Exercise_details::where('category_id', '=', 6)->first();
+            // Initialize exerciseDetails variable
+            $exerciseDetails = null;
     
-            // Check if any exercise details were found
-            if ($exerciseDetails->isEmpty()) {
-                return response()->json(['message' => 'No course details found'], 404);
+            // Determine which course title to retrieve based on $num
+            if ($num == 1) {
+                $exerciseDetails = Exercise_details::where('category_id', 6)->where('title', 'course1')->first();
+            } elseif ($num == 2) {
+                $exerciseDetails = Exercise_details::where('category_id', 6)->where('title', 'course2')->first();
+            } elseif ($num == 3) {
+                $exerciseDetails = Exercise_details::where('category_id', 6)->where('title', 'course3')->first();
+            }
+              elseif ($num == 4) {
+            $exerciseDetails = Exercise_details::where('category_id', 6)->where('title', 'course4')->first();
             }
     
+            // Check if any exercise details were found
+            if ($exerciseDetails === null) {
+                return response()->json(['message' => 'No course details found'], 404);
+            }
+            
             // Return exercise details as JSON response
             return response()->json($exerciseDetails, 200);
         } catch (\Exception $e) {
@@ -95,7 +109,16 @@ public function get_course($language)
             return response()->json(['message' => 'Error: ' . $e->getMessage()], 500);
         }
     }
+    
 
+
+
+
+
+
+
+    
+    
 
     
     }
