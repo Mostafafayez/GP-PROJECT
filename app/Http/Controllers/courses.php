@@ -76,6 +76,27 @@ public function get_course($language)
             return response()->json(['message' => 'Error: ' . $e->getMessage()], 500);
         }
     }
+
+    public function get_course1()
+    {
+        try {
+            // Fetch exercise details with category_id = 6
+            $exerciseDetails = Exercise_details::where('category_id', '=', 6)->first();
+    
+            // Check if any exercise details were found
+            if ($exerciseDetails->isEmpty()) {
+                return response()->json(['message' => 'No course details found'], 404);
+            }
+    
+            // Return exercise details as JSON response
+            return response()->json($exerciseDetails, 200);
+        } catch (\Exception $e) {
+            // Handle any exceptions
+            return response()->json(['message' => 'Error: ' . $e->getMessage()], 500);
+        }
+    }
+
+
     
     }
 
