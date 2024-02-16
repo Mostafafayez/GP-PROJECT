@@ -55,12 +55,12 @@ class ListController extends Controller
     {
         $list = To_do_list::find($id);
     
-        // Check if the list exists
+
         if (!$list) {
             return response()->json(['message' => 'List not found'], 404);
         }
     
-        // Validate the request data for each field separately
+        
         $validatedData = [];
         if ($request->filled('title')) {
             $validatedData['title'] = $request->input('title');
@@ -69,17 +69,18 @@ class ListController extends Controller
             $validatedData['content'] = $request->input('content');
         }
     
-        // Check if any other field is included in the request
-        if (count(array_diff_key($request->all(), $validatedData)) > 0) {
-            return response()->json(['message' => 'Only title and content fields are allowed for update'], 400);
+     
+        if (empty($validatedData)) {
+            return response()->json(['message' => 'No fields provided for update'], 400);
         }
     
-        // Update only the provided fields
+        
         $list->fill($validatedData);
         $list->save();
     
         return ["Result" => "Updated successfully"];
     }
+    
     
     
 
