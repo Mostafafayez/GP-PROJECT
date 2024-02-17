@@ -41,9 +41,9 @@ class reset_password extends Controller
             ['otp' => Hash::make($magicSpell), 'expires_at' => now()->addMinutes(15)]
         );
     
-        // Send the OTP (Magic Spell) to the user via email or SMS
-        // Mail::to($request->email)->send(new OtpMail($magicSpell)); 
-        // In a real application, you would send the OTP using a mail or SMS service
+        
+        Mail::to($request->email)->send(new OtpMail($magicSpell)); 
+       
     
         // Return a fun response with the Magic Spell
         return response()->json(['message' => 'A magical spell has been sent to your email address! 🪄✨ Please recite the spell to reset your password.'], 200);
