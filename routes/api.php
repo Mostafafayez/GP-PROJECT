@@ -13,7 +13,7 @@ use App\Http\Controllers\tipsANDactivities;
 use App\Http\Controllers\ChildGrowth;
 use App\Http\Controllers\issues;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\reset_password;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -103,5 +103,10 @@ Route::post('/add_issue',[issues :: class , 'add_issue']);
 
 Route::put('/update_issue/{id}',[issues :: class , 'update_ISSUE']);
 Route::delete('/delete_issue/{id}',[issues :: class , 'delete_ISSUE']);
+
+
+Route::post('/reset-password', [Reset_Password::class, 'resetPassword']);
+Route::post('/verify-and-reset-password', [Reset_Password::class, 'verifyAndResetPassword']);
+
 
  //https://gradhub.hwnix.com/api/update_one/{id}/////////////////////////////register
