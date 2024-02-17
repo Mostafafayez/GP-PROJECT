@@ -42,7 +42,7 @@ class reset_password extends Controller
         );
     
         // Send the OTP (Magic Spell) to the user via email or SMS
-        Mail::to($request->email)->send(new OtpMail($magicSpell)); 
+        // Mail::to($request->email)->send(new OtpMail($magicSpell)); 
         // In a real application, you would send the OTP using a mail or SMS service
     
         // Return a fun response with the Magic Spell
