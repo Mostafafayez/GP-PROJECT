@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class otps extends Model
+class Otps extends Model
 {
     use HasFactory;
 
-
     protected $table = 'otps';
+    protected $primaryKey = 'id'; // Assuming 'otp_id' is your primary key column
 
     protected $fillable = [
         'email',
@@ -18,3 +18,4 @@ class otps extends Model
         'expires_at',
     ];
 }
+
