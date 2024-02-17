@@ -10,6 +10,9 @@
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
+        "nyholm/psr7": "^1.8",
+        "railsware/mailtrap-php": "^1.7",
+        "symfony/http-client": "^6.4",
         "symfony/var-dumper": "^6.4",
         "vimeo/laravel": "^5.8",
         "vimeo/vimeo-api": "^3.0"
