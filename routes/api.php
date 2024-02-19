@@ -120,5 +120,5 @@ Route::post('/recognize-voice', [VoiceRecognitionController::class, 'recognizeVo
 
  //https://gradhub.hwnix.com/api/update_one/{id}/////////////////////////////register
  Route::get('/test',function(){
-    Artisan::cal('config:clear');
+    Artisan::call('config:clear');
  });
