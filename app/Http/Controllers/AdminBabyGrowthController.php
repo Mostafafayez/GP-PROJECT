@@ -6,67 +6,93 @@ use Illuminate\Http\Request;
 
 class AdminBabyGrowthController extends Controller
 {
-    public function add_DESC(Request $req )
+    // public function add_DESC(Request $req )
+    // {
+    //     $description = new Des_Categories;
+    //     $fileName = "";
+    //     $description->category_id = $req->input('category_id');
+    //     $description->title = $req->input('title');
+    //     $description->description = $req->input('description');
+    //     $description->month = $req->input('month');
+
+    //     if ($req->hasFile('image')){
+    //         $fileName = $req->file('image')->store('posts', 'public');
+    //     } else {
+    //         $fileName = null;
+    //     }
+    
+    //     $description->image = $fileName;
+    
+    //     $result = $description->save();
+    
+    //     if ($result) {
+    //         return ["Result" => "saved Successfully"];
+    //     } else {
+    //         return ["Result" => "there is SomeThing wrong"];
+    //     }
+    // }
+
+
+
+    public function add_DESC(Request $req, $num)
     {
-        $description = new Des_Categories;
-        $fileName = "";
-        $description->category_id = $req->input('category_id');
-        $description->title = $req->input('title');
-        $description->description = $req->input('description');
-        $description->month = $req->input('month');
-
-        if ($req->hasFile('image')){
-            $fileName = $req->file('image')->store('posts', 'public');
+        // Check if the input number is between 1 and 8 and not 5 or 6
+        if ($num >= 1 && $num <= 8 && $num != 5 && $num != 6) {
+            $description = new Des_Categories;
+            $fileName = "";
+            $description->title = $req->input('title');
+            $description->description = $req->input('description');
+            $description->month = $req->input('month');
+    
+            // Check if there's a new image file uploaded
+            if ($req->hasFile('image')) {
+                $fileName = $req->file('image')->store('posts', 'public');
+                $description->image = $fileName;
+            }
+    
+            $description->category_id = $num; // Set the category ID
+    
+            try {
+                $result = $description->save();
+                if ($result) {
+                    return "Added successfully.";
+                } else {
+                    return "Failed to add.";
+                }
+            } catch (\Exception $e) {
+                return "Failed to add: " . $e->getMessage();
+            }
         } else {
-            $fileName = null;
-        }
-    
-        $description->image = $fileName;
-    
-        $result = $description->save();
-    
-        if ($result) {
-            return ["Result" => "saved Successfully"];
-        } else {
-            return ["Result" => "there is SomeThing wrong"];
+            return "Invalid input. Please provide a number from 1 to 8 excluding 5 and 6.";
         }
     }
     
+    
+    
 
 
-    public function update_all(Request $req, $id)
-{
-    $description = Des_Categories::find($id);
 
-    if (!$description) {
-       
-        return ["Result" => "Record not found"];
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
 
    
-    $description->category_id = $req->input('category_id');
-    $description->title = $req->input('title');
-    $description->description = $req->input('description');
-    $description->month = $req->input('month');
-
-    
-    $fileName = "";
-    if ($req->hasFile('image')){
-        $fileName = $req->file('image')->store('posts', 'public');
-    }
-
-    
-    $description->image = $fileName;
-
-    
-    $result = $description->save();
-
-    if ($result) {
-        return ["Result" => "Updated Successfully"];
-    } else {
-        return ["Result" => "There is something wrong"];
-    }
-}
 
 public function update_one(Request $req, $id)
 {
@@ -187,5 +213,83 @@ public function getAllBabyGrowth()
             return response()->json(['message' => 'Data didn’t deleted successfully']); // Record not found
         }
     }
+
+
+    // public function update_DESC(Request $req, $num)
+    // {
+    //     try {
+    //         // Retrieve the existing description
+    //         $description = Des_Categories::findOrFail($num);
+    
+    //         // Initialize fieldsToUpdate array
+    //         $fieldsToUpdate = [
+    //             'title' => $req->input('new_title'),
+    //             'description' => $req->input('new_description'),
+    //             'month' => $req->input('new_month'),
+    //         ];
+    
+    //         // Check if there's a new image file uploaded
+    //         if ($req->hasFile('image')) {
+    //             $fileName = $req->file('image')->store('posts', 'public');
+    //             $fieldsToUpdate['image'] = $fileName; // Update image field in fieldsToUpdate
+    //         }
+    
+    //         // Update other fields provided in $fieldsToUpdate array
+    //         foreach ($fieldsToUpdate as $key => $value) {
+    //             $description->$key = $value;
+    //         }
+    
+    //         // Save the updated description
+    //         $result = $description->save();
+            
+    //         if ($result) {
+    //             return "Updated successfully.";
+    //         } else {
+    //             return "Failed to update.";
+    //         }
+    //     } catch (\Exception $e) {
+    //         return "Failed to update: " . $e->getMessage();
+    //     }
+    // }
+
+
+
+    public function update_all(Request $req, $id)
+    {
+        $description = Des_Categories::find($id);
+    
+        if (!$description) {
+           
+            return ["Result" => "Record not found"];
+        }
+    
+       
+        $description->category_id = $req->input('category_id');
+        $description->title = $req->input('title');
+        $description->description = $req->input('description');
+        $description->month = $req->input('month');
+    
+        
+        $fileName = "";
+        if ($req->hasFile('image')){
+            $fileName = $req->file('image')->store('posts', 'public');
+        }
+    
+        
+        $description->image = $fileName;
+    
+        
+        $result = $description->save();
+    
+        if ($result) {
+            return ["Result" => "Updated Successfully"];
+        } else {
+            return ["Result" => "There is something wrong"];
+        }
+    }
+    
+    
+
+
     
 }

@@ -20,7 +20,39 @@ class issues extends Controller
  }
 
 
- public function add_issue(Request $req)
+//  public function add_issue(Request $req)
+//  {
+//      try {
+//          // Validate the request data
+//          $req->validate([
+//              'issue_id' => 'required|exists:issues,id',
+//              'title' => 'required',
+//              'description' => 'required',
+//          ]);
+ 
+//          $issue = new issue_des;
+ 
+       
+//          $issue->issue_id = $req->input('issue_id');
+//          $issue->title = $req->input('title');
+//          $issue->description = $req->input('description');
+ 
+      
+//          $issue->save();
+ 
+     
+//          return ["Result" => "Uploaded successfully"];
+//      } catch (\Exception $e) {
+        
+//          if ($e instanceof \Illuminate\Validation\ValidationException) {
+//              return ["Result" => "Validation Error: " . $e->getMessage()];
+//          }
+ 
+     
+//          return ["Result" => "Error: " . $e->getMessage()];
+//      }
+//  }
+  public function add_issue(Request $req)
  {
      try {
          // Validate the request data
@@ -52,7 +84,6 @@ class issues extends Controller
          return ["Result" => "Error: " . $e->getMessage()];
      }
  }
- 
  
 
 

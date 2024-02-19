@@ -13,7 +13,9 @@ use App\Http\Controllers\tipsANDactivities;
 use App\Http\Controllers\ChildGrowth;
 use App\Http\Controllers\issues;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\VoiceRecognitionController;
 use App\Http\Controllers\reset_password;
+use Illuminate\Support\Facades\Artisan;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -63,13 +65,15 @@ Route::get('/get_Food_1', [FoodController::class, 'get_Food_1']);
 Route::get('/get_Food_3', [FoodController::class, 'get_Food_3']);
 Route::get('/get_Food_6', [FoodController::class, 'get_Food_6']);
  //admin//
- Route ::post('/add_description',  [AdminBabyGrowthController ::class,'add_DESC']);
- Route::post('/update_DESC/{id}', [AdminBabyGrowthController ::class,'update_all']);
- Route::post('/update_one/{id}', [AdminBabyGrowthController ::class,'update_one']);
+ Route ::post('/add_DESC/{id}',  [AdminBabyGrowthController ::class,'add_DESC']);
+ Route::post('/update_DESCs/{id}', [AdminBabyGrowthController ::class,'update_all']);
+ Route::post('/update_DESC/{id}', [AdminBabyGrowthController ::class,'update_one']);
+//  Route::post('/update_one/{id}', [AdminBabyGrowthController ::class,'update_DESC']);
+ 
  Route::get('/get_des', [AdminBabyGrowthController ::class,'get_all_DESC']);
  Route::get('/getAllBabyGrowth', [AdminBabyGrowthController::class, 'getAllBabyGrowth']);
  Route::get('/getAllBodyChanges', [AdminBabyGrowthController::class, 'getAllBodyChanges']);
- Route ::delete('/delete_des_category/{id}',[AdminBabyGrowthController::class,'delete']);
+ Route ::delete('/delete_desc/{id}',[AdminBabyGrowthController::class,'delete']);
 
  Route::get('/get_vitamin_1', [VitaminsController ::class,'get_omega_3']);
  Route::get('/get_vitamin_2', [VitaminsController ::class,'get_zinc']);
@@ -81,7 +85,9 @@ Route::get('/get_Food_6', [FoodController::class, 'get_Food_6']);
  Route::get('/get_exercise/{id}',[ExercisesController :: class,'get_exercise'] );
  Route::post('/add_exercise',[ExercisesController :: class,'add_Exercise'] );
 
-
+ //update & delete exercise or course
+ Route::delete('/delete/{id}',[ExercisesController :: class,'delete'] );
+ Route::post('/update/{id}',[ExercisesController :: class,'update_exercise'] );
 
  Route::get('/get_courses/{language}',[courses :: class,'get_cours'] );
  
@@ -109,4 +115,10 @@ Route::post('/reset-password', [Reset_Password::class, 'resetPassword']);
 Route::post('/verify-and-reset-password', [Reset_Password::class, 'verifyAndResetPassword']);
 
 
+
+Route::post('/recognize-voice', [VoiceRecognitionController::class, 'recognizeVoice']);
+
  //https://gradhub.hwnix.com/api/update_one/{id}/////////////////////////////register
+ Route::get('/test',function(){
+    Artisan::cal('config:clear');
+ });

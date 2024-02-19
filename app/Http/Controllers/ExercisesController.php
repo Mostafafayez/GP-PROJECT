@@ -84,6 +84,61 @@ class ExercisesController extends Controller
             return ["Result" => "Error: " . $e->getMessage()];
         }
     }
+
+
+   
+
+    public function update_exercise(Request $req, $id)
+    {
+        $exercise = exercise_details::find($id);
+    
+        if (!$exercise) {
+            return ["Result" => "Record not found"];
+        }
+    
+       
+        if ($req->has('category_id')) {
+            $exercise->category_id = $req->input('category_id');
+        }
+        if ($req->has('title')) {
+            $exercise->title = $req->input('title');
+        }
+        if ($req->has('description')) {
+            $exercise->description = $req->input('description');
+        }
+      
+    
+        
+        if ($req->has('video_url')) {
+            $exercise->video = $req->input('video_url');
+        }
+    
+        // Save the updated exercise details
+        $result = $exercise->save();
+    
+        if ($result) {
+            return ["Result" => "Updated Successfully"];
+        } else {
+            return ["Result" => "There is something wrong"];
+        }
+    }
+    public function delete($id)
+    {
+        $delet = exercise_details::findOrFail($id);
+
+        if ($delet) {
+            $delet->delete();
+            return response()->json(['message' => 'Data deleted successfully']); // Deletion successful
+        } else {
+            return response()->json(['message' => 'Data didn’t deleted successfully']); // Record not found
+        }
+    }
+    
+
+
+
+
+
     
     }
 
