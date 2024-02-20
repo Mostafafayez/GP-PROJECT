@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\issue_des;
-class issues extends Controller
+use App\Models\issues;
+class issue extends Controller
 {
     public function get_issues() 
     {

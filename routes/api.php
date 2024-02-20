@@ -11,7 +11,7 @@ use App\Http\Controllers\VitaminsController;
 use App\Http\Controllers\courses;
 use App\Http\Controllers\tipsANDactivities;
 use App\Http\Controllers\ChildGrowth;
-use App\Http\Controllers\issues;
+use App\Http\Controllers\issue;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VoiceRecognitionController;
 use App\Http\Controllers\reset_password;
@@ -103,12 +103,12 @@ Route::get('/get_ChildGrowth',[ChildGrowth :: class , 'get_ChildGrowth']);
 
 
 
-Route::get('/get_issue/{id}',[issues :: class , 'get_issue']);
-Route::get('/get_issues',[issues :: class , 'get_issues']);
-Route::post('/add_issue',[issues :: class , 'add_issue']);
+Route::get('/get_issue/{id}',[issue :: class , 'get_issue']);
+Route::get('/get_issues',[issue :: class , 'get_issues']);
+Route::post('/add_issue',[issue :: class , 'add_issue']);
 
-Route::put('/update_issue/{id}',[issues :: class , 'update_ISSUE']);
-Route::delete('/delete_issue/{id}',[issues :: class , 'delete_ISSUE']);
+Route::put('/update_issue/{id}',[issue :: class , 'update_ISSUE']);
+Route::delete('/delete_issue/{id}',[issue :: class , 'delete_ISSUE']);
 
 
 Route::post('/reset-password', [Reset_Password::class, 'resetPassword']);
