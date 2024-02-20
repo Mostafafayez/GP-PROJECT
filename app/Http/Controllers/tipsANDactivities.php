@@ -55,7 +55,7 @@ public function get_tip($month)
         return response()->json(['message' => 'Invalid month provided'], 404);
     }
 
-    $ChildGrowth = Des_Categories::select('title', 'description', 'month')
+    $ChildGrowth = Des_Categories::select('title', 'description', 'month', 'image')
         ->where('category_id', '=', '7')
         ->where('month', '=', $month)
         ->get();
