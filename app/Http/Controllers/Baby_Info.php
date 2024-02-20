@@ -34,19 +34,24 @@ class Baby_Info extends Controller
         $request->validate([
             'birthday' => 'required|date',
         ]);
-
+    
         // Get the birthday from the request
         $birthday = $request->input('birthday');
-
+    
         // Create a Carbon instance from the birthday
         $carbonBirthday = \Carbon\Carbon::createFromFormat('Y-m-d', $birthday);
-
+    
         // Calculate the age using Carbon
-        $age = $carbonBirthday->diff(\Carbon\Carbon::now())->format('%y years, %m months, and %d days');
-
-        // Return the age as a response
-        return response()->json(['age' => $age], 200);
+        $age = $carbonBirthday->diff(\Carbon\Carbon::now());
+    
+        // Return the age as a response with separate attributes for years, months, and days
+        return response()->json([
+            'years' => $age->y,
+            'months' => $age->m,
+            'days' => $age->d
+        ], 200);
     }
+    
 
 
 
