@@ -37,7 +37,7 @@ class AdminBabyGrowthController extends Controller
     public function add_DESC(Request $req, $num)
     {
         // Check if the input number is between 1 and 8 and not 5 or 6
-        if ($num >= 1 && $num <= 8 && $num != 5 && $num != 6) {
+        if ($num >= 1 && $num <= 12 && $num != 5 && $num != 6) {
             $description = new Des_Categories;
             $fileName = "";
             $description->title = $req->input('title');
@@ -67,32 +67,8 @@ class AdminBabyGrowthController extends Controller
         }
     }
     
-    
-    
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-   
 
 public function update_one(Request $req, $id)
 {

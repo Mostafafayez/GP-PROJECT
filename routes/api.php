@@ -6,6 +6,8 @@ use App\Http\Controllers\Api\BabyGrowthController;
 use App\Http\Controllers\Api\BodyChangeController;
 use App\Http\Controllers\Api\FoodController;
 use App\Http\Controllers\Api\ListController;
+use App\Http\Controllers\Baby_Info;
+use App\Http\Controllers\Babyfood;
 use App\Http\Controllers\ExercisesController;
 use App\Http\Controllers\VitaminsController;
 use App\Http\Controllers\courses;
@@ -15,6 +17,7 @@ use App\Http\Controllers\issue;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VoiceRecognitionController;
 use App\Http\Controllers\reset_password;
+
 use Illuminate\Support\Facades\Artisan;
 /*
 |--------------------------------------------------------------------------
@@ -99,7 +102,7 @@ Route::get('/get_Food_6', [FoodController::class, 'get_Food_6']);
  Route::get('/get_tips/{id}',[tipsANDactivities :: class,'get_tip'] );
  Route::get('/get_tips',[tipsANDactivities :: class,'get_tips'] );
 //  Route::get('/get_ChildGrowth',[ChildGrowth :: class,'get_ChildGrowth'] );
-Route::get('/get_ChildGrowth',[ChildGrowth :: class , 'get_ChildGrowth']);
+Route::get('/get_ChildGrowth/{id}',[ChildGrowth :: class , 'get_ChildGrowth']);
 
 
 
@@ -111,9 +114,17 @@ Route::put('/update_issue/{id}',[issue :: class , 'update_ISSUE']);
 Route::delete('/delete_issue/{id}',[issue :: class , 'delete_ISSUE']);
 
 
+
+Route::get('/get_weaning/{month}',[Babyfood :: class , 'get_weaning']);
+Route::get('/get_BreastFeeding/{month}',[Babyfood :: class , 'get_BreastFeeding']);
+Route::get('/get_BottleFeeding/{month}',[Babyfood :: class , 'get_BottleFeeding']);
+
 Route::post('/reset-password', [Reset_Password::class, 'resetPassword']);
 Route::post('/verify-and-reset-password', [Reset_Password::class, 'verifyAndResetPassword']);
 
+Route::post('/add_BabyInfo', [Baby_Info::class, 'add']);
+
+Route::post('/calculateAge', [Baby_Info::class, 'calculateAge']);
 
 
 Route::post('/recognize-voice', [VoiceRecognitionController::class, 'predict']);
