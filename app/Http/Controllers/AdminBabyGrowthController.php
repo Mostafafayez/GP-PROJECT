@@ -53,6 +53,7 @@ class AdminBabyGrowthController extends Controller
                     $fileName = $req->file('image')->store('posts', 'public');
                     $description->image = $fileName;
                 }
+                $description->category_id = $num;
     
                 $description->save();
     
