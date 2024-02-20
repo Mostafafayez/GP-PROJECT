@@ -31,41 +31,77 @@ class AdminBabyGrowthController extends Controller
     //         return ["Result" => "there is SomeThing wrong"];
     //     }
     // }
-
-
-
     public function add_DESC(Request $req, $num)
     {
-        // Check if the input number is between 1 and 8 and not 5 or 6
-        if ($num >= 1 && $num <= 12 && $num != 5 && $num != 6) {
-            $description = new Des_Categories;
-            $fileName = "";
-            $description->title = $req->input('title');
-            $description->description = $req->input('description');
-            $description->month = $req->input('month');
+        try {
+            // Validate the request data
+            $req->validate([
+                'month' => 'nullable|integer|min:1|max:12',
+                'title' => 'required|string|max:255',
+                'description' => 'required|string',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048' // Optional image field with validation
+            ]);
     
-            // Check if there's a new image file uploaded
-            if ($req->hasFile('image')) {
-                $fileName = $req->file('image')->store('posts', 'public');
-                $description->image = $fileName;
-            }
+            if ($num >= 1 && $num <= 12 && $num != 5 && $num != 6) {
+                $description = new Des_Categories;
     
-            $description->category_id = $num; // Set the category ID
+                $description->month = $req->input('month');
+                $description->title = $req->input('title');
+                $description->description = $req->input('description');
     
-            try {
-                $result = $description->save();
-                if ($result) {
-                    return "Added successfully.";
-                } else {
-                    return "Failed to add.";
+                if ($req->hasFile('image')) {
+                    $fileName = $req->file('image')->store('posts', 'public');
+                    $description->image = $fileName;
                 }
-            } catch (\Exception $e) {
-                return "Failed to add: " . $e->getMessage();
+    
+                $description->save();
+    
+                return response()->json(["Result" => "Uploaded successfully"], 200);
+            } else {
+                return response()->json(["Result" => "Invalid month"], 400);
             }
-        } else {
-            return "Invalid input. Please provide a number from 1 to 8 excluding 5 and 6.";
+        } catch (\Exception $e) {
+            if ($e instanceof \Illuminate\Validation\ValidationException) {
+                return response()->json(["Result" => "Validation Error: " . $e->getMessage()], 400);
+            } else {
+                return response()->json(["Result" => "Error: " . $e->getMessage()], 500);
+            }
         }
     }
+    
+
+    // public function add_DESC(Request $req, $num)
+    // {
+    
+    //     if ($num >= 1 && $num <= 12 && $num != 5 && $num != 6) {
+    //         $description = new Des_Categories;
+    //         $fileName = "";
+    //         $description->title = $req->input('title');
+    //         $description->description = $req->input('description');
+    //         $description->month = $req->input('month');
+    
+    //         // Check if there's a new image file uploaded
+    //         if ($req->hasFile('image')) {
+    //             $fileName = $req->file('image')->store('posts', 'public');
+    //             $description->image = $fileName;
+    //         }
+    
+    //         $description->category_id = $num; // Set the category ID
+    
+    //         try {
+    //             $result = $description->save();
+    //             if ($result) {
+    //                 return "Added successfully.";
+    //             } else {
+    //                 return "Failed to add.";
+    //             }
+    //         } catch (\Exception $e) {
+    //             return "Failed to add: " . $e->getMessage();
+    //         }
+    //     } else {
+    //         return "Invalid input. Please provide a number from 1 to 8 excluding 5 and 6.";
+    //     }
+    // }
     
 
 
