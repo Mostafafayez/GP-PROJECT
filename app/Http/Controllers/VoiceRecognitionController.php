@@ -1,33 +1,44 @@
 <?php
 
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class VoiceRecognitionController extends Controller
 {
-    public function recognizeVoice(Request $request)
+    public function recognize(Request $request)
     {
-        $request->validate([
-            'audio_file' => 'required|mimes:wav,mp3|max:10240', // Adjust max file size as needed
+        // Validate the request
+        $validator = Validator::make($request->all(), [
+            'audio_file' => 'required|file|mimetypes:audio/wav,audio/x-wav',
         ]);
-    
-        $audioFile = $request->file('audio_file');
-    
-        $path = $audioFile->storeAs('audio', $audioFile->getClientOriginalName()); // Store uploaded file and get the path
-    
-        // Call Python script to process audio file
-        $process = new Process(['C:\Python311\python.exe', 'F:\model\model.py',  storage_path('app/' . $path)]);
-        $process->run();
-    
-        if (!$process->isSuccessful()) {
-            throw new \RuntimeException($process->getErrorOutput());
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
-    
-        return response()->json([
-            'result' => $process->getOutput(),
-        ]);
+
+        // Save the uploaded audio file
+        $audioFile = $request->file('audio_file');
+        $audioFilePath = $audioFile->storeAs('audio', 'external_audio.wav');
+
+        // Run Python script to perform voice recognition
+        $process = new Process(['python', 'path/to/your/python/script.py', storage_path('app/' . $audioFilePath)]);
+        $process->run();
+
+        // Check if the process was successful
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+
+        // Get the output of the Python script
+        $result = $process->getOutput();
+
+        // Return the result
+        return response()->json(['result' => $result], Response::HTTP_OK);
     }
 }

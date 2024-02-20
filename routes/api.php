@@ -116,7 +116,7 @@ Route::post('/verify-and-reset-password', [Reset_Password::class, 'verifyAndRese
 
 
 
-Route::post('/recognize-voice', [VoiceRecognitionController::class, 'recognizeVoice']);
+Route::post('/recognize-voice', [VoiceRecognitionController::class, 'predict']);
 
  //https://gradhub.hwnix.com/api/update_one/{id}/////////////////////////////register
  Route::get('/test',function(){

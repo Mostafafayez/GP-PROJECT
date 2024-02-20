@@ -8,7 +8,7 @@ class issues extends Controller
 {
     public function get_issues() 
     {
-     $issues = issue_des::all();
+     $issues = issues::all();
   
  
      if ($issues->isEmpty()) {
@@ -175,6 +175,11 @@ public function get_issue($num)
         return response()->json(['message' => 'Error: ' . $e->getMessage()], 500);
     }
 }
+
+
+
+
+
 
 
 }
