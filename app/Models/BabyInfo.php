@@ -13,4 +13,5 @@ class BabyInfo extends Model
     protected $fillable = ['name', 'sex', 'birthday'];
 
     protected $dates = ['birthday'];
+    public $timestamps = false;
 }

@@ -8,23 +8,25 @@ class Baby_Info extends Controller
 {
     public function add(Request $request)
     {
+        $baby = new BabyInfo();
         // Validate the request data
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'sex' => 'required|in:Male,Female,Other',
-            'birthday' => 'required|date',
-        ]);
-
-        // Create a new baby record using the add function from the BabyInfo model
-        $baby = BabyInfo::add($request->all());
-
+        $baby->name = $request->input('name');
+        $baby->birthday = $request->input('birthday');
+        $baby->sex = $request->input('sex');
+    
+        // Create a new BabyInfo instance and fill it with the validated data
+   
+        // Save the baby record
+      $baby->save();
+    
         // Return a response indicating success or failure
         if ($baby) {
-            return response()->json(['message' => 'Baby record created successfully', 'data' => $baby], 201);
+            return response()->json(['message' => 'Baby record created successfully', ], 201);
         } else {
             return response()->json(['message' => 'Failed to create baby record'], 500);
         }
     }
+    
 
     public function calculateAge(Request $request)
     {
