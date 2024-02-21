@@ -109,6 +109,10 @@ Route::get('/get_ChildGrowth/{id}',[ChildGrowth :: class , 'get_ChildGrowth']);
 Route::get('/get_issue/{id}',[issue :: class , 'get_issue']);
 Route::get('/get_issues',[issue :: class , 'get_issues']);
 Route::post('/add_issue',[issue :: class , 'add_issue']);
+Route::post('/add_issues',[issue :: class , 'add_issues']);
+Route::post('/update_issues/{id}',[issue :: class , 'update_issues']);
+Route::delete('/delete_issue/{id}',[issue :: class , 'delete_ISSUEs']);
+
 
 Route::put('/update_issue/{id}',[issue :: class , 'update_ISSUE']);
 Route::delete('/delete_issue/{id}',[issue :: class , 'delete_ISSUE']);
