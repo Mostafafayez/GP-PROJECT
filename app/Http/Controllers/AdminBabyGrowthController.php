@@ -39,8 +39,9 @@ class AdminBabyGrowthController extends Controller
                 'month' => 'nullable|integer|min:1|max:12',
                 'title' => 'required|string|max:255',
                 'description' => 'required|string',
-                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048' // Optional image field with validation
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048' 
             ]);
+            var_dump($req->all());
     
             if ($num >= 1 && $num <= 12 && $num != 5 && $num != 6) {
                 $description = new Des_Categories;
@@ -56,6 +57,7 @@ class AdminBabyGrowthController extends Controller
                 $description->category_id = $num;
     
                 $description->save();
+                var_dump($description);
     
                 return response()->json(["Result" => "Uploaded successfully"], 200);
             } else {
