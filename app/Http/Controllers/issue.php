@@ -274,25 +274,24 @@ public function delete_ISSUEs($id)
 }
 
 
-public function get_issue($issue_id )
+public function get_issue($issue_id)
 {
     try {
-        // Find the issue details by ID
-        $issue = issue_des::find($issue_id);
+        // Find all issue details with the given issue_id
+        $issues = issue_des::where('issue_id', $issue_id)->get();
 
-        // Check if issue details were found
-        if (!$issue) {
-            return response()->json(['message' => 'No issue details found'], 404);
+        // Check if any issue details were found
+        if ($issues->isEmpty()) {
+            return response()->json(['message' => 'No issue details found for the given issue_id'], 404);
         }
 
         // Return issue details as JSON response
-        return response()->json($issue, 200);
+        return response()->json($issues, 200);
     } catch (\Exception $e) {
         // Handle any exceptions
         return response()->json(['message' => 'Error: ' . $e->getMessage()], 500);
     }
 }
-
 
 
 
