@@ -274,11 +274,11 @@ public function delete_ISSUEs($id)
 }
 
 
-public function get_issue($id)
+public function get_issue($issue_id )
 {
     try {
         // Find the issue details by ID
-        $issue = issue_des::find($id);
+        $issue = issue_des::find($issue_id);
 
         // Check if issue details were found
         if (!$issue) {
