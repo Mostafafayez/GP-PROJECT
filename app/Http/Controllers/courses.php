@@ -62,7 +62,7 @@ public function get_cours($language)
     {
         try {
             // Fetch exercise details with category_id = 6
-            $exerciseDetails = Exercise_details::select('description', 'video_url')
+            $exerciseDetails = Exercise_details::select('description', 'video')
                                 ->where('category_id', '=', '6')
                                 ->get(); // Execute the query to fetch the results
     
