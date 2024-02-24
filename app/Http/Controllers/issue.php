@@ -55,12 +55,12 @@ class issue extends Controller
 //          return ["Result" => "Error: " . $e->getMessage()];
 //      }
 //  }
-  public function add_issue(Request $req)
+  public function add_issue(Request $req,$id)
  {
      try {
          // Validate the request data
          $req->validate([
-             'issue_id' => 'required|exists:issues,id',
+             
              'title' => 'required',
              'description' => 'required',
          ]);
@@ -68,11 +68,11 @@ class issue extends Controller
          $issue = new issue_des;
  
        
-         $issue->issue_id = $req->input('issue_id');
+        
          $issue->title = $req->input('title');
          $issue->description = $req->input('description');
  
-      
+         $issue->issue_id = $id;
          $issue->save();
  
      
