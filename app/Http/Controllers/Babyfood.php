@@ -8,7 +8,7 @@ class Babyfood extends Controller
 {
     public function get_weaning($month)
     {
-        $monthsToCheck = [1, 6,12,18,24]; 
+        $monthsToCheck = [1,6,12,18,24]; 
     
         if (!in_array($month, $monthsToCheck)) {
             return response()->json(['message' => 'Invalid month provided'], 404);
