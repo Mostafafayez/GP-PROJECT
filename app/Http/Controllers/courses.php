@@ -93,7 +93,7 @@ public function get_cours($language)
             // Loop through the course titles based on $num
             for ($i = 0; $i < count($courseTitles); $i++) {
                 if ($num == $i + 1) {
-                    $exerciseDetails = Exercise_details::select('description', 'video_url')
+                    $exerciseDetails = Exercise_details::select('description', 'video')
                         ->where('category_id', '=', '6')
                         ->where('title', $courseTitles[$i])
                         ->get();
