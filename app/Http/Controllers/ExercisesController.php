@@ -15,13 +15,13 @@ class ExercisesController extends Controller
             $exerciseDetails = null;
     
             // Define array of course titles
-            $courseTitles = ['exercise1', 'exercise2', 'exercise3', 'exercise4'];
+            $courseTitles = ['Exercise1', 'Exercise2', 'Exercise3', 'Exercise4'];
     
             // Loop through the course titles based on $num
             for ($i = 0; $i < count($courseTitles); $i++) {
                 if ($num == $i + 1) {
                     $exerciseDetails = Exercise_details::select('description', 'video')
-                        ->where('category_id', '=', '6')
+                        ->where('category_id', '=', '5')
                         ->where('title', $courseTitles[$i])
                         ->get();
                     break; // Break the loop once the correct course title is found
