@@ -40,7 +40,7 @@ public function get_cours($language)
 
 {
     if ($language=='ar'){
-    $exerciseDetails = Exercise_details::where('category_id','=','6')
+    $exerciseDetails = Exercise_details::select('description','video_url')::where('category_id','=','6')
     ->get();
     
    if ($exerciseDetails->isEmpty()) {
@@ -62,7 +62,9 @@ public function get_cours($language)
     {
         try {
             // Fetch exercise details with category_id = 6
-            $exerciseDetails = Exercise_details::where('category_id', '=', 6)->get();
+            $exerciseDetails = Exercise_details::select('description', 'video_url')
+                                ->where('category_id', '=', '6')
+                                ->get(); // Execute the query to fetch the results
     
             // Check if any exercise details were found
             if ($exerciseDetails->isEmpty()) {
@@ -76,7 +78,7 @@ public function get_cours($language)
             return response()->json(['message' => 'Error: ' . $e->getMessage()], 500);
         }
     }
-
+    
 
 
     public function get_course($num)
@@ -85,23 +87,25 @@ public function get_cours($language)
             // Initialize exerciseDetails variable
             $exerciseDetails = null;
     
-            // Determine which course title to retrieve based on $num
-            if ($num == 1) {
-                $exerciseDetails = Exercise_details::where('category_id', 6)->where('title', 'course1')->first();
-            } elseif ($num == 2) {
-                $exerciseDetails = Exercise_details::where('category_id', 6)->where('title', 'course2')->first();
-            } elseif ($num == 3) {
-                $exerciseDetails = Exercise_details::where('category_id', 6)->where('title', 'course3')->first();
-            }
-              elseif ($num == 4) {
-            $exerciseDetails = Exercise_details::where('category_id', 6)->where('title', 'course4')->first();
+            // Define array of course titles
+            $courseTitles = ['course1', 'course2', 'course3', 'course4'];
+    
+            // Loop through the course titles based on $num
+            for ($i = 0; $i < count($courseTitles); $i++) {
+                if ($num == $i + 1) {
+                    $exerciseDetails = Exercise_details::select('description', 'video_url')
+                        ->where('category_id', '=', '6')
+                        ->where('title', $courseTitles[$i])
+                        ->get();
+                    break; // Break the loop once the correct course title is found
+                }
             }
     
             // Check if any exercise details were found
             if ($exerciseDetails === null) {
                 return response()->json(['message' => 'No course details found'], 404);
             }
-            
+    
             // Return exercise details as JSON response
             return response()->json($exerciseDetails, 200);
         } catch (\Exception $e) {
@@ -109,6 +113,7 @@ public function get_cours($language)
             return response()->json(['message' => 'Error: ' . $e->getMessage()], 500);
         }
     }
+    
     
 
 
