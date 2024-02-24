@@ -14,23 +14,25 @@ class ExercisesController extends Controller
             // Initialize exerciseDetails variable
             $exerciseDetails = null;
     
-            // Determine which course title to retrieve based on $num
-            if ($num == 1) {
-                $exerciseDetails = Exercise_details::where('category_id', 5)->where('title', 'exercise1')->first();
-            } elseif ($num == 2) {
-                $exerciseDetails = Exercise_details::where('category_id', 5)->where('title', 'exercise2')->first();
-            } elseif ($num == 3) {
-                $exerciseDetails = Exercise_details::where('category_id', 5)->where('title', 'exercise3')->first();
-            }
-              elseif ($num == 4) {
-            $exerciseDetails = Exercise_details::where('category_id', 5)->where('title', 'exercise4')->first();
+            // Define array of course titles
+            $courseTitles = ['exercise1', 'exercise2', 'exercise3', 'exercise4'];
+    
+            // Loop through the course titles based on $num
+            for ($i = 0; $i < count($courseTitles); $i++) {
+                if ($num == $i + 1) {
+                    $exerciseDetails = Exercise_details::select('description', 'video')
+                        ->where('category_id', '=', '6')
+                        ->where('title', $courseTitles[$i])
+                        ->get();
+                    break; // Break the loop once the correct course title is found
+                }
             }
     
             // Check if any exercise details were found
             if ($exerciseDetails === null) {
-                return response()->json(['message' => 'No course details found'], 404);
+                return response()->json(['message' => 'No exercise details found'], 404);
             }
-            
+    
             // Return exercise details as JSON response
             return response()->json($exerciseDetails, 200);
         } catch (\Exception $e) {
