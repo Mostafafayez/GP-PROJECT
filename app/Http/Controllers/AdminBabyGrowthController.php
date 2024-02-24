@@ -32,46 +32,45 @@ class AdminBabyGrowthController extends Controller
     //     }
     // }
     public function add_DESC(Request $req, $num)
-    {
-        try {
-            // Validate the request data
-            $req->validate([
-                'month' => 'nullable|integer|min:1|max:24',
-                'title' => 'required|string|max:255',
-                'description' => 'required|string',
-                'image' => ($num >= 1 && $num <= 3) ? 'required|image|mimes:jpeg,png,jpg,gif|max:2048' : 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
-            ]);
-    
-            if ($num >= 1 && $num <= 12 && $num != 5 && $num != 6) {
-                $description = new Des_Categories;
-    
-                $description->month = $req->input('month');
-                $description->title = $req->input('title');
-                $description->description = $req->input('description');
-    
-                if ($req->hasFile('image')) {
-                    $fileName = $req->file('image')->store('posts', 'public');
-                    $description->image = $fileName;
-                }
-    
-                $description->category_id = $num;
-    
-                $description->save();
-    
-                return response()->json(["Result" => "Uploaded successfully"], 200);
-            } else {
-                return response()->json(["Result" => "Invalid month"], 400);
+{
+    try {
+        // Validate the request data
+        $req->validate([
+            'month' => 'nullable|integer|min:1|max:24',
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'image' => ($num >= 1 && $num <= 3) ? 'required|image|mimes:jpeg,png,jpg,gif|max:2048' : 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        if ($num >= 1 && $num <= 12 && $num != 5 && $num != 6) {
+            $description = new Des_Categories;
+
+            $description->month = $req->input('month');
+            $description->title = $req->input('title');
+            $description->description = $req->input('description');
+
+            if ($req->hasFile('image')) {
+                $fileName = $req->file('image')->store('posts', 'public');
+                $description->image = $fileName;
             }
-        } catch (\Exception $e) {
-            if ($e instanceof \Illuminate\Validation\ValidationException) {
-                return response()->json(["Result" => "Validation Error: " . $e->getMessage()], 400);
-            } else {
-                return response()->json(["Result" => "Error: " . $e->getMessage()], 500);
-            }
+
+            $description->category_id = $num;
+
+            $description->save();
+
+            return response()->json(["Result" => "Uploaded successfully"], 200);
+        } else {
+            return response()->json(["Result" => "Invalid month"], 400);
+        }
+    } catch (\Exception $e) {
+        if ($e instanceof \Illuminate\Validation\ValidationException) {
+            return response()->json(["Result" => "Validation Error: " . $e->getMessage()], 400);
+        } else {
+            return response()->json(["Result" => "Error: " . $e->getMessage()], 500);
         }
     }
-    
-    
+}
+
 
     // public function add_DESC(Request $req, $num)
     // {
