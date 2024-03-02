@@ -23,7 +23,7 @@ class ExercisesController extends Controller
                     $exerciseDetails = Exercise_details::select('description', 'video')
                         ->where('category_id', '=', '5')
                         ->where('title', $courseTitles[$i])
-                        ->get();
+                        ->first();
                     break; // Break the loop once the correct course title is found
                 }
             }
