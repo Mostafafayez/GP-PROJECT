@@ -41,7 +41,7 @@ public function get_cours($language)
 {
     if ($language=='ar'){
     $exerciseDetails = Exercise_details::select('description','video_url')::where('category_id','=','6')
-    ->get();
+    ->first();
     
    if ($exerciseDetails->isEmpty()) {
         return response()->json(['message' => 'No courses details found'], 404);
