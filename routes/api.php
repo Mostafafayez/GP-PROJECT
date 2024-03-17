@@ -17,7 +17,7 @@ use App\Http\Controllers\issue;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VoiceRecognitionController;
 use App\Http\Controllers\reset_password;
-
+use App\Http\Controllers\chatting;
 use Illuminate\Support\Facades\Artisan;
 /*
 |--------------------------------------------------------------------------
@@ -72,7 +72,7 @@ Route::get('/get_Food_6', [FoodController::class, 'get_Food_6']);
  Route::post('/update_DESCs/{id}', [AdminBabyGrowthController ::class,'update_all']);
  Route::post('/update_DESC/{id}', [AdminBabyGrowthController ::class,'update_one']);
 //  Route::post('/update_one/{id}', [AdminBabyGrowthController ::class,'update_DESC']);
- 
+
  Route::get('/get_des', [AdminBabyGrowthController ::class,'get_all_DESC']);
  Route::get('/getAllBabyGrowth', [AdminBabyGrowthController::class, 'getAllBabyGrowth']);
  Route::get('/getAllBodyChanges', [AdminBabyGrowthController::class, 'getAllBodyChanges']);
@@ -83,7 +83,7 @@ Route::get('/get_Food_6', [FoodController::class, 'get_Food_6']);
  Route::get('/get_vitamin_3', [VitaminsController ::class,'get_iron']);
  Route::get('/get_vitamin_4', [VitaminsController ::class,'get_vitamin_c']);
  Route::get('/get_vitamins', [VitaminsController ::class,'get_vitamins']);
- 
+
  Route::get('/get_exercises',[ExercisesController :: class,'get_Exercises'] );
  Route::get('/get_exercise/{id}',[ExercisesController :: class,'get_exercise'] );
  Route::post('/add_exercise',[ExercisesController :: class,'add_Exercise'] );
@@ -93,7 +93,7 @@ Route::get('/get_Food_6', [FoodController::class, 'get_Food_6']);
  Route::post('/update/{id}',[ExercisesController :: class,'update_exercise'] );
 
  Route::get('/get_courses/{language}',[courses :: class,'get_cours'] );
- 
+
  Route::get('/get_courses',[courses :: class,'get_courses'] );
  Route::get('/get_course/{num}',[courses :: class,'get_course'] );
  Route::post('/add_course',[courses :: class,'add_courses'] );
@@ -132,6 +132,13 @@ Route::post('/calculateAge', [Baby_Info::class, 'calculateAge']);
 
 
 Route::post('/recognize-voice', [VoiceRecognitionController::class, 'predict']);
+
+
+Route::post('/recognize-voice', [VoiceRecognitionController::class, 'predict']);
+
+
+Route::post('/send', [chatting::class, 'sendMessage']);
+Route::post('/receive', [chatting::class, 'receiveMessages']);
 
  //https://gradhub.hwnix.com/api/update_one/{id}/////////////////////////////register
  Route::get('/test',function(){
