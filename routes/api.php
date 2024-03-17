@@ -142,5 +142,7 @@ Route::post('/receive', [chatting::class, 'receiveMessages']);
 
  //https://gradhub.hwnix.com/api/update_one/{id}/////////////////////////////register
  Route::get('/test',function(){
-    Artisan::call('config:clear');
+    Artisan::call('require', [
+        'packages' => 'predis/predis',
+    ]);
  });
