@@ -68,8 +68,10 @@ use App\Events\MessageSent;
             $message->message = $request->message;
             $message->save();
 
-            // Broadcast message using Laravel Echo
-            broadcast(new MessageSent($message))->toOthers();
+            // // Broadcast message using Laravel Echo
+            // broadcast(new MessageSent($message))->toOthers();
+               // Broadcast message using Pusher
+        event(new MessageSent($message));
 
             return response()->json($message);
         }
