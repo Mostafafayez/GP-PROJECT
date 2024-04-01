@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\messages;
 use Illuminate\Http\Request;
-use Pusher\Pusher;
+ use Pusher\Pusher;
 use App\Events\MessageSent;
     class chatting extends Controller
     {
@@ -60,6 +60,9 @@ use App\Events\MessageSent;
         //     return response()->json(['message' => 'Message received successfully', 'data' => $message], 200);
         // }
 
+
+
+
         public function sendMessage(Request $request)
         {
             $message = new Messages();
@@ -68,10 +71,20 @@ use App\Events\MessageSent;
             $message->message = $request->message;
             $message->save();
 
-            // // Broadcast message using Laravel Echo
-            // broadcast(new MessageSent($message))->toOthers();
-               // Broadcast message using Pusher
-        event(new MessageSent($message));
+            $pusher = new Pusher(
+                env('PUSHER_APP_KEY'),
+                env('PUSHER_APP_SECRET'),
+                env('PUSHER_APP_ID'),
+                [
+                    'cluster' => env('PUSHER_APP_CLUSTER'),
+                    'useTLS' => true,
+                ]
+            );
+            $pusher->trigger('chat', 'message-sent', $message);
+
+
+
+        // event(new MessageSent($message));
 
             return response()->json($message);
         }
