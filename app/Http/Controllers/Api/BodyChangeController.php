@@ -10,7 +10,7 @@ class BodyChangeController extends Controller
     public function get_bodyChange_1($language)
     {
         if ($language == "en") {
-            $bodyChange_1 = Des_Categories::select('image','title','description')
+            $bodyChange_1 = Des_Categories::select('image','title','description','month')
                 ->where('category_id', '=', '1')
                 ->where('Month', '=', '1')
                 ->first();
@@ -25,7 +25,7 @@ class BodyChangeController extends Controller
     public function get_bodyChange_2($language)
     {
         if ($language == "en") {
-            $bodyChange_2 = Des_Categories::select('image','title','description')
+            $bodyChange_2 = Des_Categories::select('image','title','description','month')
                 ->where('category_id', '=', '1')
                 ->where('Month', '=', '2')
                 ->first();
