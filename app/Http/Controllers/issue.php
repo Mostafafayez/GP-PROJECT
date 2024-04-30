@@ -11,20 +11,23 @@ class issue extends Controller
 {
     public function get_issues($language)
     {
-        if ($language == "en"){
-     $issues = issues::select('name','id');
+        try {
+            if ($language == "en") {
+                $issues = Issue::select('name', 'id')->get();
+            } elseif ($language == "ar") {
+                $issues = Issue::select('name_ar', 'id')->get();
+            }
+
+            if ($issues->isEmpty()) {
+                return response()->json(['message' => 'No issue details found'], 404);
+            }
+
+            return response()->json($issues, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error occurred: ' . $e->getMessage()], 500);
+        }
     }
-    elseif ($language == "ar"){
-        $issues = issues::select('name_ar','id');
-       }
 
-     if ($issues->isEmpty()) {
-         return response()->json(['message' => 'No issue details found'], 404);
-     }
-
-      return response()->json($issues, 200);
-
- }
 
 
 //  public function add_issue(Request $req)
