@@ -38,7 +38,7 @@ class AuthController extends Controller
     }
 }
 
-    
+
 public function login(Request $req)
 {
     // Check if required fields are empty
@@ -48,11 +48,11 @@ public function login(Request $req)
 
     try {
         $user = User::where('email', $req->input('email'))->firstOrFail();
-        
+
         if (!Hash::check($req->input('password'), $user->password)) {
             return response()->json(['error' => 'Email or Password is incorrect'], 401);
         }
-        
+
         return response()->json(['message' => 'Login successful', 'user' => $user]);
     } catch (\Exception $e) {
         return response()->json(['error' => 'Email or Password is incorrect'], 401);
@@ -60,7 +60,6 @@ public function login(Request $req)
 }
 
 
-    
 public function loginAdmin(Request $req)
 {
     // Check if required fields are empty
@@ -69,12 +68,14 @@ public function loginAdmin(Request $req)
     }
 
     try {
-        $Admin = Admin::where('email', $req->input('email'))->firstOrFail();
-        
+        $Admin = Admin::where('email', $req->input('email'))
+                      ->where('type_num', 1)
+                      ->firstOrFail();
+
         if (!Hash::check($req->input('password'), $Admin->password)) {
             return response()->json(['error' => 'Email or Password is incorrect'], 401);
         }
-        
+
         return response()->json(['message' => 'Login successful', 'user' => $Admin]);
     } catch (\Exception $e) {
         return response()->json(['error' => 'Email or Password is incorrect'], 401);
@@ -87,13 +88,13 @@ public function loginAdmin(Request $req)
         if (empty($req->input('name')) || empty($req->input('email')) || empty($req->input('password')) || empty($req->input('phone'))) {
             return response()->json(['error' => 'Please provide all required fields'], 400);
         }
-    
+
         $admin = new Admin;
         $admin->name = $req->input('name');
         $admin->email = $req->input('email');
         $admin->password = $req->input('password');
         $admin->phone = $req->input('phone');
-    
+
         try {
             // Save the user
             $admin->save();
@@ -107,6 +108,6 @@ public function loginAdmin(Request $req)
             }
         }
     }
-    
+
 
 }
