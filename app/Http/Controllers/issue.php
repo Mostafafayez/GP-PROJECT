@@ -13,9 +13,9 @@ class issue extends Controller
     {
         try {
             if ($language == "en") {
-                $issues = Issue::select('name', 'id')->get();
+                $issues = issues::select('name', 'id')->get();
             } elseif ($language == "ar") {
-                $issues = Issue::select('name_ar', 'id')->get();
+                $issues = Issues::select('name_ar', 'id')->get();
             }
 
             if ($issues->isEmpty()) {
