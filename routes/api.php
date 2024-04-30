@@ -46,27 +46,27 @@ Route::get('/calculateWeeksDifference/{date}', [ListController::class, 'calculat
 Route::get('/calculateDaysDifference/{date}', [ListController::class, 'calculateDaysDifference']);
 Route::get('/calculateWeeksAndDaysPregrency/{date}', [ListController::class, 'calculateWeeksAndDaysPregrency']);
 
-Route::get('/get_babyGrowth_1', [BabyGrowthController::class, 'get_babyGrowth_1']);
-Route::get('/get_babyGrowth_2', [BabyGrowthController::class, 'get_babyGrowth_2']);
-Route::get('/get_babyGrowth_3', [BabyGrowthController::class, 'get_babyGrowth_3']);
-Route::get('/get_babyGrowth_4', [BabyGrowthController::class, 'get_babyGrowth_4']);
-Route::get('/get_babyGrowth_5', [BabyGrowthController::class, 'get_babyGrowth_5']);
-Route::get('/get_babyGrowth_6', [BabyGrowthController::class, 'get_babyGrowth_6']);
-Route::get('/get_babyGrowth_7', [BabyGrowthController::class, 'get_babyGrowth_7']);
-Route::get('/get_babyGrowth_8', [BabyGrowthController::class, 'get_babyGrowth_8']);
-Route::get('/get_babyGrowth_9', [BabyGrowthController::class, 'get_babyGrowth_9']);
-Route::get('/get_bodyChange_1', [BodyChangeController::class, 'get_bodyChange_1']);
-Route::get('/get_bodyChange_2', [BodyChangeController::class, 'get_bodyChange_2']);
-Route::get('/get_bodyChange_3', [BodyChangeController::class, 'get_bodyChange_3']);
-Route::get('/get_bodyChange_4', [BodyChangeController::class, 'get_bodyChange_4']);
-Route::get('/get_bodyChange_5', [BodyChangeController::class, 'get_bodyChange_5']);
-Route::get('/get_bodyChange_6', [BodyChangeController::class, 'get_bodyChange_6']);
-Route::get('/get_bodyChange_7', [BodyChangeController::class, 'get_bodyChange_7']);
-Route::get('/get_bodyChange_8', [BodyChangeController::class, 'get_bodyChange_8']);
-Route::get('/get_bodyChange_9', [BodyChangeController::class, 'get_bodyChange_9']);
-Route::get('/get_Food_1', [FoodController::class, 'get_Food_1']);
-Route::get('/get_Food_3', [FoodController::class, 'get_Food_3']);
-Route::get('/get_Food_6', [FoodController::class, 'get_Food_6']);
+Route::get('/get_babyGrowth_1/{language}', [BabyGrowthController::class, 'get_babyGrowth_1']);
+Route::get('/get_babyGrowth_2/{language}', [BabyGrowthController::class, 'get_babyGrowth_2']);
+Route::get('/get_babyGrowth_3/{language}', [BabyGrowthController::class, 'get_babyGrowth_3']);
+Route::get('/get_babyGrowth_4/{language}', [BabyGrowthController::class, 'get_babyGrowth_4']);
+Route::get('/get_babyGrowth_5/{language}', [BabyGrowthController::class, 'get_babyGrowth_5']);
+Route::get('/get_babyGrowth_6/{language}', [BabyGrowthController::class, 'get_babyGrowth_6']);
+Route::get('/get_babyGrowth_7/{language}', [BabyGrowthController::class, 'get_babyGrowth_7']);
+Route::get('/get_babyGrowth_8/{language}', [BabyGrowthController::class, 'get_babyGrowth_8']);
+Route::get('/get_babyGrowth_9/{language}', [BabyGrowthController::class, 'get_babyGrowth_9']);
+Route::get('/get_bodyChange_1/{language}', [BodyChangeController::class, 'get_bodyChange_1']);
+Route::get('/get_bodyChange_2/{language}', [BodyChangeController::class, 'get_bodyChange_2']);
+Route::get('/get_bodyChange_3/{language}', [BodyChangeController::class, 'get_bodyChange_3']);
+Route::get('/get_bodyChange_4/{language}', [BodyChangeController::class, 'get_bodyChange_4']);
+Route::get('/get_bodyChange_5/{language}', [BodyChangeController::class, 'get_bodyChange_5']);
+Route::get('/get_bodyChange_6/{language}', [BodyChangeController::class, 'get_bodyChange_6']);
+Route::get('/get_bodyChange_7/{language}', [BodyChangeController::class, 'get_bodyChange_7']);
+Route::get('/get_bodyChange_8/{language}', [BodyChangeController::class, 'get_bodyChange_8']);
+Route::get('/get_bodyChange_9/{language}', [BodyChangeController::class, 'get_bodyChange_9']);
+Route::get('/get_Food_1/{language}', [FoodController::class, 'get_Food_1']);
+Route::get('/get_Food_3/{language}', [FoodController::class, 'get_Food_3']);
+Route::get('/get_Food_6/{language}', [FoodController::class, 'get_Food_6']);
  //admin//
  Route ::post('/add_DESC/{id}',  [AdminBabyGrowthController ::class,'add_DESC']);
  Route::post('/update_DESCs/{id}', [AdminBabyGrowthController ::class,'update_all']);
@@ -74,18 +74,18 @@ Route::get('/get_Food_6', [FoodController::class, 'get_Food_6']);
 //  Route::post('/update_one/{id}', [AdminBabyGrowthController ::class,'update_DESC']);
 
  Route::get('/get_des', [AdminBabyGrowthController ::class,'get_all_DESC']);
- Route::get('/getAllBabyGrowth', [AdminBabyGrowthController::class, 'getAllBabyGrowth']);
- Route::get('/getAllBodyChanges', [AdminBabyGrowthController::class, 'getAllBodyChanges']);
+ Route::get('/getAllBabyGrowth/{language}', [AdminBabyGrowthController::class, 'getAllBabyGrowth']);
+ Route::get('/getAllBodyChanges/{language}', [AdminBabyGrowthController::class, 'getAllBodyChanges']);
  Route ::delete('/delete_desc/{id}',[AdminBabyGrowthController::class,'delete']);
 
- Route::get('/get_vitamin_1', [VitaminsController ::class,'get_omega_3']);
- Route::get('/get_vitamin_2', [VitaminsController ::class,'get_zinc']);
- Route::get('/get_vitamin_3', [VitaminsController ::class,'get_iron']);
- Route::get('/get_vitamin_4', [VitaminsController ::class,'get_vitamin_c']);
- Route::get('/get_vitamins', [VitaminsController ::class,'get_vitamins']);
+ Route::get('/get_vitamin_1/{language}', [VitaminsController ::class,'get_omega_3']);
+ Route::get('/get_vitamin_2/{language}', [VitaminsController ::class,'get_zinc']);
+ Route::get('/get_vitamin_3/{language}', [VitaminsController ::class,'get_iron']);
+ Route::get('/get_vitamin_4/{language}', [VitaminsController ::class,'get_vitamin_c']);
+ Route::get('/get_vitamins/{language}', [VitaminsController ::class,'get_vitamins']);
 
- Route::get('/get_exercises',[ExercisesController :: class,'get_Exercises'] );
- Route::get('/get_exercise/{id}',[ExercisesController :: class,'get_exercise'] );
+ Route::get('/get_exercises/{language}',[ExercisesController :: class,'get_Exercises'] );
+ Route::get('/get_exercise/{id}/{language}',[ExercisesController :: class,'get_exercise'] );
  Route::post('/add_exercise',[ExercisesController :: class,'add_Exercise'] );
 
  //update & delete exercise or course
@@ -94,20 +94,20 @@ Route::get('/get_Food_6', [FoodController::class, 'get_Food_6']);
 
  Route::get('/get_courses/{language}',[courses :: class,'get_cours'] );
 
- Route::get('/get_courses',[courses :: class,'get_courses'] );
- Route::get('/get_course/{num}',[courses :: class,'get_course'] );
+ Route::get('/get_courses/{language}',[courses :: class,'get_courses'] );
+ Route::get('/get_course/{num}/{language}',[courses :: class,'get_course'] );
  Route::post('/add_course',[courses :: class,'add_courses'] );
 
 
- Route::get('/get_tips/{id}',[tipsANDactivities :: class,'get_tip'] );
- Route::get('/get_tips',[tipsANDactivities :: class,'get_tips'] );
+ Route::get('/get_tip/{id}/{language}',[tipsANDactivities :: class,'get_tip'] );
+ Route::get('/get_tips/{language}',[tipsANDactivities :: class,'get_tips'] );
 //  Route::get('/get_ChildGrowth',[ChildGrowth :: class,'get_ChildGrowth'] );
-Route::get('/get_ChildGrowth/{id}',[ChildGrowth :: class , 'get_ChildGrowth']);
+Route::get('/get_ChildGrowth/{id}/{language}',[ChildGrowth :: class , 'get_ChildGrowth']);
 
 
 
-Route::get('/get_issue/{id}',[issue :: class , 'get_issue']);
-Route::get('/get_issues',[issue :: class , 'get_issues']);
+Route::get('/get_issue/{id}/{language}',[issue :: class , 'get_issue']);
+Route::get('/get_issues/{language}',[issue :: class , 'get_issues']);
 Route::post('/add_issue/{id}',[issue :: class , 'add_issue']);
 Route::post('/add_issues',[issue :: class , 'add_issues']);
 Route::post('/update_issues/{id}',[issue :: class , 'update_issues']);
@@ -119,9 +119,9 @@ Route::delete('/delete_issue/{id}',[issue :: class , 'delete_ISSUE']);
 
 
 
-Route::get('/get_weaning/{month}',[Babyfood :: class , 'get_weaning']);
-Route::get('/get_BreastFeeding/{month}',[Babyfood :: class , 'get_BreastFeeding']);
-Route::get('/get_BottleFeeding/{month}',[Babyfood :: class , 'get_BottleFeeding']);
+Route::get('/get_weaning/{month}/{language}',[Babyfood :: class , 'get_weaning']);
+Route::get('/get_BreastFeeding/{month}/{language}',[Babyfood :: class , 'get_BreastFeeding']);
+Route::get('/get_BottleFeeding/{month}/{language}',[Babyfood :: class , 'get_BottleFeeding']);
 
 Route::post('/reset-password', [Reset_Password::class, 'resetPassword']);
 Route::post('/verify-and-reset-password', [Reset_Password::class, 'verifyAndResetPassword']);

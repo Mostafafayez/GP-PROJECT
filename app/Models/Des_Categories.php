@@ -16,18 +16,20 @@ protected $appends=['FullSrc'];
         'id',
         'title',
         'description',
-        'category_id'
+        'category_id',
+        'description_ar',
+        'title_ar'
     ];
      public function getFullSrcAttribute()  {
       return asset('storage/'.$this->image);
-      
+
     }
 
 
 
 
 
-    
-    
+
+
 }
 

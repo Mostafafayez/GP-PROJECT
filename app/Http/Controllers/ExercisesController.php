@@ -8,39 +8,44 @@ use Vimeo\Exceptions\VimeoUploadException;
 class ExercisesController extends Controller
 {
 
-    public function get_exercise($num)
+    public function get_exercise($num, $language)
     {
         try {
             // Initialize exerciseDetails variable
             $exerciseDetails = null;
-    
+
             // Define array of course titles
             $courseTitles = ['Exercise1', 'Exercise2', 'Exercise3', 'Exercise4'];
-    
-            // Loop through the course titles based on $num
-            for ($i = 0; $i < count($courseTitles); $i++) {
-                if ($num == $i + 1) {
+
+            // Check if $num is within the range of courseTitles array
+            if ($num > 0 && $num <= count($courseTitles)) {
+                // Get the index corresponding to $num
+                $index = $num - 1;
+
+                // Select exercise details based on language and course title
+                if ($language == "en") {
                     $exerciseDetails = Exercise_details::select('description', 'video')
                         ->where('category_id', '=', '5')
-                        ->where('title', $courseTitles[$i])
+                        ->where('title', $courseTitles[$index])
                         ->first();
-                    break; // Break the loop once the correct course title is found
+                } elseif ($language == "ar") {
+                    $exerciseDetails = Exercise_details::select('description_ar', 'video')
+                        ->where('category_id', '=', '5')
+                        ->where('title', $courseTitles[$index])
+                        ->first();
                 }
             }
-    
-            // Check if any exercise details were found
+
+            // Check if exerciseDetails is still null after the loop
             if ($exerciseDetails === null) {
-                return response()->json(['message' => 'No exercise details found'], 404);
+                return response()->json(['message' => 'Exercise not found'], 404);
             }
-    
-            // Return exercise details as JSON response
+
             return response()->json($exerciseDetails, 200);
         } catch (\Exception $e) {
-            // Handle any exceptions
-            return response()->json(['message' => 'Error: ' . $e->getMessage()], 500);
+            return response()->json(['error' => 'Internal Server Error'], 500);
         }
     }
-    
 
 
 
@@ -49,37 +54,48 @@ class ExercisesController extends Controller
 
 
 
-    public function get_Exercises()
+
+
+    public function get_Exercises($language)
     {
-        $exerciseDetails = Exercise_details::where('category_id','=','5')
-        ->get();
+        if ($language == "en") {
+            $exerciseDetails = Exercise_details::select('video','title','description')
+                ->where('category_id','=','5')
+                ->get();
+        } elseif ($language == "ar") {
+            $exerciseDetails = Exercise_details::select('video','description_ar')
+                ->where('category_id','=','5')
+                ->get();
+        }
 
+        // Check if exerciseDetails is empty and return appropriate response
         if ($exerciseDetails->isEmpty()) {
             return response()->json(['message' => 'No exercise details found'], 404);
         }
-    
-         return response()->json($exerciseDetails, 200);
-        
+
+        return response()->json($exerciseDetails, 200);
     }
 
-    
+
     public function add_Exercise(Request $req)
     {
         $exercise = new exercise_details;
         $exercise->title = $req->input('title');
+        $exercise->title = $req->input('title_ar');
         $exercise->description = $req->input('description');
+        $exercise->description = $req->input('descriptio_ar');
         // Automatically set category_id to 5
         $exercise->category_id = 5;
-    
+
         try {
             if ($req->has('video_url')) {
                 $exercise->video = $req->input('video_url');
             } else {
                 return ["Result" => "Error: Video URL not provided"];
             }
-    
+
             $exercise->save();
-    
+
             return ["Result" => " uploaded successfully"];
         } catch (\Exception $e) {
             // Handle errors
@@ -88,17 +104,17 @@ class ExercisesController extends Controller
     }
 
 
-   
+
 
     public function update_exercise(Request $req, $id)
     {
         $exercise = exercise_details::find($id);
-    
+
         if (!$exercise) {
             return ["Result" => "Record not found"];
         }
-    
-       
+
+
         if ($req->has('category_id')) {
             $exercise->category_id = $req->input('category_id');
         }
@@ -108,16 +124,22 @@ class ExercisesController extends Controller
         if ($req->has('description')) {
             $exercise->description = $req->input('description');
         }
-      
-    
-        
+        if ($req->has('description_ar')) {
+            $exercise->description = $req->input('description');
+        }
+        if ($req->has('title_ar')) {
+            $exercise->title = $req->input('title');
+        }
+
+
+
         if ($req->has('video_url')) {
             $exercise->video = $req->input('video_url');
         }
-    
+
         // Save the updated exercise details
         $result = $exercise->save();
-    
+
         if ($result) {
             return ["Result" => "Updated Successfully"];
         } else {
@@ -135,13 +157,13 @@ class ExercisesController extends Controller
             return response()->json(['message' => 'Data didn’t deleted successfully']); // Record not found
         }
     }
-    
 
 
 
 
 
-    
+
+
     }
 
 
@@ -161,7 +183,7 @@ class ExercisesController extends Controller
 
 
 
-    
+
 
     // public function add_Exercise(Request $req)
     // {
@@ -173,16 +195,16 @@ class ExercisesController extends Controller
     //         // Create a new instance of the Vimeo class with your Vimeo access token
     //         $vimeo = new Vimeo('9fdd059f3726495895399b9c2a5c61cade4fb356', 'NFm3UhUgVGayIjRGtrpM+537pS3BQwVYBgF+rAmLRbJsz7Hb/wT92OIJ2w0Tp4u/kKl/V4EDrhuDCrF0qvFxsCzz8skAV0meO+QUSACcZdP4rDm9xqQfJUvgn7Dfbn5B
     //         ', '56c1fc7b2bfec368a8a3de979c016880');
-            
+
     //         // Upload the video to Vimeo
     //         $uri = $vimeo->upload($req->file('video')->getPathname());
     //         info($uri);
     //         // Store the Vimeo video URI in the exercise_details model
     //         $exercise->video = $uri;
-            
+
     //         // Save the exercise details to the database
     //         $exercise->save();
-            
+
     //         // Return success response
     //         return ["Result" => "Video uploaded successfully"];
     //     } catch (VimeoUploadException $e) {

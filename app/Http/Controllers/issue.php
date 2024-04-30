@@ -9,17 +9,21 @@ use App\Models\issues;
 
 class issue extends Controller
 {
-    public function get_issues() 
+    public function get_issues($language)
     {
-     $issues = issues::all();
-  
- 
+        if ($language == "en"){
+     $issues = issues::select('name','id');
+    }
+    elseif ($language == "ar"){
+        $issues = issues::select('name_ar','id');
+       }
+
      if ($issues->isEmpty()) {
          return response()->json(['message' => 'No issue details found'], 404);
      }
- 
+
       return response()->json($issues, 200);
-  
+
  }
 
 
@@ -32,26 +36,26 @@ class issue extends Controller
 //              'title' => 'required',
 //              'description' => 'required',
 //          ]);
- 
+
 //          $issue = new issue_des;
- 
-       
+
+
 //          $issue->issue_id = $req->input('issue_id');
 //          $issue->title = $req->input('title');
 //          $issue->description = $req->input('description');
- 
-      
+
+
 //          $issue->save();
- 
-     
+
+
 //          return ["Result" => "Uploaded successfully"];
 //      } catch (\Exception $e) {
-        
+
 //          if ($e instanceof \Illuminate\Validation\ValidationException) {
 //              return ["Result" => "Validation Error: " . $e->getMessage()];
 //          }
- 
-     
+
+
 //          return ["Result" => "Error: " . $e->getMessage()];
 //      }
 //  }
@@ -60,34 +64,38 @@ class issue extends Controller
      try {
          // Validate the request data
          $req->validate([
-             
+
              'title' => 'required',
              'description' => 'required',
+             'title_ar' => 'required',
+             'description_en' => 'required',
          ]);
- 
+
          $issue = new issue_des;
- 
-       
-        
+
+
+
          $issue->title = $req->input('title');
          $issue->description = $req->input('description');
- 
+         $issue->title_ar = $req->input('title_ar');
+         $issue->description_en = $req->input('description_en');
+
          $issue->issue_id = $id;
          $issue->save();
- 
-     
+
+
          return ["Result" => "Uploaded successfully"];
      } catch (\Exception $e) {
-        
+
          if ($e instanceof \Illuminate\Validation\ValidationException) {
              return ["Result" => "Validation Error: " . $e->getMessage()];
          }
- 
-     
+
+
          return ["Result" => "Error: " . $e->getMessage()];
      }
  }
- 
+
 
 
 
@@ -97,20 +105,30 @@ class issue extends Controller
      try {
          // Find the issue_des record by ID
          $issue = issue_des::findOrFail($id);
- 
+
          // Update title if provided in the request
          if ($req->has('title')) {
              $issue->title = $req->input('title');
          }
- 
+
+         // Update title_ar if provided in the request
+         if ($req->has('title_ar')) {
+             $issue->title_ar = $req->input('title_ar');
+         }
+
          // Update description if provided in the request
          if ($req->has('description')) {
              $issue->description = $req->input('description');
          }
- 
+
+         // Update description_ar if provided in the request
+         if ($req->has('description_ar')) {
+             $issue->description_ar = $req->input('description_ar');
+         }
+
          // Check if any fields were updated
          $fieldsUpdated = $issue->isDirty();
- 
+
          if ($fieldsUpdated) {
              $issue->save();
              return ["Result" => "Updated successfully"];
@@ -123,7 +141,7 @@ class issue extends Controller
          return ["Result" => "Error: " . $e->getMessage()];
      }
  }
- 
+
 
 
 
@@ -139,7 +157,7 @@ public function delete_ISSUE($id)
 
         return ["Result" => "Deleted successfully"];
     } catch (\Exception $e) {
-   
+
         return ["Result" => "Error: " . $e->getMessage()];
     }
 }
@@ -189,30 +207,30 @@ public function delete_ISSUE($id)
         try {
             // Validate the request data
             $req->validate([
-             
+
                 'name' => 'required',
-                
+
             ]);
-    
+
             $issue = new issues;
-    
-          
-      
+
+
+
             $issue->name = $req->input('name');
-     
-    
-         
+
+
+
             $issue->save();
-    
-        
+
+
             return ["Result" => "Uploaded successfully"];
         } catch (\Exception $e) {
-           
+
             if ($e instanceof \Illuminate\Validation\ValidationException) {
                 return ["Result" => "Validation Error: " . $e->getMessage()];
             }
-    
-        
+
+
             return ["Result" => "Error: " . $e->getMessage()];
         }
 
@@ -228,34 +246,40 @@ public function delete_ISSUE($id)
         try {
             // Find the issue record by ID
             $issue = Issues::findOrFail($id);
-    
+
             // Check if the issue was found
             if (!$issue) {
                 return response()->json(['message' => 'No issue details found'], 404);
             }
-    
-            // Update the name field
-            $issue->name = $req->input('name');
-   
-    
-            // Check if the name field was updated
-            if ($issue->isDirty('name')) {
+
+            // Update the name field if provided in the request
+            if ($req->has('name')) {
+                $issue->name = $req->input('name');
+            }
+
+            // Update the name_ar field if provided in the request
+            if ($req->has('name_ar')) {
+                $issue->name_ar = $req->input('name_ar');
+            }
+
+            // Check if any field was updated
+            if ($issue->isDirty()) {
                 // Save the changes
                 $issue->save();
-                return ["Result" => "issue updated successfully"];
+                return response()->json(["Result" => "Issue updated successfully"], 200);
             } else {
-                // No changes were made to the name field, return an error message
-                return ["Result" => "Error: No new name provided for update"];
+                // No changes were made to any field, return an error message
+                return response()->json(["Result" => "Error: No new data provided for update"], 400);
             }
         } catch (\Exception $e) {
             // Handle errors
-            return ["Result" => "Error: " . $e->getMessage()];
+            return response()->json(["Result" => "Error: " . $e->getMessage()], 500);
         }
     }
-    
 
 
-        
+
+
 
 public function delete_ISSUEs($id)
 {
@@ -268,19 +292,28 @@ public function delete_ISSUEs($id)
 
         return ["Result" => "Deleted successfully"];
     } catch (\Exception $e) {
-   
+
         return ["Result" => "Error: " . $e->getMessage()];
     }
 }
 
 
-public function get_issue($issue_id)
+public function get_issue($issue_id,$language)
 {
     try {
+        if ($language == "en") {
         // Find all issue details with the given issue_id
-        $issues = issue_des::where('issue_id', $issue_id)->get();
+        $issues = issue_des::
+      select('title','description')
+        ->where('issue_id', $issue_id)->get();
+        }
+        if ($language == "ar") {
+            // Find all issue details with the given issue_id
+            $issues = issue_des::select('title_ar','description_ar')
+           -> where('issue_id', $issue_id)->get();
+            }
 
-        // Check if any issue details were found
+        // Check} if any issue details were found
         if ($issues->isEmpty()) {
             return response()->json(['message' => 'No issue details found for the given issue_id'], 404);
         }

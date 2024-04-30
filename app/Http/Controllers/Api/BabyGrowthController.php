@@ -10,82 +10,165 @@ use Illuminate\Http\Request;
 class BabyGrowthController extends Controller
 {
 
-    public function get_babyGrowth_1()
+    public function get_babyGrowth_1($language)
     {
-        $babyGrowth_1 = Des_Categories::where('category_id', '=', '2')
-            ->where('Month', '=', '1')
-            ->first();
-           
-    
+        if ($language == "en") {
+            $babyGrowth_1 = Des_Categories::select('image','title','description')
+                ->where('category_id', '=', '2')
+                ->where('Month', '=', '1')
+                ->first();
+        } elseif ($language == "ar") {
+            $babyGrowth_1 = Des_Categories::select('image','title_ar','description_ar')
+                ->where('category_id', '=', '2')
+                ->where('Month', '=', '1')
+                ->first();
+        }
+
         return response()->json($babyGrowth_1, 200);
     }
-    
-    public function get_babyGrowth_2()
-    {
-        $babyGrowth_2 = Des_Categories::where('category_id', '=', '2')
-        ->where('Month', '=', '2')
-        ->first(); // Use first() instead of get() if you expect only one result
-    
-    return response()->json($babyGrowth_2, 200);
-    
-    }
-    public function get_babyGrowth_3()
-    {
 
-        
-            // Select specific columns and add conditions to filter records
-            $babyGrowth_3 = Des_Categories::where('category_id', '=', '2')
+    public function get_babyGrowth_2($language)
+    {
+        if ($language == "en") {
+        $babyGrowth_2 =Des_Categories::select('image','title','description')
+        ->where('category_id', '=', '2')
+        ->where('Month', '=', '2')
+        ->first(); }// Use first() instead of get() if you expect only one result
+
+     elseif ($language == "ar") {
+        $babyGrowth_2 = Des_Categories::select('image','title_ar','description_ar')
+            ->where('category_id', '=', '2')
+            ->where('Month', '=', '2')
+            ->first();
+    }
+
+    return response()->json($babyGrowth_2, 200);
+
+    }
+    public function get_babyGrowth_3($language)
+    {
+        if ($language == "en") {
+            $babyGrowth_3 =Des_Categories::select('image','title','description')
+            ->where('category_id', '=', '2')
+            ->where('Month', '=', '3')
+            ->first(); }
+
+         elseif ($language == "ar") {
+            $babyGrowth_3 = Des_Categories::select('image','title_ar','description_ar')
+                ->where('category_id', '=', '2')
                 ->where('Month', '=', '3')
                 ->first();
+        }
+
         return response()->json($babyGrowth_3, 200);
 
     }
-    
-    
-    public function get_babyGrowth_4()
+
+
+    public function get_babyGrowth_4($language)
     {
-        $babyGrowth_4 = Des_Categories::where('category_id', '=', '2')
+           if ($language == "en") {
+            $babyGrowth_4 =Des_Categories::select('image','title','description')
+            ->where('category_id', '=', '2')
             ->where('Month', '=', '4')
-            ->first();
+            ->first(); }
+
+         elseif ($language == "ar") {
+            $babyGrowth_4 = Des_Categories::select('image','title_ar','description_ar')
+                ->where('category_id', '=', '2')
+                ->where('Month', '=', '4')
+                ->first();
+        }
         return response()->json($babyGrowth_4, 200);
     }
-            
-    
-    public function get_babyGrowth_5()
+
+
+    public function get_babyGrowth_5($language)
     {
-        $babyGrowth_5 = Des_Categories::where('category_id', '=', '2')
+        if ($language == "en") {
+            $babyGrowth_5 =Des_Categories::select('image','title','description')
+            ->where('category_id', '=', '2')
             ->where('Month', '=', '5')
-            ->first();
+            ->first(); }
+
+         elseif ($language == "ar") {
+            $babyGrowth_5 = Des_Categories::select('image','title_ar','description_ar')
+                ->where('category_id', '=', '2')
+                ->where('Month', '=', '5')
+                ->first();
+        }
         return response()->json($babyGrowth_5, 200);
     }
-    public function get_babyGrowth_6()
+    public function get_babyGrowth_6($language)
     {
-        $babyGrowth_6 = Des_Categories::where('category_id', '=', '2')
+        if ($language == "en") {
+            $babyGrowth_6 =Des_Categories::select('image','title','description')
+            ->where('category_id', '=', '2')
             ->where('Month', '=', '6')
-            ->first();
+            ->first(); }
+
+         elseif ($language == "ar") {
+            $babyGrowth_6 = Des_Categories::select('image','title_ar','description_ar')
+                ->where('category_id', '=', '2')
+                ->where('Month', '=', '6')
+                ->first();
+        }
         return response()->json($babyGrowth_6, 200);
     }
-    public function get_babyGrowth_7()
+    public function get_babyGrowth_7($language)
     {
-        $babyGrowth_7 = Des_Categories::where('category_id', '=', '2')
+        if ($language == "en") {
+            $babyGrowth_7 =Des_Categories::select('image','title','description')
+            ->where('category_id', '=', '2')
             ->where('Month', '=', '7')
-            ->first();
+            ->first(); }
+
+         elseif ($language == "ar") {
+            $babyGrowth_7 = Des_Categories::select('image','title_ar','description_ar')
+                ->where('category_id', '=', '2')
+                ->where('Month', '=', '7')
+                ->first();
+        }
         return response()->json($babyGrowth_7, 200);
     }
-    public function get_babyGrowth_8()
+    public function get_babyGrowth_8($language)
     {
-        $babyGrowth_8 = Des_Categories::where('category_id', '=', '2')
+        if ($language == "en") {
+            $babyGrowth_8 =Des_Categories::select('image','title','description')
+            ->where('category_id', '=', '2')
             ->where('Month', '=', '8')
-            ->first();
+            ->first(); }
+
+         elseif ($language == "ar") {
+            $babyGrowth_8 = Des_Categories::select('image','title_ar','description_ar')
+                ->where('category_id', '=', '2')
+                ->where('Month', '=', '8')
+                ->first();
+        }
         return response()->json($babyGrowth_8, 200);
     }
-    public function get_babyGrowth_9()
+    public function get_babyGrowth_9($language)
     {
-        $babyGrowth_9 = Des_Categories::where('category_id', '=', '2')
+        if ($language == "en") {
+            $babyGrowth_9 =Des_Categories::select('image','title','description')
+            ->where('category_id', '=', '2')
             ->where('Month', '=', '9')
-            ->first();
+            ->first(); }
+
+         elseif ($language == "ar") {
+            $babyGrowth_9 = Des_Categories::select('image','title_ar','description_ar')
+                ->where('category_id', '=', '2')
+                ->where('Month', '=', '9')
+                ->first();
+        }
         return response()->json($babyGrowth_9, 200);
     }
+
+
+
+
+
+
 
     public function update_DescriptionCategory(Request $request, $id)
     {
