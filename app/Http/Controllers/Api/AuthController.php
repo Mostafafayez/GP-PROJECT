@@ -82,6 +82,29 @@ public function loginAdmin(Request $req)
     }
 }
 
+
+public function logindoc(Request $req)
+{
+    // Check if required fields are empty
+    if (empty($req->input('email')) || empty($req->input('password'))) {
+        return response()->json(['error' => 'Please provide email and password'], 400);
+    }
+
+    try {
+        $Admin = Admin::where('email', $req->input('email'))
+                      ->where('type_num', 2)
+                      ->firstOrFail();
+
+        if (!Hash::check($req->input('password'), $Admin->password)) {
+            return response()->json(['error' => 'Email or Password is incorrect'], 401);
+        }
+
+        return response()->json(['message' => 'Login successful', 'user' => $Admin]);
+    } catch (\Exception $e) {
+        return response()->json(['error' => 'Email or Password is incorrect'], 401);
+    }
+}
+
     public function registerAdmin(Request $req)
     {
         // Check if required fields are empty

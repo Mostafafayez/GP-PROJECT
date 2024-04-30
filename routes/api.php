@@ -34,6 +34,7 @@ use Illuminate\Support\Facades\Artisan;
 Route ::post('/register', [AuthController ::class,'register']);
 Route ::post('/registerAdmin', [AuthController ::class,'registerAdmin']);
 Route ::post('/loginAdmin',  [AuthController ::class,'loginAdmin']);
+Route ::post('/login_Doc',  [AuthController ::class,'logindoc']);
 Route ::post('/login',  [AuthController ::class,'login']);
 
 Route ::post('/addList',  [ListController ::class,'addList']);
