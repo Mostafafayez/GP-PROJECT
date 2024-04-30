@@ -7,73 +7,144 @@ use Illuminate\Http\Request;
 
 class BodyChangeController extends Controller
 {
-    public function get_bodyChange_1()
+    public function get_bodyChange_1($language)
     {
-        $bodyChange_1 = Des_Categories::where('category_id', '=', '1')
-            ->where('Month', '=', '1')
-            ->first();
+        if ($language == "en") {
+            $bodyChange_1 = Des_Categories::select('image','title','description')
+                ->where('category_id', '=', '1')
+                ->where('Month', '=', '1')
+                ->first();
+        } elseif ($language == "ar") {
+            $bodyChange_1= Des_Categories::select('image','title_ar','description_ar')
+                ->where('category_id', '=', '1')
+                ->where('Month', '=', '1')
+                ->first();
+        }
         return response()->json($bodyChange_1, 200);
     }
-    public function get_bodyChange_2()
+    public function get_bodyChange_2($language)
     {
-        $bodyChange_2 = Des_Categories::where('category_id', '=', '1')
-            ->where('Month', '=', '2')
-            ->first();
+        if ($language == "en") {
+            $bodyChange_2 = Des_Categories::select('image','title','description')
+                ->where('category_id', '=', '1')
+                ->where('Month', '=', '2')
+                ->first();
+        } elseif ($language == "ar") {
+            $bodyChange_2= Des_Categories::select('image','title_ar','description_ar')
+                ->where('category_id', '=', '1')
+                ->where('Month', '=', '2')
+                ->first();
+        }
         return response()->json($bodyChange_2, 200);
     }
-    public function get_bodyChange_3()
+    public function get_bodyChange_3($language)
     {
-        $bodyChange_3 = Des_Categories::where('category_id', '=', '1')
-            ->where('Month', '=', '3')
-            ->first();
+        if ($language == "en") {
+            $bodyChange_3 = Des_Categories::select('image','title','description')
+                ->where('category_id', '=', '1')
+                ->where('Month', '=', '3')
+                ->first();
+        } elseif ($language == "ar") {
+            $bodyChange_3= Des_Categories::select('image','title_ar','description_ar')
+                ->where('category_id', '=', '1')
+                ->where('Month', '=', '3')
+                ->first();
+        }
         return response()->json($bodyChange_3, 200);
     }
-    public function get_bodyChange_4()
+    public function get_bodyChange_4($language)
     {
         // Add two conditions to filter records
-        $bodyChange_4 = Des_Categories::where('category_id', '=', '1')
-            ->where('Month', '=', '4')
-            ->first();
+        if ($language == "en") {
+            $bodyChange_4 = Des_Categories::select('image','title','description')
+                ->where('category_id', '=', '1')
+                ->where('Month', '=', '4')
+                ->first();
+        } elseif ($language == "ar") {
+            $bodyChange_4= Des_Categories::select('image','title_ar','description_ar')
+                ->where('category_id', '=', '1')
+                ->where('Month', '=', '4')
+                ->first();
+        }
         return response()->json($bodyChange_4, 200);
     }
-    public function get_bodyChange_5()
+    public function get_bodyChange_5($language)
     {
         // Add two conditions to filter records
-        $bodyChange_5 = Des_Categories::where('category_id', '=', '1')
-            ->where('Month', '=', '5')
-            ->first();
+        if ($language == "en") {
+            $bodyChange_5 = Des_Categories::select('image','title','description')
+                ->where('category_id', '=', '1')
+                ->where('Month', '=', '5')
+                ->first();
+        } elseif ($language == "ar") {
+            $bodyChange_5= Des_Categories::select('image','title_ar','description_ar')
+                ->where('category_id', '=', '1')
+                ->where('Month', '=', '5')
+                ->first();
+        }
         return response()->json($bodyChange_5, 200);
     }
-    public function get_bodyChange_6()
+    public function get_bodyChange_6($language)
     {
         // Add two conditions to filter records
-        $bodyChange_6 = Des_Categories::where('category_id', '=', '1')
-            ->where('Month', '=', '6')
-            ->first();
+        if ($language == "en") {
+            $bodyChange_6 = Des_Categories::select('image','title','description')
+                ->where('category_id', '=', '1')
+                ->where('Month', '=', '6')
+                ->first();
+        } elseif ($language == "ar") {
+            $bodyChange_6= Des_Categories::select('image','title_ar','description_ar')
+                ->where('category_id', '=', '1')
+                ->where('Month', '=', '6')
+                ->first();
+        }
         return response()->json($bodyChange_6, 200);
     }
-    public function get_bodyChange_7()
+    public function get_bodyChange_7($language)
     {
         // Add two conditions to filter records
-        $bodyChange_7 = Des_Categories::where('category_id', '=', '1')
-            ->where('Month', '=', '7')
-            ->first();
+        if ($language == "en") {
+            $bodyChange_7 = Des_Categories::select('image','title','description')
+                ->where('category_id', '=', '1')
+                ->where('Month', '=', '7')
+                ->first();
+        } elseif ($language == "ar") {
+            $bodyChange_7= Des_Categories::select('image','title_ar','description_ar')
+                ->where('category_id', '=', '1')
+                ->where('Month', '=', '7')
+                ->first();
+        }
         return response()->json($bodyChange_7, 200);
     }
-    public function get_bodyChange_8()
+    public function get_bodyChange_8($language)
     {
         // Add two conditions to filter records
-        $bodyChange_8 = Des_Categories::where('category_id', '=', '1')
-            ->where('Month', '=', '8')
-            ->first();
+        if ($language == "en") {
+            $bodyChange_8 = Des_Categories::select('image','title','description')
+                ->where('category_id', '=', '1')
+                ->where('Month', '=', '8')
+                ->first();
+        } elseif ($language == "ar") {
+            $bodyChange_8= Des_Categories::select('image','title_ar','description_ar')
+                ->where('category_id', '=', '1')
+                ->where('Month', '=', '8')
+                ->first();
+        }
         return response()->json($bodyChange_8, 200);
     }
-    public function get_bodyChange_9()
+    public function get_bodyChange_9($language)
     {
         // Add two conditions to filter records
-        $bodyChange_9 = Des_Categories::where('category_id', '=', '1')
-            ->where('Month', '=', '9')
-            ->first();
+        if ($language == "en") {
+            $bodyChange_9 = Des_Categories::select('image','title','description')
+                ->where('category_id', '=', '1')
+                ->where('Month', '=', '9')
+                ->first();
+        } elseif ($language == "ar") {
+            $bodyChange_9= Des_Categories::select('image','title_ar','description_ar')
+                ->where('category_id', '=', '1')
+                ->where('Month', '=', '9')
+                ->first();}
         return response()->json($bodyChange_9, 200);
     }
 }
