@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Des_Categories;
 use Illuminate\Http\Request;
-
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 class AdminBabyGrowthController extends Controller
 {
     // public function add_DESC(Request $req )
@@ -251,15 +251,19 @@ public function getAllBabyGrowth($language)
         return response()->json($bodyChange, 200);
     }
 
+
+
     public function delete($id)
     {
-        $delet = Des_Categories::findOrFail($id);
-
-        if ($delet) {
+        try {
+            $delet = Des_Categories::findOrFail($id);
             $delet->delete();
-            return response()->json(['message' => 'Data deleted successfully']); // Deletion successful
-        } else {
-            return response()->json(['message' => 'Data didn’t deleted successfully']); // Record not found
+
+            return response()->json(['message' => 'Data deleted successfully']);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['message' => 'Data not found'], 404);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'An error occurred while deleting data'], 500);
         }
     }
 
