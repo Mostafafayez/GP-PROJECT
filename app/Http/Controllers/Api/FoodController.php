@@ -9,13 +9,14 @@ class FoodController extends Controller
     public function get_Food_1($language)
     {
         if ($language == "en") {
-            $Food_1 =Des_Categories::select('image','title','description')
+            $Food_1 =Des_Categories::select('image','title','description','id')
             ->where('category_id', '=', '3')
             ->where('Month', '=', '1')
-            ->first(); }
+            ->first();
+        }
 
          elseif ($language == "ar") {
-            $Food_1 = Des_Categories::select('image','title_ar','description_ar')
+            $Food_1 = Des_Categories::select('image','title_ar','description_ar','id')
                 ->where('category_id', '=', '3')
                 ->where('Month', '=', '1')
                 ->first();
@@ -25,13 +26,13 @@ class FoodController extends Controller
     public function get_Food_3($language)
     {
         if ($language == "en") {
-            $Food_3 =Des_Categories::select('image','title','description')
+            $Food_3 =Des_Categories::select('image','title','description','id')
             ->where('category_id', '=', '3')
             ->where('Month', '=', '3')
             ->first(); }
 
          elseif ($language == "ar") {
-            $Food_3 = Des_Categories::select('image','title_ar','description_ar')
+            $Food_3 = Des_Categories::select('image','title_ar','description_ar','id')
                 ->where('category_id', '=', '3')
                 ->where('Month', '=', '3')
                 ->first();
@@ -41,13 +42,13 @@ class FoodController extends Controller
     public function get_Food_6($language)
     {
         if ($language == "en") {
-            $Food_6 =Des_Categories::select('image','title','description')
+            $Food_6 =Des_Categories::select('image','title','description','id')
             ->where('category_id', '=', '3')
             ->where('Month', '=', '6')
             ->first(); }
 
          elseif ($language == "ar") {
-            $Food_6 = Des_Categories::select('image','title_ar','description_ar')
+            $Food_6 = Des_Categories::select('image','title_ar','description_ar','id')
                 ->where('category_id', '=', '3')
                 ->where('Month', '=', '6')
                 ->first();
@@ -63,7 +64,7 @@ class FoodController extends Controller
             return response()->json(['message' => 'Invalid month provided'], 404);
         }
 
-        $ChildGrowth = Des_Categories::select('title', 'description', 'month')
+        $ChildGrowth = Des_Categories::select('title', 'description', 'month','id')
             ->where('category_id', '=', '8')
             ->where('month', '=', $month)
             ->get();
