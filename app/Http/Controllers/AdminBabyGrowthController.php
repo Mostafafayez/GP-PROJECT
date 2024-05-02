@@ -219,13 +219,13 @@ public function getAllBabyGrowth($language)
     {
         if ($language == "en") {
         $bodyChange = Des_Categories::
-        select('image','title','description')
+        select('image','title','description','id')
         ->where('category_id', '=', '2')
             ->get();
         }
         if ($language == "ar") {
             $bodyChange = Des_Categories::
-            select('image','title_ar','description_ar')
+            select('image','title_ar','description_ar','id')
             ->where('category_id', '=', '2')
                 ->get();
             }
@@ -236,13 +236,13 @@ public function getAllBabyGrowth($language)
     {
         if ($language == "en") {
             $bodyChange = Des_Categories::
-            select('image','title','description')
+            select('image','title','description','id')
             ->where('category_id', '=', '1')
                 ->get();
             }
             if ($language == "ar") {
                 $bodyChange = Des_Categories::
-                select('image','title_ar','description_ar')
+                select('image','title_ar','description_ar','id')
                 ->where('category_id', '=', '1')
                     ->get();
                 }

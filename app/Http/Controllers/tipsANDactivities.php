@@ -9,12 +9,12 @@ class tipsANDactivities extends Controller
   public function get_tips($language)
    {
     if ($language == "en") {
-    $tips = Des_Categories::select('title', 'description','month')
+    $tips = Des_Categories::select('title', 'description','month','id')
     ->where('category_id','=','7')
     ->get();
     }
     if ($language == "ar") {
-        $tips = Des_Categories::select('title_ar', 'description_ar','month')
+        $tips = Des_Categories::select('title_ar', 'description_ar','month','id')
         ->where('category_id','=','7')
         ->get();
         }
@@ -61,13 +61,13 @@ public function get_tip($month,$language)
         return response()->json(['message' => 'Invalid month provided'], 404);
     }
     if ($language == "en") {
-    $ChildGrowth = Des_Categories::select('title', 'description', 'month', 'image')
+    $ChildGrowth = Des_Categories::select('title', 'description', 'month', 'image','id')
         ->where('category_id', '=', '7')
         ->where('month', '=', $month)
         ->get();
     }
     if ($language == "ar") {
-        $ChildGrowth = Des_Categories::select('title_ar', 'description_ar', 'month', 'image')
+        $ChildGrowth = Des_Categories::select('title_ar', 'description_ar', 'month', 'image','id')
             ->where('category_id', '=', '7')
             ->where('month', '=', $month)
             ->get();

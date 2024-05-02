@@ -29,13 +29,13 @@ class ChildGrowth extends Controller
             return response()->json(['message' => 'Invalid month provided'], 404);
         }
         if ($language == "en") {
-        $ChildGrowth = Des_Categories::select('title', 'description', 'month')
+        $ChildGrowth = Des_Categories::select('title', 'description', 'month','id')
             ->where('category_id', '=', '8')
             ->where('month', '=', $month)
             ->get();
         }
             if ($language == "ar") {
-                $ChildGrowth = Des_Categories::select('title_ar', 'description_ar', 'month', 'image')
+                $ChildGrowth = Des_Categories::select('title_ar', 'description_ar', 'month', 'image','id')
                     ->where('category_id', '=', '8')
                     ->where('month', '=', $month)
                     ->get();}

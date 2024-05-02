@@ -17,12 +17,12 @@ class Babyfood extends Controller
 
         // Select food details based on language and month
         if ($language == "en") {
-            $food = Des_Categories::select('title', 'description', 'month')
+            $food = Des_Categories::select('title', 'description', 'month','id')
                 ->where('category_id', 9)
                 ->where('month', $month)
                 ->get();
         } elseif ($language == "ar") {
-            $food = Des_Categories::select('title_ar', 'description_ar', 'month')
+            $food = Des_Categories::select('title_ar', 'description_ar', 'month','id')
                 ->where('category_id', 9)
                 ->where('month', $month)
                 ->get();
@@ -45,12 +45,12 @@ class Babyfood extends Controller
         }
 
         if ($language == "en") {
-            $food = Des_Categories::select('title', 'description', 'month')
+            $food = Des_Categories::select('title', 'description', 'month','id')
                 ->where('category_id', 10)
                 ->where('month', $month)
                 ->get();
         } elseif ($language == "ar") {
-            $food = Des_Categories::select('title_ar', 'description_ar', 'month')
+            $food = Des_Categories::select('title_ar', 'description_ar', 'month','id')
                 ->where('category_id', 10)
                 ->where('month', $month)
                 ->get();
@@ -74,12 +74,12 @@ class Babyfood extends Controller
         }
 
         if ($language == "en") {
-            $food = Des_Categories::select('title', 'description', 'month')
+            $food = Des_Categories::select('title', 'description', 'month','id')
                 ->where('category_id', 11)
                 ->where('month', $month)
                 ->get();
         } elseif ($language == "ar") {
-            $food = Des_Categories::select('title_ar', 'description_ar', 'month')
+            $food = Des_Categories::select('title_ar', 'description_ar', 'month','id')
                 ->where('category_id', 11)
                 ->where('month', $month)
                 ->get();

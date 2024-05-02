@@ -24,12 +24,12 @@ class ExercisesController extends Controller
 
                 // Select exercise details based on language and course title
                 if ($language == "en") {
-                    $exerciseDetails = Exercise_details::select('description', 'video')
+                    $exerciseDetails = Exercise_details::select('description', 'video','id')
                         ->where('category_id', '=', '5')
                         ->where('title', $courseTitles[$index])
                         ->first();
                 } elseif ($language == "ar") {
-                    $exerciseDetails = Exercise_details::select('description_ar', 'video')
+                    $exerciseDetails = Exercise_details::select('description_ar', 'video','id')
                         ->where('category_id', '=', '5')
                         ->where('title', $courseTitles[$index])
                         ->first();
@@ -59,11 +59,11 @@ class ExercisesController extends Controller
     public function get_Exercises($language)
     {
         if ($language == "en") {
-            $exerciseDetails = Exercise_details::select('video','title','description')
+            $exerciseDetails = Exercise_details::select('video','title','description','id')
                 ->where('category_id','=','5')
                 ->get();
         } elseif ($language == "ar") {
-            $exerciseDetails = Exercise_details::select('video','description_ar')
+            $exerciseDetails = Exercise_details::select('video','description_ar','id')
                 ->where('category_id','=','5')
                 ->get();
         }

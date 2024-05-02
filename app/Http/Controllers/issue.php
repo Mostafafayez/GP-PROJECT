@@ -312,7 +312,7 @@ public function get_issue($issue_id,$language)
         }
         if ($language == "ar") {
             // Find all issue details with the given issue_id
-            $issues = issue_des::select('title_ar','description_ar')
+            $issues = issue_des::select('title_ar','description_ar','id')
            -> where('issue_id', $issue_id)->get();
             }
 
