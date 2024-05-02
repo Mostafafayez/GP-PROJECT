@@ -77,8 +77,8 @@ Route::get('/get_Food_6/{language}', [FoodController::class, 'get_Food_6']);
  Route::get('/get_des', [AdminBabyGrowthController ::class,'get_all_DESC']);
  Route::get('/getAllBabyGrowth/{language}', [AdminBabyGrowthController::class, 'getAllBabyGrowth']);
  Route::get('/getAllBodyChanges/{language}', [AdminBabyGrowthController::class, 'getAllBodyChanges']);
-//  Route ::delete('/delete_desc/{id}',[AdminBabyGrowthController::class,'delete']);
- Route ::delete('/deletes_desc/{id}',[AdminBabyGrowthController::class,'delete']);
+ Route ::delete('/delete_desc/{id}',[AdminBabyGrowthController::class,'delete']);
+//  Route ::delete('/deletes_desc/{id}',[AdminBabyGrowthController::class,'delete']);
 
  Route::get('/get_vitamin_1/{language}', [VitaminsController ::class,'get_omega_3']);
  Route::get('/get_vitamin_2/{language}', [VitaminsController ::class,'get_zinc']);
