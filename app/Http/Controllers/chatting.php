@@ -100,8 +100,7 @@ use App\Events\MessageSent;
 
         public function sendaiMessage(Request $request)
         {
-            //    $apiKey =
-            // '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';
+           
             $request->validate([
                 'message' => 'required|string|max:255',
             ]);
