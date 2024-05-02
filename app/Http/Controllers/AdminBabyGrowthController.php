@@ -251,17 +251,17 @@ public function getAllBabyGrowth($language)
         return response()->json($bodyChange, 200);
     }
 
-    // public function delete($id)
-    // {
-    //     $delet = Des_Categories::findOrFail($id);
+    public function delete($id)
+    {
+        $delet = Des_Categories::findOrFail($id);
 
-    //     if ($delet) {
-    //         $delet->delete();
-    //         return response()->json(['message' => 'Data deleted successfully']); // Deletion successful
-    //     } else {
-    //         return response()->json(['message' => 'Data didn’t deleted successfully']); // Record not found
-    //     }
-    // }
+        if ($delet) {
+            $delet->delete();
+            return response()->json(['message' => 'Data deleted successfully']); // Deletion successful
+        } else {
+            return response()->json(['message' => 'Data didn’t deleted successfully']); // Record not found
+        }
+    }
 
 
     // public function update_DESC(Request $req, $num)
