@@ -109,7 +109,7 @@ use App\Events\MessageSent;
             $client = new Client();
             $response = $client->post('https://api.openai.com/v1/chat/completions', [
                 'headers' => [
-                    'Authorization' => 'Bearer '.env('OPENAI_API_KEY'),
+                    'Authorization' => 'Bearer '.env('sk-proj-3JO41LBulfgvOEed1PaET3BlbkFJiHPc7jUwm93lTGIBJjux'),
                     'Content-Type' => 'application/json',
                 ],
                 'json' => [
