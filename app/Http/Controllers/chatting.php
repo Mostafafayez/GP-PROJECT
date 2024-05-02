@@ -100,7 +100,7 @@ use App\Events\MessageSent;
 
         public function sendaiMessage(Request $request)
         {
-               $apiKey =
+            //    $apiKey =
             // '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';
             $request->validate([
                 'message' => 'required|string|max:255',
@@ -110,7 +110,7 @@ use App\Events\MessageSent;
             $client = new Client();
             $response = $client->post('https://api.openai.com/v1/chat/completions', [
                 'headers' => [
-                    'Authorization' => 'Bearer '. $apiKey,
+                    // 'Authorization' => 'Bearer '. $apiKey,
                     'Content-Type' => 'application/json',
                 ],
                 'json' => [
