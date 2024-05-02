@@ -20,3 +20,6 @@ yarn-error.log
 # .env
 .metals/metals.log
 # .env
+
+# secret
+.env
