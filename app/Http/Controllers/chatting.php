@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\messages;
 use Illuminate\Http\Request;
  use Pusher\Pusher;
+ use GuzzleHttp\Client;
 use App\Events\MessageSent;
     class chatting extends Controller
     {
@@ -89,6 +90,60 @@ use App\Events\MessageSent;
             return response()->json($message);
         }
 
+
+
+
+
+
+
+
+
+        public function sendaiMessage(Request $request)
+        {
+            // Validate input
+            $request->validate([
+                'message' => 'required|string|max:255',
+            ]);
+
+            // Send request to OpenAI API
+            $client = new Client();
+            $response = $client->post('https://api.openai.com/v1/chat/completions', [
+                'headers' => [
+                    'Authorization' => 'Bearer '.env('OPENAI_API_KEY'),
+                    'Content-Type' => 'application/json',
+                ],
+                'json' => [
+                    'model' => 'gpt-3.5-turbo', // Change the model as needed
+                    'messages' => [
+                        [
+                            'role' => 'user',
+                            'content' => $request->input('message'),
+                        ]
+                    ],
+                    "usage" => [
+                        "temperature" => 1,
+                        "max_tokens" => 256,
+                        "top_p" => 1,
+                        "frequency_penalty" => 0,
+                        "presence_penalty" => 0
+                    ]
+                ],
+            ]);
+
+            // Process response
+            $data = json_decode($response->getBody()->getContents(), true);
+
+            // Extract response from OpenAI
+            $output = '';
+            foreach ($data['choices'][0]['message']['content'] as $item) {
+                if ($item['role'] == 'assistant') {
+                    $output .= $item['content'];
+                }
+            }
+
+            // Return the response
+            return response()->json(['response' => $output]);
+        }
 
 
 

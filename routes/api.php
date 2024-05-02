@@ -141,6 +141,8 @@ Route::post('/recognize-voice', [VoiceRecognitionController::class, 'predict']);
 
 Route::post('/send', [chatting::class, 'sendMessage']);
 Route::post('/receive', [chatting::class, 'receiveMessages']);
+Route::post('/sendai', [chatting::class, 'sendaiMessage']);
+
 
  //https://gradhub.hwnix.com/api/update_one/{id}/////////////////////////////register
  Route::get('/test',function(){
