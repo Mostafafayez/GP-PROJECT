@@ -138,10 +138,10 @@ public function update_one(Request $req, $id)
         $description->month = $req->input('month');
     }
     if ($req->has('description_ar')) {
-        $description->month = $req->input('description_ar');
+        $description->description_ar = $req->input('description_ar');
     }
     if ($req->has('title_ar')) {
-        $description->month = $req->input('title_ar');
+        $description->title_ar = $req->input('title_ar');
     }
 
 
