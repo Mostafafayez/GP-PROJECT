@@ -131,9 +131,9 @@ public function update_one(Request $req, $id)
     if ($req->has('description')) {
         $description->description = $req->input('description');
     }
-    if ($req->has('month')) {
-        $description->month = $req->input('month');
-    }
+    // if ($req->has('title_ar')) {
+    //     $description->month = $req->input('title_ar');
+    // }
     if ($req->has('month')) {
         $description->month = $req->input('month');
     }
