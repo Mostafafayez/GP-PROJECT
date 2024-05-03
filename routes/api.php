@@ -121,7 +121,7 @@ Route::post('/update_issues/{id}',[issue :: class , 'update_issues']);
 Route::delete('/delete_issue/{id}',[issue :: class , 'delete_ISSUEs']);
 
 
-Route::put('/update_issue/{id}',[issue :: class , 'update_ISSUE']);
+Route::post('/update_issue/{id}',[issue :: class , 'update_ISSUE']);
 Route::delete('/delete_issue/{id}',[issue :: class , 'delete_ISSUE']);
 
 
