@@ -5,6 +5,8 @@ use App\Models\messages;
 use Illuminate\Http\Request;
  use Pusher\Pusher;
  use GuzzleHttp\Client;
+ use Symfony\Component\Process\Process;
+ use Symfony\Component\Process\Exception\ProcessFailedException;
 use App\Events\MessageSent;
     class chatting extends Controller
     {
@@ -142,6 +144,29 @@ use App\Events\MessageSent;
             return response()->json(['response' => $output]);
         }
 
+
+
+
+
+
+        public function trainModelAndReturnJSON()
+        {
+            try {
+                // Run Python script to train the model
+                $process = Process::fromShellCommandline('python ' . storage_path('cry_model.h5'));
+                $process->run();
+
+                // Check if the process was successful
+                if (!$process->isSuccessful()) {
+                    throw new ProcessFailedException($process);
+                }
+
+                return response()->json(['message' => 'Python script executed successfully']);
+            } catch (ProcessFailedException $exception) {
+                // An error occurred during the process execution
+                return response()->json(['error' => $exception->getMessage()], 500);
+            }
+        }
 
     }
 

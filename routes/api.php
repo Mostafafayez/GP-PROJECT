@@ -36,12 +36,16 @@ Route ::post('/registerAdmin', [AuthController ::class,'registerAdmin']);
 Route ::post('/loginAdmin',  [AuthController ::class,'loginAdmin']);
 Route ::post('/login_Doc',  [AuthController ::class,'logindoc']);
 Route ::post('/login',  [AuthController ::class,'login']);
+Route ::get('/get_doc',  [AuthController ::class,'getAllDocs']);
+
 
 Route ::post('/addList',  [ListController ::class,'addList']);
 Route ::delete('/deleteList/{id}',  [ListController ::class,'deleteList']);
 Route::get('/getListById/{user_id}', [ListController::class, 'getListById']);
 Route::put('/updatellist/{id}', [ListController::class, 'updateList']);
 
+Route ::post('/addfriend',  [ListController ::class,'addFriend']);
+Route::get('/getfriend/{user_id}', [ListController::class, 'getfriend']);
 
 Route::get('/calculateWeeksDifference/{date}', [ListController::class, 'calculateWeeksDifference']);
 Route::get('/calculateDaysDifference/{date}', [ListController::class, 'calculateDaysDifference']);
@@ -143,6 +147,8 @@ Route::post('/recognize-voice', [VoiceRecognitionController::class, 'predict']);
 Route::post('/send', [chatting::class, 'sendMessage']);
 Route::post('/receive', [chatting::class, 'receiveMessages']);
 Route::post('/sendai', [chatting::class, 'sendaiMessage']);
+Route::get('/runmode', [chatting::class, 'trainModelAndReturnJSON']);
+
 
 
  //https://gradhub.hwnix.com/api/update_one/{id}/////////////////////////////register

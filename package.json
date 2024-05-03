@@ -13,6 +13,8 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "python": "^0.0.4",
+        "python3": "^0.0.1",
         "yarn": "^1.22.22"
     }
 }

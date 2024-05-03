@@ -7,7 +7,8 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-
+use App\Models\Friend;
+use Illuminate\Database\QueryException;
 class AuthController extends Controller
 {
     public function register(Request $req)
@@ -131,6 +132,29 @@ public function logindoc(Request $req)
             }
         }
     }
+
+
+
+
+    public function getAllDocs(){
+        $Doc = User::select('name','id')
+        ->where('type_num', '=', '2')
+          ->get();
+
+        return response()->json($Doc, 200);
+
+
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 }
