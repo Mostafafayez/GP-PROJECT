@@ -37,6 +37,8 @@ Route ::post('/loginAdmin',  [AuthController ::class,'loginAdmin']);
 Route ::post('/login_Doc',  [AuthController ::class,'logindoc']);
 Route ::post('/login',  [AuthController ::class,'login']);
 Route ::get('/get_doc',  [AuthController ::class,'getAllDocs']);
+Route ::post('/uploadImage/{id}',  [AuthController ::class,'uploadImage']);
+
 
 
 Route ::post('/addList',  [ListController ::class,'addList']);

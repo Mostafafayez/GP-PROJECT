@@ -136,14 +136,58 @@ public function logindoc(Request $req)
 
 
 
-    public function getAllDocs(){
-        $Doc = User::select('name','id','image')
-        ->where('type_num', '=', '2')
-          ->get();
+    public function getAllDocs()
+    {
+        // Fetch all documents from users with type_num equal to '2'
+        $docs = User::select('name', 'id', 'image')
+            ->where('type_num', '=', '2')
+            ->get();
 
-        return response()->json($Doc, 200);
+        // Return the documents as a JSON response
+        return response()->json($docs, 200);
+    }
 
 
+    public function uploadImage(Request $request, $id)
+    {
+        // Validate the request data
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // adjust file types and size limit as needed
+        ]);
+
+        // Find the user by their ID
+        $user = User::find($id);
+
+        // Check if the user exists
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
+        // Handle the file upload
+        if ($request->hasFile('image')) {
+            // Get the uploaded file instance
+            $image = $request->file('image');
+
+            // Store the image file
+            $fileName = $image->store('posts', 'public');
+
+            // Update the user's image path in the database
+            $user->image = $fileName;
+
+            try {
+                // Save the user
+                $user->save();
+
+                // Return success response
+                return response()->json(['message' => 'Image added successfully']);
+            } catch (\Exception $e) {
+                // Handle exceptions
+                return response()->json(['error' => $e->getMessage()], 500);
+            }
+        }
+
+        // If no image is provided or an error occurs, return an error response
+        return response()->json(['error' => 'No image provided'], 400);
     }
 
 
