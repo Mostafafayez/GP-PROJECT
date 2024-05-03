@@ -17,11 +17,19 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+     protected $appends=['FullSrc'];
     protected $fillable = [
         'name',
         'email',
         'password',
+        'image'
     ];
+    public function getFullSrcAttribute()  {
+        return asset('storage/'.$this->image);
+
+      }
+
 
     /**
      * The attributes that should be hidden for serialization.
