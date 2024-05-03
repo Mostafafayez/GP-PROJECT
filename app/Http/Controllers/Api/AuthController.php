@@ -137,7 +137,7 @@ public function logindoc(Request $req)
 
 
     public function getAllDocs(){
-        $Doc = User::select('name','id')
+        $Doc = User::select('name','id','image')
         ->where('type_num', '=', '2')
           ->get();
 
