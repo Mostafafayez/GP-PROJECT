@@ -59,7 +59,7 @@ class ExercisesController extends Controller
     public function get_Exercises($language)
     {
         if ($language == "en") {
-            $exerciseDetails = Exercise_details::select('video','title','description','id')
+            $exerciseDetails = Exercise_details::select('video','description','id')
                 ->where('category_id','=','5')
                 ->get();
         } elseif ($language == "ar") {
