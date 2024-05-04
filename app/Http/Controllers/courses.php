@@ -12,9 +12,9 @@ class courses extends Controller
     public function add_courses(Request $req)
     {
         $course = new exercise_details;
-        $course->title = $req->input('title');
+        // $course->title = $req->input('title');
         $course->description = $req->input('description');
-        $course->description_ar = $req->input('description');
+        $course->description_ar = $req->input('description_ar');
         $course->category_id = 6;
         info($req);
         try {
