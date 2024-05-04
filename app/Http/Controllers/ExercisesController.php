@@ -83,7 +83,7 @@ class ExercisesController extends Controller
         // $exercise->title = $req->input('title');
         // $exercise->title = $req->input('title_ar');
         $exercise->description = $req->input('description');
-        $exercise->description_ar = $req->input('descriptio_ar');
+        $exercise->description_ar = $req->input('description_ar');
         // Automatically set category_id to 5
         $exercise->category_id = 5;
 
