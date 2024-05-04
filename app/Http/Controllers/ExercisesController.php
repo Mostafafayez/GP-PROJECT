@@ -80,8 +80,8 @@ class ExercisesController extends Controller
     public function add_Exercise(Request $req)
     {
         $exercise = new exercise_details;
-        $exercise->title = $req->input('title');
-        $exercise->title = $req->input('title_ar');
+        // $exercise->title = $req->input('title');
+        // $exercise->title = $req->input('title_ar');
         $exercise->description = $req->input('description');
         $exercise->description = $req->input('descriptio_ar');
         // Automatically set category_id to 5
