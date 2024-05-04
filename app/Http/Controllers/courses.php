@@ -65,13 +65,13 @@ public function get_cours($language)
         try {
             if ($language=='en'){
             // Fetch exercise details with category_id = 6
-            $exerciseDetails = Exercise_details::select('description', 'video')
+            $exerciseDetails = Exercise_details::select('description', 'video','id')
                                 ->where('category_id', '=', '6')
                                 ->get(); // Execute the query to fetch the results
         }
         elseif ($language=='ar'){
             // Fetch exercise details with category_id = 6
-            $exerciseDetails = Exercise_details::select('description_ar', 'video')
+            $exerciseDetails = Exercise_details::select('description_ar', 'video','id')
                                 ->where('category_id', '=', '6')
                                 ->get(); // Execute the query to fetch the results
         }
