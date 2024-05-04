@@ -62,7 +62,7 @@ class issue extends Controller
 //          return ["Result" => "Error: " . $e->getMessage()];
 //      }
 //  }
-  public function add_issue(Request $req,$id,$language)
+  public function add_issue(Request $req,$id)
  {
      try {
          // Validate the request data
