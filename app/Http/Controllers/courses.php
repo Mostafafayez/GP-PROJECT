@@ -106,12 +106,12 @@ public function get_cours($language)
 
                 // Select exercise details based on language and course title
                 if ($language == "en") {
-                    $exerciseDetails = Exercise_details::select('description', 'video')
+                    $exerciseDetails = Exercise_details::select('description', 'video','id')
                         ->where('category_id', '=', '6')
                         ->where('title', $courseTitles[$index])
                         ->first();
                 } elseif ($language == "ar") {
-                    $exerciseDetails = Exercise_details::select('description_ar', 'video')
+                    $exerciseDetails = Exercise_details::select('description_ar', 'video','id')
                         ->where('category_id', '=', '6')
                         ->where('title', $courseTitles[$index])
                         ->first();
