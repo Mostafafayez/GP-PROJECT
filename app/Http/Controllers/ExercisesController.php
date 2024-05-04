@@ -125,10 +125,10 @@ class ExercisesController extends Controller
             $exercise->description = $req->input('description');
         }
         if ($req->has('description_ar')) {
-            $exercise->description = $req->input('description');
+            $exercise->description_ar = $req->input('description_ar');
         }
         if ($req->has('title_ar')) {
-            $exercise->title = $req->input('title');
+            $exercise->title_ar = $req->input('title_ar');
         }
 
 
