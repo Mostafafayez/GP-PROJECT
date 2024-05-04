@@ -140,10 +140,10 @@ Route::post('/add_BabyInfo', [Baby_Info::class, 'add']);
 Route::post('/calculateAge', [Baby_Info::class, 'calculateAge']);
 
 
-Route::post('/recognize-voice', [VoiceRecognitionController::class, 'predict']);
+Route::post('/recognize-voice', [VoiceRecognitionController::class, 'recognize']);
 
 
-Route::post('/recognize-voice', [VoiceRecognitionController::class, 'predict']);
+Route::post('/recognizيe-voice', [VoiceRecognitionController::class, 'predict']);
 
 
 Route::post('/send', [chatting::class, 'sendMessage']);

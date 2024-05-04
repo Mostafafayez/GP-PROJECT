@@ -112,7 +112,7 @@ use App\Events\MessageSent;
                     'Content-Type' => 'application/json',
                 ],
                 'json' => [
-                    'model' => 'gpt-3.5-turbo', // Change the model as needed
+                    'model' => 'text-davinci-003', // Change the model as needed
                     'messages' => [
                         [
                             'role' => 'user',

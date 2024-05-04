@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'a3ff63565f75ac855f91a8dd4b83d95c6e1952a2',
+        'reference' => 'fa88f371cfb0916a1eb63fd111a37b3a26108339',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -412,7 +412,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'a3ff63565f75ac855f91a8dd4b83d95c6e1952a2',
+            'reference' => 'fa88f371cfb0916a1eb63fd111a37b3a26108339',
             'dev_requirement' => false,
         ),
         'laravel/pint' => array(
@@ -610,6 +610,24 @@
             'reference' => 'aa5fc277a4f5508013d571341ade0c3886d4d00e',
             'dev_requirement' => false,
         ),
+        'openai-php/client' => array(
+            'pretty_version' => 'v0.8.4',
+            'version' => '0.8.4.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../openai-php/client',
+            'aliases' => array(),
+            'reference' => '00470f5fedd7b08ee4860959d6952f0be0ec48a0',
+            'dev_requirement' => false,
+        ),
+        'openai-php/laravel' => array(
+            'pretty_version' => 'v0.8.1',
+            'version' => '0.8.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../openai-php/laravel',
+            'aliases' => array(),
+            'reference' => 'cdcf65d19a9a847cfdf249e7b1b6897ea6e9b650',
+            'dev_requirement' => false,
+        ),
         'paragonie/random_compat' => array(
             'pretty_version' => 'v9.99.100',
             'version' => '9.99.100.0',
@@ -708,6 +726,15 @@
             'provided' => array(
                 0 => '1.0',
             ),
+        ),
+        'php-http/multipart-stream-builder' => array(
+            'pretty_version' => '1.3.0',
+            'version' => '1.3.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../php-http/multipart-stream-builder',
+            'aliases' => array(),
+            'reference' => 'f5938fd135d9fa442cc297dc98481805acfe2b6a',
+            'dev_requirement' => false,
         ),
         'php-http/promise' => array(
             'pretty_version' => '1.3.0',

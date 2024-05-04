@@ -213,6 +213,7 @@ public function delete_ISSUE($id)
 
                 'name' => 'required',
 
+                'name_ar' => 'required',
             ]);
 
             $issue = new issues;
@@ -221,7 +222,7 @@ public function delete_ISSUE($id)
 
             $issue->name = $req->input('name');
 
-
+            $issue->name_ar = $req->input('name_ar');
 
             $issue->save();
 
