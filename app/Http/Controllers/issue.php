@@ -62,43 +62,44 @@ class issue extends Controller
 //          return ["Result" => "Error: " . $e->getMessage()];
 //      }
 //  }
- public function add_issue(Request $req, $id, $language)
-{
-    try {
-        // Validate the request data
-        if ($language == 'en') {
-            $req->validate([
-                'title' => 'required',
-                'description' => 'required',
-            ]);
-        } elseif ($language == 'ar') {
-            $req->validate([
-                'title_ar' => 'required',
-                'description_ar' => 'required',
-            ]);
-        }
+  public function add_issue(Request $req,$id,$language)
+ {
+     try {
+         // Validate the request data
+         $req->validate([
 
-        $issue = new issue_des;
+             'title' => 'required',
+             'description' => 'required',
+             'title_ar' => 'required',
+             'description_ar' => 'required',
+         ]);
 
-        if ($language == 'en') {
-            $issue->title = $req->input('title');
-            $issue->description = $req->input('description');
-        } elseif ($language == 'ar') {
-            $issue->title_ar = $req->input('title_ar');
-            $issue->description_ar = $req->input('description_ar');
-        }
+         $issue = new issue_des;
 
-        $issue->issue_id = $id;
-        $issue->save();
 
-        return ["Result" => "Uploaded successfully"];
-    } catch (\Exception $e) {
-        if ($e instanceof \Illuminate\Validation\ValidationException) {
-            return ["Result" => "Validation Error: " . $e->getMessage()];
-        }
-        return ["Result" => "Error: " . $e->getMessage()];
-    }
-}
+
+         $issue->title = $req->input('title');
+         $issue->description = $req->input('description');
+         $issue->title_ar = $req->input('title_ar');
+         $issue->description_ar = $req->input('description_ar');
+
+         $issue->issue_id = $id;
+         $issue->save();
+
+
+         return ["Result" => "Uploaded successfully"];
+     } catch (\Exception $e) {
+
+         if ($e instanceof \Illuminate\Validation\ValidationException) {
+             return ["Result" => "Validation Error: " . $e->getMessage()];
+         }
+
+
+         return ["Result" => "Error: " . $e->getMessage()];
+     }
+ }
+
+
 
 
 
