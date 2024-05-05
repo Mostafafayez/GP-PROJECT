@@ -139,7 +139,7 @@ public function logindoc(Request $req)
     public function getAllDocs()
     {
         // Fetch all documents from users with type_num equal to '2'
-        $docs = User::select('name', 'id', 'image')
+        $docs = User::select('name', 'id', 'image','position')
             ->where('type_num', '=', '2')
             ->get();
 

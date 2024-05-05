@@ -17,9 +17,9 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-# .env
+
 .metals/metals.log
-# .env
+
 
 # secret
 .env
