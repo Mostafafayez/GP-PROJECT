@@ -52,36 +52,37 @@ class issue extends Controller
 
         return $issues;
     }
-    public function createIssue($language,  $req) {
-        // Validate the request data
-        $req->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'title_ar' => 'required',
-            'description_ar' => 'required',
-            'name'=>'required', // I assume you want to validate the 'name' field
-            'name_ar'=>'required' // I assume you want to validate the 'name_ar' field
-        ]);
+    public function createIssue( Request $req) {
+        // Validate the request data based on language
+
+            $req->validate([
+                'name' => 'required',
+                'title' => 'required',
+                'description' => 'required',
+                'name_ar' => 'required',
+                'title_ar' => 'required',
+                'description_ar' => 'required',
+            ]);
+
+
 
         // Create a new issue
         $issue = new issues();
-        if ($language == 'en') {
+
             $issue->name = $req->input('name');
-        } elseif ($language == 'ar') {
+
             $issue->name_ar = $req->input('name_ar');
-        }
+
         $issue->save();
 
         // Create a new issue description
-        $issueDes = new Issue_des();
+        $issueDes = new issue_des();
         $issueDes->issue_id = $issue->id; // Set the issue_id to the ID of the newly created issue
-        if ($language == 'en') {
             $issueDes->title = $req->input('title');
             $issueDes->description = $req->input('description');
-        } elseif ($language == 'ar') {
             $issueDes->title_ar = $req->input('title_ar');
             $issueDes->description_ar = $req->input('description_ar');
-        }
+
         $issueDes->save();
 
         return "Issue and its description created successfully!";
@@ -96,7 +97,7 @@ class issue extends Controller
 
 
 
-//  public function add_issue(Request $req)
+// public function add_issue(Request $req)
 //  {
 //      try {
 //          // Validate the request data
