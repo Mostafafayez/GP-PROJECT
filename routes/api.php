@@ -115,7 +115,7 @@ Route::get('/get_ChildGrowth/{id}/{language}',[ChildGrowth :: class , 'get_Child
 
 
 Route::get('/get_issue/{id}/{language}',[issue :: class , 'get_issue']);
- Route::get('/get_Isssues/{language}',[issue :: class , 'getIssues']);
+ Route::get('/get_AllIssues/{language}',[issue :: class , 'getIssues']);
 Route::get('/get_issues/{language}', [Issue::class, 'get_issues']);
 Route::post('/add_issue/{id}',[issue :: class , 'add_issue']);
 Route::post('/add_issues',[issue :: class , 'add_issues']);
