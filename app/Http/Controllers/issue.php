@@ -30,6 +30,35 @@ class issue extends Controller
 
 
 
+
+
+    public function getIssues($language) {
+
+        if($language=='en'){
+        $issues = Issue_des::select('issue_des.title', 'issue_des.description', 'issues.name')
+            ->join('issues', 'issue_des.issue_id', '=', 'issues.id')
+            ->get();
+        }
+
+        elseif($language=='ar'){
+            $issues = Issue_des::select('issue_des.title_ar', 'issue_des.description_ar', 'issues.name_ar')
+                ->join('issues', 'issue_des.issue_id', '=', 'issues.id')
+                ->get();
+            }
+
+
+
+
+
+        return $issues;
+    }
+
+
+
+
+
+
+
 //  public function add_issue(Request $req)
 //  {
 //      try {
