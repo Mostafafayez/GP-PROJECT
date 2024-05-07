@@ -92,6 +92,31 @@ class issue extends Controller
 
 
 
+    public function get_desc($language, $id)
+    {
+        $bodyChange = null;
+
+
+        if ($language == "en") {
+            $bodyChange = issue_des::select('title_ar','description')
+                ->where('id', $id)
+                ->first();
+        } elseif ($language == "ar") {
+            $bodyChange = issue_des::select('title_ar','description_ar')
+                ->where('id', $id)
+                ->first();
+        }
+
+        if ($bodyChange) {
+            // If a record is found, return it as JSON response
+            return response()->json($bodyChange, 200);
+        } else {
+            // If no record is found, return a suitable response
+            return response()->json(['error' => 'Record not found'], 404);
+        }
+    }
+
+
 
 
 
@@ -232,39 +257,6 @@ public function delete_ISSUE($id)
     }
 }
 
-
-
-
-// public function get_issue($num)
-// {
-//     try {
-//         // Initialize exerciseDetails variable
-//         $issue = null;
-
-//         // Check if $num is within the valid range (1 to 10)
-//         if ($num < 1 || $num > 10) {
-//             return response()->json(['message' => 'Invalid issue number.'], 400);
-//         }
-
-//         // Iterate through numbers from 1 to 10
-//         for ($i = 1; $i <= 10; $i++) {
-//             if ($num == $i) {
-//                 $issue = issue_des::where('issue_id', $i)->get();
-//                 break; // Exit loop if issue found
-//             }
-//         }
-
-//         // Check if any issue details were found
-//         if ($issue === null) {
-//             return response()->json(['message' => 'No issue details found'], 404);
-//         }
-
-//         // Return issue details as JSON response
-//         return response()->json($issue, 200);
-//     } catch (\Exception $e) {
-//         // Handle any exceptions
-//         return response()->json(['message' => 'Error: ' . $e->getMessage()], 500);
-//     }}
 
 
 
