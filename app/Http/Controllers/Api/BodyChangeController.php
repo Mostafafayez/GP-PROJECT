@@ -159,7 +159,6 @@ class BodyChangeController extends Controller
         if ($language == "en") {
             $bodyChange = Des_Categories::select('image', 'title', 'description', 'month', 'id')
                 ->where('id', $id)
-                ->where('Month', '6')
                 ->first();
         } elseif ($language == "ar") {
             $bodyChange = Des_Categories::select('image', 'title_ar', 'description_ar', 'month')
