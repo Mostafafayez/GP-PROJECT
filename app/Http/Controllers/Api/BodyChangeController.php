@@ -155,9 +155,9 @@ class BodyChangeController extends Controller
     {
         $bodyChange = null;
 
-        // Add conditions to filter records based on language
+
         if ($language == "en") {
-            $bodyChange = Des_Categories::select('image', 'title', 'description', 'month', 'id')
+            $bodyChange = Des_Categories::select('image', 'title', 'description', 'month')
                 ->where('id', $id)
                 ->first();
         } elseif ($language == "ar") {

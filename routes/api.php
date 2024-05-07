@@ -78,7 +78,7 @@ Route::get('/get_Food_6/{language}', [FoodController::class, 'get_Food_6']);
 
 
 
-Route::get('/get_bodyChange/{language}/{id}', [BodyChangeController::class, 'get_bodyChange']);
+Route::get('/get_Byid/{language}/{id}', [BodyChangeController::class, 'get_bodyChange']);
 
 
 
