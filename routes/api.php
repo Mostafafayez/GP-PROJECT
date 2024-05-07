@@ -105,7 +105,7 @@ Route::get('/get_Byid/{language}/{id}', [BodyChangeController::class, 'get_bodyC
  Route::get('/get_exercise/{id}/{language}',[ExercisesController :: class,'get_exercise'] );
  Route::post('/add_exercise',[ExercisesController :: class,'add_Exercise'] );
 
- Route::get('/get_vedio/{id}/{language}',[ExercisesController :: class,' get_desc'] );
+ Route::get('/get_vedio/{id}/{language}',[ExercisesController :: class,'get_desc'] );
 
 
  //update & delete exercise or course
