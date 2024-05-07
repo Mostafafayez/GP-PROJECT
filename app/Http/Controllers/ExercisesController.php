@@ -160,6 +160,29 @@ class ExercisesController extends Controller
 
 
 
+    public function get_desc($language, $id)
+    {
+        $bodyChange = null;
+
+
+        if ($language == "en") {
+            $bodyChange = exercise_details::select('video','description')
+                ->where('id', $id)
+                ->first();
+        } elseif ($language == "ar") {
+            $bodyChange = exercise_details::select('video','description_ar')
+                ->where('id', $id)
+                ->first();
+        }
+
+        if ($bodyChange) {
+            // If a record is found, return it as JSON response
+            return response()->json($bodyChange, 200);
+        } else {
+            // If no record is found, return a suitable response
+            return response()->json(['error' => 'Record not found'], 404);
+        }
+    }
 
 
 
