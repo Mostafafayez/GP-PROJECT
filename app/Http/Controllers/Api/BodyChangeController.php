@@ -15,7 +15,7 @@ class BodyChangeController extends Controller
                 ->where('Month', '=', '1')
                 ->first();
         } elseif ($language == "ar") {
-            $bodyChange_1= Des_Categories::select('image','title_ar','description_ar','month')
+            $bodyChange_1= Des_Categories::select('image','title_ar','description_ar','month','id')
                 ->where('category_id', '=', '1')
                 ->where('Month', '=', '1')
                 ->first();
@@ -30,7 +30,7 @@ class BodyChangeController extends Controller
                 ->where('Month', '=', '2')
                 ->first();
         } elseif ($language == "ar") {
-            $bodyChange_2= Des_Categories::select('image','title_ar','description_ar','month')
+            $bodyChange_2= Des_Categories::select('image','title_ar','description_ar','month','id')
                 ->where('category_id', '=', '1')
                 ->where('Month', '=', '2')
                 ->first();
@@ -45,7 +45,7 @@ class BodyChangeController extends Controller
                 ->where('Month', '=', '3')
                 ->first();
         } elseif ($language == "ar") {
-            $bodyChange_3= Des_Categories::select('image','title_ar','description_ar','month')
+            $bodyChange_3= Des_Categories::select('image','title_ar','description_ar','month','id')
                 ->where('category_id', '=', '1')
                 ->where('Month', '=', '3')
                 ->first();
@@ -61,7 +61,7 @@ class BodyChangeController extends Controller
                 ->where('Month', '=', '4')
                 ->first();
         } elseif ($language == "ar") {
-            $bodyChange_4= Des_Categories::select('image','title_ar','description_ar','month')
+            $bodyChange_4= Des_Categories::select('image','title_ar','description_ar','month','id')
                 ->where('category_id', '=', '1')
                 ->where('Month', '=', '4')
                 ->first();
@@ -77,7 +77,7 @@ class BodyChangeController extends Controller
                 ->where('Month', '=', '5')
                 ->first();
         } elseif ($language == "ar") {
-            $bodyChange_5= Des_Categories::select('image','title_ar','description_ar','month')
+            $bodyChange_5= Des_Categories::select('image','title_ar','description_ar','month','id')
                 ->where('category_id', '=', '1')
                 ->where('Month', '=', '5')
                 ->first();
@@ -94,7 +94,7 @@ class BodyChangeController extends Controller
                 ->first();
         }
         elseif ($language == "ar") {
-            $bodyChange_6= Des_Categories::select('image','title_ar','description_ar','month')
+            $bodyChange_6= Des_Categories::select('image','title_ar','description_ar','month','id')
                 ->where('category_id', '=', '1')
                 ->where('Month', '=', '6')
                 ->first();
@@ -110,7 +110,7 @@ class BodyChangeController extends Controller
                 ->where('Month', '=', '7')
                 ->first();
         } elseif ($language == "ar") {
-            $bodyChange_7= Des_Categories::select('image','title_ar','description_ar','month')
+            $bodyChange_7= Des_Categories::select('image','title_ar','description_ar','month','id')
                 ->where('category_id', '=', '1')
                 ->where('Month', '=', '7')
                 ->first();
@@ -126,7 +126,7 @@ class BodyChangeController extends Controller
                 ->where('Month', '=', '8')
                 ->first();
         } elseif ($language == "ar") {
-            $bodyChange_8= Des_Categories::select('image','title_ar','description_ar','month')
+            $bodyChange_8= Des_Categories::select('image','title_ar','description_ar','month','id')
                 ->where('category_id', '=', '1')
                 ->where('Month', '=', '8')
                 ->first();
@@ -142,10 +142,43 @@ class BodyChangeController extends Controller
                 ->where('Month', '=', '9')
                 ->first();
         } elseif ($language == "ar") {
-            $bodyChange_9= Des_Categories::select('image','title_ar','description_ar','month')
+            $bodyChange_9= Des_Categories::select('image','title_ar','description_ar','month','id')
                 ->where('category_id', '=', '1')
                 ->where('Month', '=', '9')
                 ->first();}
         return response()->json($bodyChange_9, 200);
     }
+
+
+
+    public function get_bodyChange($language, $id)
+    {
+        $bodyChange = null;
+
+        // Add conditions to filter records based on language
+        if ($language == "en") {
+            $bodyChange = Des_Categories::select('image', 'title', 'description', 'month', 'id')
+                ->where('id', $id)
+                ->where('Month', '6')
+                ->first();
+        } elseif ($language == "ar") {
+            $bodyChange = Des_Categories::select('image', 'title_ar', 'description_ar', 'month')
+                ->where('id', $id)
+                ->first();
+        }
+
+        if ($bodyChange) {
+            // If a record is found, return it as JSON response
+            return response()->json($bodyChange, 200);
+        } else {
+            // If no record is found, return a suitable response
+            return response()->json(['error' => 'Record not found'], 404);
+        }
+    }
+
+
+
 }
+
+
+
