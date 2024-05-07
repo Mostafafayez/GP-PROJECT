@@ -74,6 +74,15 @@ Route::get('/get_bodyChange_9/{language}', [BodyChangeController::class, 'get_bo
 Route::get('/get_Food_1/{language}', [FoodController::class, 'get_Food_1']);
 Route::get('/get_Food_3/{language}', [FoodController::class, 'get_Food_3']);
 Route::get('/get_Food_6/{language}', [FoodController::class, 'get_Food_6']);
+
+
+
+
+Route::get('/get_bodyChange_1/{language}/{$id}', [BodyChangeController::class, 'get_bodyChange']);
+
+
+
+
  //admin//
  Route ::post('/add_DESC/{id}',  [AdminBabyGrowthController ::class,'add_DESC']);
  Route::post('/update_DESCs/{id}', [AdminBabyGrowthController ::class,'update_all']);
