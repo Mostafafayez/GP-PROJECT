@@ -98,7 +98,7 @@ class issue extends Controller
 
 
         if ($language == "en") {
-            $bodyChange = issue_des::select('title_ar','description')
+            $bodyChange = issue_des::select('title','description')
                 ->where('id', $id)
                 ->first();
         } elseif ($language == "ar") {
