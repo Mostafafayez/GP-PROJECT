@@ -133,7 +133,7 @@ Route::post('/add_issue/{id}',[issue :: class , 'add_issue']);
 Route::post('/add_issues',[issue :: class , 'add_issues']);
 Route::post('/create_issue',[issue :: class , 'createIssue']);
 Route::post('/update_issues/{id}',[issue :: class , 'update_issues']);
-Route::delete('/delete_issue/{id}',[issue :: class , 'delete_ISSUEs']);
+Route::delete('/delete_issues/{id}',[issue :: class , 'delete_ISSUEs']);
 Route::get('/get_issueById/{id}/{language}',[issue :: class , 'get_desc']);
 
 Route::post('/update_issue/{id}',[issue :: class , 'update_ISSUE']);
