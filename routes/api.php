@@ -131,7 +131,7 @@ Route::get('/get_issue/{id}/{language}',[issue :: class , 'get_issue']);
 Route::get('/get_issues/{language}', [Issue::class, 'get_issues']);
 Route::post('/add_issue/{id}',[issue :: class , 'add_issue']);
 Route::post('/add_issues',[issue :: class , 'add_issues']);
-Route::post('/create_FullIssue',[issue :: class , 'createIssue']);
+Route::post('/create_Fullissue',[issue :: class , 'createIssue']);
 Route::post('/update_issues/{id}',[issue :: class , 'update_issues']);
 Route::delete('/delete_issues/{id}',[issue :: class , 'delete_ISSUEs']);
 Route::get('/get_issueById/{id}/{language}',[issue :: class , 'get_desc']);
