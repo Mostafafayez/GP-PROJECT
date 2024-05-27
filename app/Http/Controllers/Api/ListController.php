@@ -208,6 +208,7 @@ public function getFriend(Request $request, $id)
 
     $userData = [
         'user_name' => $user->name,
+        'user_id' => $user->id,
         'friends' => [],
     ];
 
