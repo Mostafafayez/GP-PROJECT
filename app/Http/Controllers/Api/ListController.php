@@ -216,7 +216,7 @@ public function getFriend(Request $request, $id)
     foreach ($friends as $friend) {
 
         $friendName = $friend -> name;
-        $friendid = $friend -> user_id;
+        $friendId = $friend->id;
 
 
         if ($friendName !== null) {
@@ -225,7 +225,7 @@ public function getFriend(Request $request, $id)
                 'friend_id' => $friendId,
             ];
     }
-
+    }
 
     return response()->json($userData);
 }
