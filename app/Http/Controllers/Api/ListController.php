@@ -220,9 +220,10 @@ public function getFriend(Request $request, $id)
 
 
         if ($friendName !== null) {
-            $userData['friends'][] = $friendName;
-            $userData['friends'][] = $friendid;
-        }
+            $userData['friends'][] = [
+                'friend_name' => $friendName,
+                'friend_id' => $friendId,
+            ];
     }
 
 
