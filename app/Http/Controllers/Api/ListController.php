@@ -157,7 +157,14 @@ class ListController extends Controller
             'user_id' => 'required',
             'friend_id' => 'required',
         ]);
+   // Check if the friend relationship already exists
+          $friendExists = Friends::where('user_id', $validatedData['user_id'])
+           ->where('friend_id', $validatedData['friend_id'])
+          ->exists();
 
+                 if ($friendExists) {
+                  return response()->json(["message" => "Friend relationship already exists"], 400);
+                 }
         // Create a new Friend instance
         $friend = new Friends;
 
@@ -172,7 +179,7 @@ class ListController extends Controller
         if ($result) {
             return response()->json(["message" => "Friend added successfully"], 200);
         } else {
-            return response()->json(["message" => "Failed to create friend relationship"], 500);
+            return response()->json(["message" => "Added Failed "], 500);
         }
     }
 
