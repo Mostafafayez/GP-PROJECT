@@ -163,7 +163,7 @@ class ListController extends Controller
           ->exists();
 
                  if ($friendExists) {
-                  return response()->json(["message" => "Friend relationship already exists"], 400);
+                  return response()->json(["message" => "Friend already exists"], 400);
                  }
         // Create a new Friend instance
         $friend = new Friends;
