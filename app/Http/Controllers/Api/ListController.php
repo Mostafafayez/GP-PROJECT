@@ -216,7 +216,7 @@ public function getFriend(Request $request, $id)
     foreach ($friends as $friend) {
 
         $friendName = $friend -> name;
-        $friendid = $friend -> id;
+        $friendid = $friend -> user_id;
 
 
         if ($friendName !== null) {
