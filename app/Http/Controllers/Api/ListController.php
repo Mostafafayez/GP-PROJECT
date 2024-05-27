@@ -216,11 +216,12 @@ public function getFriend(Request $request, $id)
     foreach ($friends as $friend) {
 
         $friendName = $friend -> name;
-        $friendName = $friend -> id;
+        $friendid = $friend -> id;
 
 
         if ($friendName !== null) {
             $userData['friends'][] = $friendName;
+            $userData['friends'][] = $friendid;
         }
     }
 
