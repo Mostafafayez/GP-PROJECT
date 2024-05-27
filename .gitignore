@@ -22,5 +22,5 @@ yarn-error.log
 
 
 # # secret
-# .env
-# .env
+ .env
+ .env
