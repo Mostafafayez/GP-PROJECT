@@ -77,44 +77,19 @@ class AdminBabyGrowthController extends Controller
 }
 
 
-    // public function add_DESC(Request $req, $num)
-    // {
-
-    //     if ($num >= 1 && $num <= 12 && $num != 5 && $num != 6) {
-    //         $description = new Des_Categories;
-    //         $fileName = "";
-    //         $description->title = $req->input('title');
-    //         $description->description = $req->input('description');
-    //         $description->month = $req->input('month');
-
-    //         // Check if there's a new image file uploaded
-    //         if ($req->hasFile('image')) {
-    //             $fileName = $req->file('image')->store('posts', 'public');
-    //             $description->image = $fileName;
-    //         }
-
-    //         $description->category_id = $num; // Set the category ID
-
-    //         try {
-    //             $result = $description->save();
-    //             if ($result) {
-    //                 return "Added successfully.";
-    //             } else {
-    //                 return "Failed to add.";
-    //             }
-    //         } catch (\Exception $e) {
-    //             return "Failed to add: " . $e->getMessage();
-    //         }
-    //     } else {
-    //         return "Invalid input. Please provide a number from 1 to 8 excluding 5 and 6.";
-    //     }
-    // }
-
-
-
 
 public function update_one(Request $req, $id)
+
 {
+    try {
+
+
+    $req->validate([
+
+        'image' => 'jpg,jpeg,png,gif|max:2048',
+
+    ]);
+
     $description = Des_Categories::find($id);
 
     if (!$description) {
@@ -131,9 +106,7 @@ public function update_one(Request $req, $id)
     if ($req->has('description')) {
         $description->description = $req->input('description');
     }
-    // if ($req->has('title_ar')) {
-    //     $description->month = $req->input('title_ar');
-    // }
+
     if ($req->has('month')) {
         $description->month = $req->input('month');
     }
@@ -158,7 +131,17 @@ public function update_one(Request $req, $id)
     } else {
         return ["Result" => "There is something wrong"];
     }
-}
+
+} catch (\Exception $e) {
+    if ($e instanceof \Illuminate\Validation\ValidationException) {
+        return response()->json(["Result" => "Validation Error: " . $e->getMessage()], 400);
+    } else {
+        return response()->json(["plz check image format"]);
+    }
+
+}}
+
+
 
 
 
