@@ -79,67 +79,55 @@ class AdminBabyGrowthController extends Controller
 
 
 public function update_one(Request $req, $id)
-
 {
     try {
+        $req->validate([
+            'image' => 'nullable|mimes:jpg,jpeg,png,gif|max:2048',
+        ]);
 
+        $description = Des_Categories::find($id);
 
-    $req->validate([
+        if (!$description) {
+            return response()->json(["Result" => "Record not found"], 404);
+        }
 
-        'image' => 'jpg,jpeg,png,gif|max:2048',
+        // Update fields if present in the request
+        if ($req->has('category_id')) {
+            $description->category_id = $req->input('category_id');
+        }
+        if ($req->has('title')) {
+            $description->title = $req->input('title');
+        }
+        if ($req->has('description')) {
+            $description->description = $req->input('description');
+        }
+        if ($req->has('month')) {
+            $description->month = $req->input('month');
+        }
+        if ($req->has('description_ar')) {
+            $description->description_ar = $req->input('description_ar');
+        }
+        if ($req->has('title_ar')) {
+            $description->title_ar = $req->input('title_ar');
+        }
 
-    ]);
+        if ($req->hasFile('image')) {
+            $fileName = $req->file('image')->store('posts', 'public');
+            $description->image = $fileName;
+        }
 
-    $description = Des_Categories::find($id);
-
-    if (!$description) {
-        return ["Result" => "Record not found"];
-    }
-
-
-    if ($req->has('category_id')) {
-        $description->category_id = $req->input('category_id');
-    }
-    if ($req->has('title')) {
-        $description->title = $req->input('title');
-    }
-    if ($req->has('description')) {
-        $description->description = $req->input('description');
-    }
-
-    if ($req->has('month')) {
-        $description->month = $req->input('month');
-    }
-    if ($req->has('description_ar')) {
-        $description->description_ar = $req->input('description_ar');
-    }
-    if ($req->has('title_ar')) {
-        $description->title_ar = $req->input('title_ar');
-    }
-
-
-    if ($req->hasFile('image')){
-        $fileName = $req->file('image')->store('posts', 'public');
-        $description->image = $fileName;
-    }
-
-
-    $result = $description->save();
-
-    if ($result) {
-        return ["Result" => "Updated Successfully"];
-    } else {
-        return ["Result" => "There is something wrong"];
-    }
-
-} catch (\Exception $e) {
-    if ($e instanceof \Illuminate\Validation\ValidationException) {
+        if ($description->save()) {
+            return response()->json(["Result" => "Updated Successfully"]);
+        } else {
+            return response()->json(["Result" => "There is something wrong"], 500);
+        }
+    } catch (\Illuminate\Validation\ValidationException $e) {
         return response()->json(["Result" => "Validation Error: " . $e->getMessage()], 400);
-    } else {
-        return response()->json(["plz check image format"]);
+    } catch (\Exception $e) {
+        return response()->json(["Result" => "An error occurred: " . $e->getMessage()], 500);
     }
+}
 
-}}
 
 
 
