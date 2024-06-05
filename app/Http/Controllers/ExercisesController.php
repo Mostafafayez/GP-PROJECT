@@ -123,6 +123,11 @@ class ExercisesController extends Controller
             'video_url' => 'nullable|url',
         ]);
 
+        // Check if at least one field is present
+        if (!$req->hasAny(['description', 'description_ar', 'video_url'])) {
+            return response()->json(["Result" => "No fields provided for update"], 400);
+        }
+
         // Update the exercise details if provided
         if ($req->has('description')) {
             $exercise->description = $validatedData['description'];
