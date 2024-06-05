@@ -108,44 +108,40 @@ class ExercisesController extends Controller
 
     public function update_exercise(Request $req, $id)
     {
+        // Find the exercise by ID
         $exercise = exercise_details::find($id);
 
+        // Check if the exercise record exists
         if (!$exercise) {
-            return ["Result" => "Record not found"];
+            return response()->json(["Result" => "Record not found"], 404);
         }
 
+        // Validate the incoming request data
+        $validatedData = $req->validate([
+            'description' => 'nullable|string',
+            'description_ar' => 'nullable|string',
+            'video_url' => 'nullable|url',
+        ]);
 
-        // if ($req->has('category_id')) {
-        //     $exercise->category_id = $req->input('category_id');
-        // }
-        // if ($req->has('title')) {
-        //     $exercise->title = $req->input('title');
-        // }
+        // Update the exercise details if provided
         if ($req->has('description')) {
-            $exercise->description = $req->input('description');
+            $exercise->description = $validatedData['description'];
         }
         if ($req->has('description_ar')) {
-            $exercise->description_ar = $req->input('description_ar');
+            $exercise->description_ar = $validatedData['description_ar'];
         }
-        // if ($req->has('title_ar')) {
-        //     $exercise->title_ar = $req->input('title_ar');
-        // }
-
-
-
         if ($req->has('video_url')) {
-            $exercise->video = $req->input('video_url');
+            $exercise->video = $validatedData['video_url'];
         }
 
         // Save the updated exercise details
-        $result = $exercise->save();
-
-        if ($result) {
-            return ["Result" => "Updated Successfully"];
+        if ($exercise->save()) {
+            return response()->json(["Result" => "Updated Successfully"], 200);
         } else {
-            return ["Result" => "There is something wrong"];
+            return response()->json(["Result" => "There is something wrong"], 500);
         }
     }
+
     public function delete($id)
     {
         $delet = exercise_details::findOrFail($id);
