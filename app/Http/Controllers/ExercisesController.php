@@ -125,7 +125,7 @@ class ExercisesController extends Controller
         $validatedData = $req->validate([
             'description' => 'nullable|string',
             'description_ar' => 'nullable|string',
-            'video_url' => 'nullable|url',
+            'video_url' => 'nullable|string',
         ]);
 
         // Update the exercise details if provided
