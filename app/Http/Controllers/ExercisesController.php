@@ -115,9 +115,9 @@ class ExercisesController extends Controller
         }
 
 
-        if ($req->has('category_id')) {
-            $exercise->category_id = $req->input('category_id');
-        }
+        // if ($req->has('category_id')) {
+        //     $exercise->category_id = $req->input('category_id');
+        // }
         if ($req->has('title')) {
             $exercise->title = $req->input('title');
         }
@@ -127,9 +127,9 @@ class ExercisesController extends Controller
         if ($req->has('description_ar')) {
             $exercise->description_ar = $req->input('description_ar');
         }
-        if ($req->has('title_ar')) {
-            $exercise->title_ar = $req->input('title_ar');
-        }
+        // if ($req->has('title_ar')) {
+        //     $exercise->title_ar = $req->input('title_ar');
+        // }
 
 
 

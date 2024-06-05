@@ -47,15 +47,19 @@ public function login(Request $req)
         return response()->json(['error' => 'Please provide email and password'], 400);
     }
 
+
+
+
+
     try {
         $user = User::where('email', $req->input('email'))->firstOrFail();
 
         if (!Hash::check($req->input('password'), $user->password)) {
             return response()->json(['error' => 'Email or Password is incorrect'], 401);
         }
-
         return response()->json(['message' => 'Login successful', 'user' => $user]);
     } catch (\Exception $e) {
+
         return response()->json(['error' => 'Email or Password is incorrect'], 401);
     }
 }
