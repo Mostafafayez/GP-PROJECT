@@ -239,9 +239,29 @@ public function getFriend(Request $request, $id)
 
 
 
+public function update_one(Request $req, $id)
+{
+try {
+        $req->validate([
+            'image' => 'nullable|mimes:jpg,jpeg,png,gif|max:2048',
+        ]);
+        $description = User::find($id);
 
-
-
+        if ($req->hasFile('image')) {
+            $fileName = $req->file('image')->store('posts', 'public');
+            $description->image = $fileName;
+        }
+        if ($description->save()) {
+            return response()->json(["Result" => "Updated Successfully"]);
+        } else {
+            return response()->json(["Result" => "There is something wrong"], 500);
+        }
+    } catch (\Illuminate\Validation\ValidationException $e) {
+        return response()->json(["Result" => "Validation Error: " . $e->getMessage()], 400);
+    } catch (\Exception $e) {
+        return response()->json(["Result" => "An error occurred: " . $e->getMessage()], 500);
+    }
+}
 }
 
 

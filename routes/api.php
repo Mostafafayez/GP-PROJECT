@@ -47,6 +47,7 @@ Route::get('/getListById/{user_id}', [ListController::class, 'getListById']);
 Route::put('/updatellist/{id}', [ListController::class, 'updateList']);
 
 Route ::post('/addfriend',  [ListController ::class,'addFriend']);
+Route ::post('/updateimagedoc/{id}',  [ListController ::class,'update_one']);
 Route::get('/getfriend/{user_id}', [ListController::class, 'getfriend']);
 
 Route::get('/calculateWeeksDifference/{date}', [ListController::class, 'calculateWeeksDifference']);
