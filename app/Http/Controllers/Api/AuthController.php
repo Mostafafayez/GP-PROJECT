@@ -13,24 +13,19 @@ class AuthController extends Controller
 {
     public function register(Request $req)
 {
-    // Check if required fields are empty
     if (empty($req->input('name')) || empty($req->input('email')) || empty($req->input('password')) || empty($req->input('phone'))) {
         return response()->json(['error' => 'Please provide all required fields'], 400);
     }
-
-    // Create a new user instance
     $user = new User;
     $user->name = $req->input('name');
     $user->email = $req->input('email');
     $user->password = $req->input('password');
     $user->phone = $req->input('phone');
-
     try {
-        // Save the user
+
         $user->save();
         return response()->json(['message' => 'User added successfully']);
     } catch (\Exception $e) {
-        // Handle exceptions
         if ($e->getCode() == 23000) {
             return response()->json(['error' => 'Email already exists'], 400);
         } else {
@@ -42,14 +37,9 @@ class AuthController extends Controller
 
 public function login(Request $req)
 {
-    // Check if required fields are empty
     if (empty($req->input('email')) || empty($req->input('password'))) {
         return response()->json(['error' => 'Please provide email and password'], 400);
     }
-
-
-
-
 
     try {
         $user = User::where('email', $req->input('email'))->firstOrFail();

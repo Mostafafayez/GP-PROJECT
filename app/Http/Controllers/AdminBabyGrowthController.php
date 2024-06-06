@@ -32,9 +32,7 @@ class AdminBabyGrowthController extends Controller
     //     }
     // }
     public function add_DESC(Request $req, $num)
-{
-    try {
-        // Validate the request data
+{ try {
         $req->validate([
             'month' => 'nullable|integer|min:1|max:24',
             'title' => 'required|string|max:255',
@@ -58,9 +56,7 @@ class AdminBabyGrowthController extends Controller
                 $fileName = $req->file('image')->store('posts', 'public');
                 $description->image = $fileName;
             }
-
             $description->category_id = $num;
-
             $description->save();
 
             return response()->json(["Result" => "Uploaded successfully"], 200);
@@ -80,7 +76,7 @@ class AdminBabyGrowthController extends Controller
 
 public function update_one(Request $req, $id)
 {
-    try {
+try {
         $req->validate([
             'image' => 'nullable|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
@@ -90,8 +86,6 @@ public function update_one(Request $req, $id)
         if (!$description) {
             return response()->json(["Result" => "Record not found"], 404);
         }
-
-        // Update fields if present in the request
         if ($req->has('category_id')) {
             $description->category_id = $req->input('category_id');
         }
@@ -110,7 +104,6 @@ public function update_one(Request $req, $id)
         if ($req->has('title_ar')) {
             $description->title_ar = $req->input('title_ar');
         }
-
         if ($req->hasFile('image')) {
             $fileName = $req->file('image')->store('posts', 'public');
             $description->image = $fileName;
@@ -156,16 +149,15 @@ public function get_DESC($id)
 public function get_all_DESC()
 {
     try {
-        // Attempt to retrieve all records from the Des_Categories model
+
         $descriptions = Des_Categories::all();
 
-        // Check if there are any records
         if ($descriptions->isEmpty()) {
-            // If no records are found, return a message indicating so
+
             return ["Result" => "No records found"];
         }
 
-        // Transform the collection of records into an array of arrays
+
         $result = $descriptions->map(function ($description) {
             return [
                 "category_id" => $description->category_id,
@@ -176,11 +168,9 @@ public function get_all_DESC()
             ];
         })->toArray();
 
-        // Return the result
         return $result;
     } catch (\Exception $e) {
-        // If an exception occurs, catch it here and handle it
-        // You can log the error or perform other error-handling actions here
+
         return ["Error" => $e->getMessage()];
     }
 }

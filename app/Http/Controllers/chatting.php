@@ -100,23 +100,21 @@ use App\Events\MessageSent;
                     ],
                 ]);
 
-                // Process response
                 $data = json_decode($response->getBody()->getContents(), true);
 
-                // Check if $data is an array and if the expected keys exist
+
                 if (is_array($data) && isset($data['choices'][0]['message']['content'])) {
-                    // Extract response from OpenAI
+
                     $output = $data['choices'][0]['message']['content'];
                 } else {
-                    // Handle the case where $data is not in the expected format
-                    // For now, let's assign an error message to $output
+
                     $output = 'Unexpected response format received from OpenAI API';
                 }
 
                 // Return the output
                 return response()->json(['output' => $output]);
             } catch (\Exception $e) {
-                // Handle any exceptions that occur during the process
+
                 return response()->json(['error' => 'An error occurred: ' . $e->getMessage()], 500);
             }
         }
