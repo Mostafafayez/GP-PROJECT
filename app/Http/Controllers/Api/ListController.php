@@ -225,13 +225,15 @@ public function getFriend(Request $request, $id)
 
         $friendName = $friend -> name;
         $friendId = $friend->id;
-        $friendimage = $friend->image;
+        // $friendimage = $friend->image;
+        $fullSrc = $friend->fullsrc;
 
         if ($friendName !== null) {
             $userData['friends'][] = [
                 'friend_name' => $friendName,
                 'friend_id' => $friendId,
-                'image' => $friendimage,
+                'image' => $fullSrc,
+
 
             ];
     }
