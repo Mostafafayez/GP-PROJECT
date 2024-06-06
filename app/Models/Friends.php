@@ -10,6 +10,9 @@ class Friends extends Model
 {
     use HasFactory;
 
+
+    protected $appends=['FullSrc'];
+
     protected $fillable = ['other_columns', 'id'];
 
     public function user()
@@ -22,6 +25,15 @@ class Friends extends Model
         return $this->belongsTo(User::class, 'friend_id');
     }
     public $timestamps = false;
+
+
+
+
+
+    public function getFullSrcAttribute()  {
+        return asset('storage/'.$this->image);
+
+      }
 }
 
 
