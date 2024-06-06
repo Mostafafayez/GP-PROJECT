@@ -11,9 +11,12 @@ class Friends extends Model
     use HasFactory;
 
 
-    protected $appends=['FullSrc'];
 
-    protected $fillable = ['other_columns', 'id'];
+    protected $fillable = ['other_columns', 'id','image'];
+
+
+
+    protected $appends=['FullSrc'];
 
     public function user()
     {
